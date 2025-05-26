@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.ColumnDefault;
 
 import java.time.Instant;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "intervention", schema = "city_app")
@@ -13,9 +14,9 @@ public class Intervention {
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @ColumnDefault("CURRENT_TIMESTAMP")
+
     @Column(name = "date_intervention")
-    private Instant dateIntervention;
+    private LocalDateTime dateIntervention;
 
     @jakarta.validation.constraints.NotNull
     @Lob
@@ -34,11 +35,11 @@ public class Intervention {
         this.id = id;
     }
 
-    public Instant getDateIntervention() {
+    public LocalDateTime getDateIntervention() {
         return dateIntervention;
     }
 
-    public void setDateIntervention(Instant dateIntervention) {
+    public void setDateIntervention(LocalDateTime dateIntervention) {
         this.dateIntervention = dateIntervention;
     }
 
