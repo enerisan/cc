@@ -1,0 +1,44 @@
+ @use 'variables' as *;
+
+ * {
+     box-sizing: border-box;
+     margin: 0;
+     font-family: $textFont
+ }
+
+
+ body {}
+
+ .Wrapper {
+     max-width: 1440px;
+     min-height: 100vh;
+     margin: 0 auto;
+     position: relative;
+ }
+
+ h2 {
+
+     font-size: $space;
+     color: $firstColor;
+
+     @media screen and (min-width:$tablet) {
+         font-size: $spaceM;
+     }
+
+
+ }
+
+ .Btn {
+     color: inherit;
+     text-decoration: none;
+     outline: 1px solid lightgray;
+     padding: 0.1em 0.5em 0.2em 0.5em;
+     border-radius: 5px;
+     font-size: 0.8em;
+
+ }
+
+ .Btn:hover {
+     outline: 1px solid #0CC89E;
+
+ }

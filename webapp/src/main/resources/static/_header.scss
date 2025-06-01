@@ -1,0 +1,52 @@
+ @use 'variables' as *;
+
+ .PageHeader {
+     background-color: $firstColor;
+     min-height: $spaceXXL;
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     padding: $spaceS;
+     position: relative;
+     z-index: 10;
+
+     @media screen and (min-width:$tablet) {
+         padding-inline: $spaceM;
+     }
+
+     &-logo {
+         max-height: $spaceL;
+
+         @media screen and (min-width:$tablet) {
+             max-height: $spaceXXL;
+         }
+     }
+
+     &-userBox {
+         display: flex;
+         flex-direction: row;
+         align-items: center;
+         gap: $spaceL;
+
+
+         h2 {
+             color: $thirdColor;
+         }
+
+
+         img {
+             max-height: $spaceL;
+             background-color: $thirdColor;
+             border: 1px solid $secondColor;
+             border-radius: 50%;
+
+             @media screen and (min-width:$tablet) {
+                 max-height: $spaceXL;
+             }
+         }
+     }
+
+     &-userBoxNav {
+         display: none;
+     }
+ }

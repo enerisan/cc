@@ -15,7 +15,7 @@ public class UserService {
     PasswordEncoder passwordEncoder;
 
     @Autowired
-   IncidentFeignClient incidentFeignClient;
+    IncidentFeignClient incidentFeignClient;
 
     public User register(SignUpForm form){
 
@@ -24,7 +24,7 @@ public class UserService {
         user.setLastname(form.getLastname());
         user.setPhone(form.getPhone());
         user.setEmail(form.getEmail());
-        user.setPassword(form.getPassword());
+        user.setPassword(passwordEncoder.encode(form.getPassword()));
         return incidentFeignClient.createUser(user);
     }
 

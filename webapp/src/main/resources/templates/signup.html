@@ -1,65 +1,108 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>City Care</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="icon" href="public/images/logo.ico" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-    <link rel="stylesheet" href="fonts/icomoon/style.css">
+</head>
 
-    <link rel="stylesheet" th:href="@{/owl.carousel.min.css}">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet"  th:href="@{/bootstrap.min.css}">
-    
-    <!-- Style -->
-    <link rel="stylesheet" th:href="@{/signup.css}">
-
-    <title>Sign up</title>
-  </head>
-  <body>
-  
-
-  <div class="d-md-flex half">
-    <div class="bg" th:style="|background-image: url(@{/images/design.jpg})|"></div>
-
-
-    <div class="contents">
-
-      <div class="container">
-        <div class="row align-items-center justify-content-center">
-          <div class="col-md-12">
-            <div class="form-block mx-auto">
-              <div class="text-center mb-3">
-                <img class="logo"  th:src="@{/images/money%20leaf.png}" alt="logo">
-                <h3 class="text-uppercase"><strong>HEALTHCARE</strong></h3>
-                <p>Sign Up</p>
-              </div>
-              <form th:action="@{/signup}" th:object="${signUpForm}" method="post">
-
-                <div class="form-group first">
-                  <label for="username">*Email</label>
-                  <input type="text" th:field="*{email}" class="form-control" placeholder="your-email@gmail.com" id="username" required>
-                </div>
-                <div class="form-group last mb-3">
-                  <label for="userPassword">*Password</label>
-                  <input type="password" th:field="*{password}" class="form-control" placeholder="Your Password" id="userPassword" required>
-                </div>
-
-                <div class="form-group last mb-3">
-                  <label for="confirmPassword">*Confirm Password</label>
-                  <input type="password" th:field="*{confirmPassword}" class="form-control" placeholder="Confirm your Password" id="confirmPassword" required>
-                </div>
-                
-                <input type="submit" value="Sign Up" class="btn btn-block py-2 btn-primary">
-                
-              </form>
+<body>
+    <div class="Wrapper2">
+        <div class="Slogan2">
+            <div class="Slogan2-textContainer">
+                <h1>City Care</h1>
+                <h3>Participez au soin de votre ville</h3>
             </div>
-          </div>
+            <div class="Slogan2-logoContainer">
+
+            </div>
+
         </div>
-      </div>
+        <div class="FormContainer2">
+
+            <form class="FormContainer2-login" th:action="@{/signup}"  th:object="${signUpForm}" method="post">
+                <h3>Inscription</h3>
+                <div class="input-group">
+                    <input th:field="*{firstname}" id="firstname" name="firstname" placeholder="Votre prénom" required />
+                    <label for="firstname">*Prénom</label>
+                </div>
+
+                <div class="input-group">
+                    <input th:field="*{lastname}" id="lastname" name="lastname" placeholder="Votre nom" required />
+                    <label for="lastname">*Nom</label>
+                </div>
+
+                <div class="input-group">
+                    <input th:field="*{phone}" id="phone" name="phone" placeholder="Votre téléphone" required />
+                    <label for="phone">*Téléphone</label>
+                </div>
+
+                <div class="input-group">
+                    <input th:field="*{email}" id="email" name="email" placeholder="exemple@email.com" required />
+                    <label for="email">*Email</label>
+                </div>
+
+                <div class="input-group icon-right">
+                    <input th:field="*{password}" id="password" name="password" placeholder="Votre mot de passe" required />
+                    <label for="password">*Mot de passe</label>
+                    <button type="button" class="toggle-password" aria-label="Afficher/Masquer le mot de passe">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <path fill="currentColor" fill-rule="evenodd"
+                                d="M12 5C7 5 2.73 8.11 1 12.5C2.73 16.89 7 20 12 20C17 20 21.27 16.89 23 12.5C21.27 8.11 17 5 12 5ZM12 17.5C9.24 17.5 7 15.26 7 12.5C7 9.74 9.24 7.5 12 7.5C14.76 7.5 17 9.74 17 12.5C17 15.26 14.76 17.5 12 17.5ZM12 9.5C10.34 9.5 9 10.84 9 12.5C9 14.16 10.34 15.5 12 15.5C13.66 15.5 15 14.16 15 12.5C15 10.84 13.66 9.5 12 9.5Z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="input-group icon-right">
+                    <input  id="confirmPassword" name="confirmPassword" placeholder="Confirmez votre mot de passe"
+                        required />
+                    <label for="confirmPassword">* Confirmation de mot de passe</label>
+                    <button type="button" class="toggle-password" aria-label="Afficher/Masquer le mot de passe">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <path fill="currentColor" fill-rule="evenodd"
+                                d="M12 5C7 5 2.73 8.11 1 12.5C2.73 16.89 7 20 12 20C17 20 21.27 16.89 23 12.5C21.27 8.11 17 5 12 5ZM12 17.5C9.24 17.5 7 15.26 7 12.5C7 9.74 9.24 7.5 12 7.5C14.76 7.5 17 9.74 17 12.5C17 15.26 14.76 17.5 12 17.5ZM12 9.5C10.34 9.5 9 10.84 9 12.5C9 14.16 10.34 15.5 12 15.5C13.66 15.5 15 14.16 15 12.5C15 10.84 13.66 9.5 12 9.5Z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                </div>
+
+
+                <button type="submit" class="submit-button">Je m'inscris</button>
+                <div class="text-line">
+                    <p>Déjà inscris ? </p>
+                    <a th:href="@{/signin}"> Connectez-vous</a>
+                </div>
+            </form>
+
+
+        </div>
     </div>
-  </div>
-  </body>
+
+    </div>
+
+    <script>
+
+        const toggleButtons = document.querySelectorAll('.toggle-password');
+
+        toggleButtons.forEach(button => {
+            button.addEventListener('click', () => {
+
+                const input = button.parentElement.querySelector('input');
+
+                if (input.type === 'password') {
+                    input.type = 'text';
+                } else {
+                    input.type = 'password';
+                }
+            });
+        });
+    </script>
+</body>
+
+
 </html>

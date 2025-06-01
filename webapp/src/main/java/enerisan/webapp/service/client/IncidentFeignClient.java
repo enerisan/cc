@@ -11,6 +11,7 @@ public interface IncidentFeignClient {
     @PostMapping(value= "api/user", consumes = "application/json")
     public User createUser(User user);
 
-    @GetMapping(value = "/api/findUserByEmail", consumes = "application/json")
-    public User findUserByEmail(@RequestParam String email);
+    @GetMapping(value = "/api/findUserByUsername", consumes = "application/json")
+    public User findUserByUsername(@RequestParam("email") String email);
+
 }

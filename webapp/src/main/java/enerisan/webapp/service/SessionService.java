@@ -19,7 +19,7 @@ public class SessionService {
     public User sessionUser() {
         org.springframework.security.core.userdetails.User springUser =
                 (org.springframework.security.core.userdetails.User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        return incidentFeignClient.findUserByEmail(springUser.getUsername());
+        return incidentFeignClient.findUserByUsername(springUser.getUsername());
 
     }
 }

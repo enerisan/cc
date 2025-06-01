@@ -29,7 +29,7 @@ public class WebAppController {
     public ModelAndView welcome(Model model) {
         User user = sessionService.sessionUser();
         model.addAttribute("user", user);
-        return new ModelAndView("home");
+        return new ModelAndView("user_dashboard");
     }
 
 

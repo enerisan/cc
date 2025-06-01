@@ -1,0 +1,229 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>City Care</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="icon" href="public/images/logo.ico" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+
+<body>
+    <div class="Wrapper">
+        <header class="PageHeader">
+            <img class="PageHeader-logo" src="./images/logo-cc-horizontal.png" alt="logo City Care">
+
+            <div class="PageHeader-userBox">
+                <h2>Mon espace</h2>
+                <img src="./images/avatar.png" alt="avatar">
+            </div>
+
+            <nav class="PageHeader-userBoxNav">
+                <img class="PageHeader-userBoxNav-logo" src="" alt="">
+                <div class="PageHeader-userBoxNav-mentionBox">
+                    <a href="">Méntions Legales</a>
+                    <p> © 2025 citycare.net</p>
+                </div>
+                <div class="PageHeader-userBoxNav-SocialMediaBox">
+                    <a href="https://www.linkedin.com/in/enerisan/" target="_blank" class="text-white fs-3"><i
+                            class="fa-brands fa-linkedin-in" style="color: #ffffff;"></i></a>
+                    <a href="https://www.linkedin.com/in/enerisan/" target="_blank" class="text-white fs-3"><i
+                            class="fa-brands fa-linkedin-in" style="color: #ffffff;"></i></a>
+                    <a href="https://www.linkedin.com/in/enerisan/" target="_blank" class="text-white fs-3"><i
+                            class="fa-brands fa-linkedin-in" style="color: #ffffff;"></i></a>
+                    <a href="https://www.linkedin.com/in/enerisan/" target="_blank" class="text-white fs-3"><i
+                            class="fa-brands fa-linkedin-in" style="color: #ffffff;"></i></a>
+                </div>
+            </nav>
+        </header>
+
+        <main class="PageMain">
+            <div class="PageMain-centralBox">
+                <section class="PageMain-centralBox-infos">
+                    <h2>Mes Infos</h2>
+                    <div class="PageMain-centralBox-infos-card InfosCard">
+                        <div class="InfosCard-imgBox">
+                            <img class="InfosCard-imgBox-img" src="./images/avatar.png" alt="">
+                        </div>
+                        <div class="InfosCard-textBox">
+                            <p class="InfosCard-textBox-title">Loïs Lane</p>
+                            <p class="InfosCard-textBox-email">loislane@dailyplanet.com</p>
+                            <p class="InfosCard-textBox-tel">06 85 43 26 87</p>
+                            <a class="InfosCard-btn Btn" href="">Modifier</a>
+                        </div>
+
+                    </div>
+                </section>
+                <section class="PageMain-centralBox-badges">
+                    <div class="PageMain-centralBox-badges-header">
+                        <h2>Mes badges recents</h2>
+                        <div class="PageMain-centralBox-badges AllSee">
+                            <i class="fa-regular fa-eye" style="color: #124e78;"></i>
+                            <a href="">Voir tous</a>
+                        </div>
+                    </div>
+
+                    <div class="PageMain-centralBox-badges-wrapper">
+                        <figure class="PageMain-centralBox-badges-wrapper-item Badge">
+                            <img src="./images/ambasadrice-acces.png" alt="">
+                            <figcaption></figcaption>
+                        </figure>
+                        <figure class="PageMain-centralBox-badges-wrapper-item Badge">
+                            <img src="./images/amie-nature.png" alt="">
+                            <figcaption></figcaption>
+                        </figure>
+                        <figure class="PageMain-centralBox-badges-wrapper-item Badge">
+                            <img src="./images/heroine-petits.png" alt="">
+                            <figcaption></figcaption>
+                        </figure>
+
+
+                    </div>
+                </section>
+                <section class="PageMain-centralBox-reports">
+                    <h2>Mes signalements</h2>
+                    <div class="PageMain-centralBox-reports-filters">
+
+                        <button class="PageMain-centralBox-reports-filters-btn">Filtrer par statut <i
+                                class="fa-solid fa-circle-chevron-down" style="color: #d8d4d4;"></i></button>
+                        <div class="PageMain-centralBox-reports-filters-list">
+                            <label><input type="checkbox" name="1" data-filter-status="signalé"> signalé</label>
+                            <label><input type="checkbox" name="2" data-filter-status="validé"> validé</label>
+                            <label><input type="checkbox" name="3" data-filter-status="en cours"> en cours</label>
+                            <label><input type="checkbox" name="4" data-filter-status="résolu"> résolu</label>
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="PageMain-centralBox-reports-wrapper">
+                        <div class="PageMain-centralBox-reports-card ReportCard" data-filter-status="signalé">
+                            <div class="ReportCard-imgBox">
+                                <img class="ReportCard-imgBox-img" src="./images/cityscape-9388403_640.jpg" alt="">
+                            </div>
+                            <div class="ReportCard-textBox">
+                                <div class="ReportCard-textBox-header">
+                                    <p class="ReportCard-textBox-header-title">Marche trop haute</p>
+                                    <i class="fa-regular fa-hourglass-half" style="color: #ff0000;"></i>
+                                </div>
+
+                                <div class="ReportCard-textBox-items">
+                                    <p class="ReportCard-textBox-date">24/01/25</p>
+                                    <i class="fa-brands fa-accessible-icon" style="color: #124e78;"></i>
+                                    <a class="Report-btn Btn" href="">Voir détail</a>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="PageMain-centralBox-reports-card ReportCard" data-status="validé">
+                            <div class="ReportCard-imgBox">
+                                <img class="ReportCard-imgBox-img" src="./images/cityscape-9388403_640.jpg" alt="">
+                            </div>
+                            <div class="ReportCard-textBox">
+                                <div class="ReportCard-textBox-header">
+                                    <p class="ReportCard-textBox-header-title">Marche trop haute</p>
+                                    <i class="fa-regular fa-hourglass-half" style="color: #ff0000;"></i>
+                                </div>
+
+                                <div class="ReportCard-textBox-items">
+                                    <p class="ReportCard-textBox-date">24/01/25</p>
+                                    <i class="fa-brands fa-accessible-icon" style="color: #124e78;"></i>
+                                    <a class="Report-btn Btn" href="">Voir détail</a>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="PageMain-centralBox-reports-card ReportCard" data-status="en cours">
+                            <div class="ReportCard-imgBox">
+                                <img class="ReportCard-imgBox-img" src="./images/cityscape-9388403_640.jpg" alt="">
+                            </div>
+                            <div class="ReportCard-textBox">
+                                <div class="ReportCard-textBox-header">
+                                    <p class="ReportCard-textBox-header-title">Marche trop haute</p>
+                                    <i class="fa-regular fa-hourglass-half" style="color: #ff0000;"></i>
+                                </div>
+
+                                <div class="ReportCard-textBox-items">
+                                    <p class="ReportCard-textBox-date">24/01/25</p>
+                                    <i class="fa-brands fa-accessible-icon" style="color: #124e78;"></i>
+                                    <a class="Report-btn Btn" href="">Voir détail</a>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="PageMain-centralBox-reports-card ReportCard" data-status="en cours">
+                            <div class="ReportCard-imgBox">
+                                <img class="ReportCard-imgBox-img" src="./images/cityscape-9388403_640.jpg" alt="">
+                            </div>
+                            <div class="ReportCard-textBox">
+                                <div class="ReportCard-textBox-header">
+                                    <p class="ReportCard-textBox-header-title">Marche trop haute</p>
+                                    <i class="fa-regular fa-hourglass-half" style="color: #ff0000;"></i>
+                                </div>
+
+                                <div class="ReportCard-textBox-items">
+                                    <p class="ReportCard-textBox-date">24/01/25</p>
+                                    <i class="fa-brands fa-accessible-icon" style="color: #124e78;"></i>
+                                    <a class="Report-btn Btn" href="">Voir détail</a>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+            </div>
+            </section>
+
+
+        </main>
+        <nav class="PageMain-bar">
+            <div class="PageMain-bar-addBtn">
+                <div class="PageMain-bar-addBtn-in">
+                    <i class="fa-solid fa-plus fa-lg" style="color: #f5f5f5;"></i>
+                </div>
+            </div>
+
+            <menu class="PageMain-bar-menu">
+
+                <div class="PageMain-bar-menu-logoDesktop">
+                    <img src="./images/logocc_alone.png" alt="">
+                </div>
+
+                <figure class="PageMain-bar-menu-link">
+                    <a href=""><i class="fa-regular fa-user fa-2xl"></i></a>
+                    <figcaption>Mon espace</figcaption>
+                </figure>
+                <figure class="PageMain-bar-menu-link">
+                    <a href=""><i class="fa-regular fa-flag fa-2xl"></i></a>
+                    <figcaption>Signalements</figcaption>
+                </figure>
+                <figure class="PageMain-bar-menu-link">
+                    <a href=""><i class="fa-regular fa-bell fa-2xl"></i></a>
+                    <figcaption>Notifications</figcaption>
+                </figure>
+                <figure class="PageMain-bar-menu-link">
+                    <a href=""><i class="fa-solid fa-ellipsis-vertical fa-2xl"></i></a>
+                    <figcaption>Plus</figcaption>
+                </figure>
+                <figure class="PageMain-bar-menu-link addBtnDesktop">
+                    <a class="PageMain-bar-menu-link-plus" href="#"><i class="fa-solid fa-plus fa-xl"></i></a>
+                    <figcaption>Ajouter un signalement</figcaption>
+                </figure>
+            </menu>
+
+        </nav>
+        <footer class="PageFooter">
+            <p>© 2025 City Care</p>
+        </footer>
+
+    </div>
+    <script src="./script.js"></script>
+    </div>
+</body>
+
+
+</html>
