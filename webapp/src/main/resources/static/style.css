@@ -205,18 +205,18 @@ h2 {
   color: inherit;
 }
 
-.Wrapper2 {
+.Wrapper {
   display: flex;
   flex-direction: column;
 }
 @media screen and (min-width: 750px) {
-  .Wrapper2 {
+  .Wrapper {
     flex-direction: row;
     overflow: hidden;
     max-height: 100vh;
   }
 }
-.Wrapper2 .Slogan2 {
+.Wrapper .Slogan2 {
   min-height: 30vh;
   background-color: #124e78;
   display: flex;
@@ -224,13 +224,13 @@ h2 {
   justify-content: flex-end;
 }
 @media screen and (min-width: 750px) {
-  .Wrapper2 .Slogan2 {
+  .Wrapper .Slogan2 {
     min-width: 65%;
     background-color: #124e78;
     justify-content: flex-start;
   }
 }
-.Wrapper2 .Slogan2-textContainer {
+.Wrapper .Slogan2-textContainer {
   color: #F5F5F5;
   display: flex;
   flex-direction: column;
@@ -239,7 +239,7 @@ h2 {
   padding: 0;
 }
 @media screen and (min-width: 750px) {
-  .Wrapper2 .Slogan2-textContainer {
+  .Wrapper .Slogan2-textContainer {
     min-height: 60vh;
     justify-content: flex-start;
     align-items: flex-start;
@@ -248,27 +248,27 @@ h2 {
     padding-inline: 100px 50px;
   }
 }
-.Wrapper2 .Slogan2-textContainer h1 {
+.Wrapper .Slogan2-textContainer h1 {
   font-family: "NF-le petit cochon", sans-serif;
   font-size: 48px;
 }
 @media screen and (min-width: 750px) {
-  .Wrapper2 .Slogan2-textContainer h1 {
+  .Wrapper .Slogan2-textContainer h1 {
     font-size: 170px;
   }
 }
-.Wrapper2 .Slogan2-textContainer h3 {
+.Wrapper .Slogan2-textContainer h3 {
   font-size: 20px;
   bottom: -80px;
 }
 @media screen and (min-width: 750px) {
-  .Wrapper2 .Slogan2-textContainer h3 {
+  .Wrapper .Slogan2-textContainer h3 {
     position: static;
     margin-top: -20px;
     font-size: 36px;
   }
 }
-.Wrapper2 .Slogan2-logoContainer {
+.Wrapper .Slogan2-logoContainer {
   min-height: 70px;
   background-image: url("../images/logo_big.png");
   background-size: contain;
@@ -276,7 +276,7 @@ h2 {
   background-position: center;
 }
 @media screen and (min-width: 750px) {
-  .Wrapper2 .Slogan2-logoContainer {
+  .Wrapper .Slogan2-logoContainer {
     z-index: 0;
     margin-top: -100px;
     margin-left: -420px;
@@ -474,6 +474,7 @@ h2 {
 @media screen and (min-width: 750px) {
   .FormContainer2-login .submit-button:hover {
     background-color: #124e78;
+    color: #F5F5F5;
   }
 }
 .FormContainer2-login .text-line {

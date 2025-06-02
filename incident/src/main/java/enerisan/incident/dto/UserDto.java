@@ -1,12 +1,13 @@
-package enerisan.webapp.dto;
+package enerisan.incident.dto;
 
-public class SignUpForm {
+public class UserDto {
+
     private String firstname;
     private String lastname;
     private String phone;
     private String email;
     private String password;
-
+    private Integer roleId;
 
     public String getFirstname() {
         return firstname;
@@ -46,5 +47,13 @@ public class SignUpForm {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Integer getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(Integer roleId) {
+        this.roleId = roleId;
     }
 }

@@ -1,6 +1,9 @@
 package enerisan.incident.controller;
 
+import enerisan.incident.dto.UserDto;
+import enerisan.incident.model.Role;
 import enerisan.incident.model.User;
+import enerisan.incident.repository.RoleRepository;
 import enerisan.incident.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +16,9 @@ import java.util.Optional;
 public class UserController {
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private RoleRepository roleRepository;
 
     @GetMapping("/test")
     public String test() {
@@ -33,13 +39,19 @@ public class UserController {
         return userRepository.findByEmail(email);
     }
 
-
     @PostMapping("/user")
-    public User addUser(@RequestBody User user) {
-        System.out.println("Recibido usuario: " + user.getEmail());
+    public User addUser(@RequestBody UserDto userDto) {
+        User user = new User();
+        user.setFirstname(userDto.getFirstname());
+        user.setLastname(userDto.getLastname());
+        user.setPhone(userDto.getPhone());
+        user.setEmail(userDto.getEmail());
+        user.setPassword(userDto.getPassword());
+        Role role = roleRepository.findById(userDto.getRoleId())
+                .orElseThrow(() -> new RuntimeException("Role not found with ID: " + userDto.getRoleId()));
+        user.setRole(role);
         return userRepository.save(user);
     }
-
     @PutMapping("/user")
     public Optional <User> updateUser(@RequestBody User user, @RequestParam Integer id){
         return userRepository.findById(id).map(oldUser ->{

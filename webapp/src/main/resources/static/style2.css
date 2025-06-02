@@ -1,0 +1,223 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+h2 {
+  font-family: "Zen Kaku Gothic New Light", sans-serif;
+  font-size: 1em;
+  color: #124e78;
+}
+@media screen and (min-width: 750px) {
+  h2 {
+    font-size: 1.5em;
+  }
+}
+
+.InfosCard {
+  box-shadow: 10px 10px 10px grey;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  gap: 1em;
+  font-family: "Zen Kaku Gothic New Light", sans-serif;
+  font-size: 1em;
+  border-radius: 0.5em;
+  padding: 1em;
+}
+.InfosCard-textBox-title {
+  font-weight: bold;
+}
+.InfosCard-imgBox {
+  max-height: 6em;
+  max-width: 6em;
+}
+.InfosCard-imgBox-titre {
+  font-weight: bold;
+}
+.InfosCard-imgBox img {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.ReportCard {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: row;
+  max-height: 6em;
+  width: 100%;
+  gap: 1em;
+  font-family: "Zen Kaku Gothic New Light", sans-serif;
+  font-size: 1em;
+  border-radius: 0.5em;
+  padding: 0.5em;
+}
+.ReportCard-imgBox {
+  max-height: 90%;
+  max-width: 30%;
+}
+.ReportCard-imgBox-titre {
+  font-weight: bold;
+}
+.ReportCard-imgBox img {
+  height: 100%;
+  width: 100%;
+  border-radius: 0.5em;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.ReportCard-textBox {
+  min-width: 65%;
+}
+.ReportCard-textBox-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.ReportCard-textBox-header-title {
+  font-weight: bold;
+}
+.ReportCard-textBox-items {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+}
+
+.AllSee a {
+  text-decoration: none;
+  font-family: "Zen Kaku Gothic New Light", sans-serif;
+  font-size: 1em;
+  padding-left: 0.25em;
+}
+
+.Wrapper {
+  background-color: black;
+}
+.PageHeader {
+  background-color: #124e78;
+  min-height: 4em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5em;
+}
+@media screen and (min-width: 750px) {
+  .PageHeader {
+    padding-inline: 1.5em;
+  }
+}
+.PageHeader-logo {
+  max-height: 2em;
+}
+@media screen and (min-width: 750px) {
+  .PageHeader-logo {
+    max-height: 4em;
+  }
+}
+.PageHeader-userBox {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 2em;
+}
+.PageHeader-userBox h2 {
+  color: #F5F5F5;
+}
+.PageHeader-userBox img {
+  max-height: 2em;
+  background-color: #F5F5F5;
+  border: 1px solid #FFC42B;
+  border-radius: 50%;
+}
+@media screen and (min-width: 750px) {
+  .PageHeader-userBox img {
+    max-height: 3em;
+  }
+}
+.PageHeader-userBoxNav {
+  display: none;
+}
+
+.PageMain-centralBox {
+  background-color: #F5F5F5;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+}
+.PageMain-centralBox-statistics-header {
+  display: flex;
+  flex-direction: row;
+}
+.PageMain-centralBox-statistics-wrapper {
+  display: flex;
+  justify-content: center;
+  padding-top: 1em;
+  background-color: whitesmoke;
+  min-height: 700px;
+}
+.PageMain-centralBox-statistics-wrapper-graphic {
+  min-width: 900px;
+  max-height: 500px;
+  box-shadow: 5px 5px 5px gray;
+  border-radius: 10px;
+}
+.PageMain-bar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #124e78;
+  max-height: 4em;
+  min-height: 4em;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding-left: 0.2em;
+}
+.PageMain-bar-addBtn {
+  min-height: 70px;
+  min-width: 70px;
+  border-radius: 50%;
+  position: absolute;
+  top: -35px;
+  right: 10px;
+  border-radius: 50%;
+  background-image: linear-gradient(0, white 0 55%, rgba(255, 255, 255, 0) 55% 100%);
+}
+.PageMain-bar-addBtn-in {
+  background-color: #FFC42B;
+  min-height: 55px;
+  min-width: 55px;
+  border-radius: 50%;
+  position: absolute;
+  top: 5px;
+  right: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.PageMain-bar-menu {
+  max-height: 95%;
+  max-width: 80%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0px;
+  align-items: center;
+  padding-right: 0.3em;
+}
+.PageMain-bar-menu-link {
+  color: #F5F5F5;
+  font-family: "Zen Kaku Gothic New Light", sans-serif;
+  font-size: 11px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}/*# sourceMappingURL=style2.css.map */

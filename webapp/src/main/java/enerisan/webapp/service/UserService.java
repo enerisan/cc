@@ -2,6 +2,8 @@ package enerisan.webapp.service;
 
 
 import enerisan.webapp.dto.SignUpForm;
+import enerisan.webapp.dto.UserDto;
+import enerisan.webapp.model.Role;
 import enerisan.webapp.model.User;
 import enerisan.webapp.service.client.IncidentFeignClient;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,13 +21,14 @@ public class UserService {
 
     public User register(SignUpForm form){
 
-        User user = new User();
-        user.setFirstname(form.getFirstname());
-        user.setLastname(form.getLastname());
-        user.setPhone(form.getPhone());
-        user.setEmail(form.getEmail());
-        user.setPassword(passwordEncoder.encode(form.getPassword()));
-        return incidentFeignClient.createUser(user);
+        UserDto userDto = new UserDto();
+        userDto.setFirstname(form.getFirstname());
+        userDto.setLastname(form.getLastname());
+        userDto.setPhone(form.getPhone());
+        userDto.setEmail(form.getEmail());
+        userDto.setRoleId(2);
+        userDto.setPassword(passwordEncoder.encode(form.getPassword()));
+        return incidentFeignClient.createUser(userDto);
     }
 
 

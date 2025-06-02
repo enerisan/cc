@@ -1,0 +1,212 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>City Care</title>
+    <link rel="stylesheet" href="css/style2.css">
+    <link rel="icon" href="public/images/logo.ico" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+
+<body>
+    <div class="Wrapper">
+        <header class="PageHeader">
+            <img class="PageHeader-logo" src="./images/logo-cc-horizontal.png" alt="logo City Care">
+
+            <div class="PageHeader-userBox">
+                <h2>Mon espace</h2>
+                <img src="./images/avatar.png" alt="avatar">
+            </div>
+
+            <nav class="PageHeader-userBoxNav">
+                <img class="PageHeader-userBoxNav-logo" src="" alt="">
+                <div class="PageHeader-userBoxNav-mentionBox">
+                    <a href="">Méntions Legales</a>
+                    <p> © 2025 citycare.net</p>
+                </div>
+                <div class="PageHeader-userBoxNav-SocialMediaBox">
+                    <a href="https://www.linkedin.com/in/enerisan/" target="_blank" class="text-white fs-3"><i
+                            class="fa-brands fa-linkedin-in" style="color: #ffffff;"></i></a>
+                    <a href="https://www.linkedin.com/in/enerisan/" target="_blank" class="text-white fs-3"><i
+                            class="fa-brands fa-linkedin-in" style="color: #ffffff;"></i></a>
+                    <a href="https://www.linkedin.com/in/enerisan/" target="_blank" class="text-white fs-3"><i
+                            class="fa-brands fa-linkedin-in" style="color: #ffffff;"></i></a>
+                    <a href="https://www.linkedin.com/in/enerisan/" target="_blank" class="text-white fs-3"><i
+                            class="fa-brands fa-linkedin-in" style="color: #ffffff;"></i></a>
+                </div>
+            </nav>
+        </header>
+
+        <main class="PageMain">
+            <div class="PageMain-centralBox">
+                <section class="PageMain-centralBox-infos">
+                    <h2>Mes Infos</h2>
+                    <div class="PageMain-centralBox-infos-card InfosCard">
+                        <div class="InfosCard-imgBox">
+                            <img class="InfosCard-imgBox-img" src="./images/avatar.png" alt="">
+                        </div>
+                        <div class="InfosCard-textBox">
+                            <p class="InfosCard-textBox-title" th:text="|${user.firstname} ${user.lastname}|"> </p>
+                            <p class="InfosCard-textBox-email">loislane@dailyplanet.com</p>
+                            <p class="InfosCard-textBox-tel">06 85 43 26 87</p>
+                            <a class="InfosCard-btn .Btn" href="">Modifier</a>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="PageMain-centralBox-statistics">
+                    <div class="PageMain-centralBox-statistics-header">
+                        <h2>Estatistiques</h2>
+                    </div>
+                    <div class="PageMain-centralBox-statistics-wrapper">
+                        <div class="PageMain-centralBox-statistics-wrapper-graphic">
+                            <canvas class="myChart" id="myChart"></canvas>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <nav class="PageMain-bar">
+                <div class="PageMain-bar-addBtn">
+                    <div class="PageMain-bar-addBtn-in">
+                        <i class="fa-solid fa-plus fa-lg" style="color: #f5f5f5;"></i>
+                    </div>
+                </div>
+
+                <menu class="PageMain-bar-menu">
+                    <figure class="PageMain-bar-menu-link">
+                        <a href=""><i class="fa-regular fa-user fa-2xl" style="color: #f5f5f5;"></i></a>
+                        <figcaption>Mon espace</figcaption>
+                    </figure>
+                    <figure class="PageMain-bar-menu-link">
+                        <a href=""><i class="fa-regular fa-flag fa-2xl" style="color: #f5f5f5;"></i></a>
+                        <figcaption>Signalements</figcaption>
+                    </figure>
+                    <figure class="PageMain-bar-menu-link">
+                        <a href=""><i class="fa-regular fa-bell fa-2xl" style="color: #f5f5f5;"></i></a>
+                        <figcaption>Notifications</figcaption>
+                    </figure>
+                    <figure class="PageMain-bar-menu-link">
+                        <a href=""><i class="fa-solid fa-ellipsis-vertical fa-2xl" style="color: #f5f5f5;"></i></a>
+                        <figcaption>Plus</figcaption>
+                    </figure>
+                </menu>
+            </nav>
+        </main>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>let currentYear = new Date().getFullYear();
+        const ctx = document.getElementById('myChart').getContext('2d');
+        /* let dataset = [[${dataset}]]; */
+
+
+        let dataset = [
+            ['Jan', 'Accessibilité', 20, '#1f77b4'],
+            ['Jan', 'Chaussée', 40, '#ff7f0e'],
+            ['Jan', 'Éclairage public', 30, '#2ca02c'],
+            ['Feb', 'Accessibilité', 25, '#1f77b4'],
+            ['Feb', 'Chaussée', 35, '#ff7f0e'],
+            ['Feb', 'Éclairage public', 28, '#2ca02c'],
+            ['Mar', 'Accessibilité', 22, '#1f77b4'],
+            ['Mar', 'Chaussée', 38, '#ff7f0e'],
+            ['Mar', 'Éclairage public', 33, '#2ca02c'],
+            ['Apr', 'Accessibilité', 30, '#1f77b4'],
+            ['Apr', 'Chaussée', 45, '#ff7f0e'],
+            ['Apr', 'Éclairage public', 25, '#2ca02c'],
+            ['May', 'Accessibilité', 28, '#1f77b4'],
+            ['May', 'Chaussée', 50, '#ff7f0e'],
+            ['May', 'Éclairage public', 29, '#2ca02c'],
+            ['Jun', 'Accessibilité', 35, '#1f77b4'],
+            ['Jun', 'Chaussée', 42, '#ff7f0e'],
+            ['Jun', 'Éclairage public', 31, '#2ca02c'],
+            ['Jul', 'Accessibilité', 40, '#1f77b4'],
+            ['Jul', 'Chaussée', 55, '#ff7f0e'],
+            ['Jul', 'Éclairage public', 37, '#2ca02c'],
+            ['Aug', 'Accessibilité', 38, '#1f77b4'],
+            ['Aug', 'Chaussée', 47, '#ff7f0e'],
+            ['Aug', 'Éclairage public', 32, '#2ca02c'],
+            ['Sep', 'Accessibilité', 29, '#1f77b4'],
+            ['Sep', 'Chaussée', 41, '#ff7f0e'],
+            ['Sep', 'Éclairage public', 34, '#2ca02c'],
+            ['Oct', 'Accessibilité', 33, '#1f77b4'],
+            ['Oct', 'Chaussée', 48, '#ff7f0e'],
+            ['Oct', 'Éclairage public', 36, '#2ca02c'],
+            ['Nov', 'Accessibilité', 27, '#1f77b4'],
+            ['Nov', 'Chaussée', 39, '#ff7f0e'],
+            ['Nov', 'Éclairage public', 31, '#2ca02c'],
+            ['Dec', 'Accessibilité', 45, '#1f77b4'],
+            ['Dec', 'Chaussée', 52, '#ff7f0e'],
+            ['Dec', 'Éclairage public', 40, '#2ca02c']
+        ];
+
+        let labels = [];
+        let previousLabel = '';
+        let datasetFormated = {};
+        dataset.forEach(item => {
+            let friend = item[1];
+            if (typeof datasetFormated[friend] === "undefined") {
+
+                datasetFormated[friend] = {
+                    label: friend,
+                    data: [item[2]],
+                    backgroundColor: item[3],
+                    stack: 'Stack 0'
+                };
+
+            } else {
+                datasetFormated[friend]['data'].push(item[2]);
+            }
+
+            let lbl = item[0];
+            if (lbl != previousLabel) {
+                labels.push(lbl);
+            }
+            previousLabel = lbl;
+        });
+        console.log(dataset);
+        let dataChart = [];
+        for (var key in datasetFormated) {
+            if (datasetFormated.hasOwnProperty(key)) {
+                dataChart.push(datasetFormated[key]);
+            }
+        }
+        console.log(dataChart);
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: dataChart
+            },
+            options: {
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Statistiques signalements ' + currentYear
+                    }
+                },
+                responsive: true,
+                interaction: {
+                    intersect: false,
+                },
+                scales: {
+                    x: {
+                        stacked: true,
+                    },
+                    y: {
+                        stacked: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+
+
+
+
+
+</html>

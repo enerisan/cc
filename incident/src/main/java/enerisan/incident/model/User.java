@@ -36,7 +36,7 @@ public class User {
     @Column(name = "password", length = 128)
     private String password;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @OnDelete(action = OnDeleteAction.SET_NULL)
     @JoinColumn(name = "role_id")
     private Role role;

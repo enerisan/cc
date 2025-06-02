@@ -1,6 +1,6 @@
  @use 'variables' as *;
 
- .Wrapper2 {
+ .Wrapper {
      display: flex;
      flex-direction: column;
 
@@ -296,6 +296,7 @@
 
              @media screen and (min-width: $tablet) {
                  background-color: $firstColor;
+                 color: $thirdColor;
              }
          }
 

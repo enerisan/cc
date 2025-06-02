@@ -28,12 +28,19 @@ public class WebAppController {
     @GetMapping("/")
     public ModelAndView welcome(Model model) {
         User user = sessionService.sessionUser();
-        model.addAttribute("user", user);
-        return new ModelAndView("user_dashboard");
+
+
+        if (user.getRole().getId() == 2) {
+            model.addAttribute("user", user);
+            return new ModelAndView("user_dashboard");
+        } else if (user.getRole().getId() == 1) {
+            model.addAttribute("user", user);
+            return new ModelAndView("admin_dashboard");
+        }
+        return new ModelAndView("access_denied");
     }
 
-
-    @GetMapping("/signup")
+        @GetMapping("/signup")
     public ModelAndView showRegisterForm() {
         return new ModelAndView("signup", "signUpForm", new SignUpForm());
     }
