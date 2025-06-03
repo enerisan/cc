@@ -19,7 +19,7 @@ public class Incident {
     private Integer id;
 
     @jakarta.validation.constraints.NotNull
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "city_id", nullable = false)
     private City city;
