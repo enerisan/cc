@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <div class="Wrapper">
+    <div class="WrapperBoss">
         <header class="PageHeader">
             <img class="PageHeader-logo" src="./images/logo-cc-horizontal.png" alt="logo City Care">
 
@@ -48,9 +48,9 @@
                             <img class="InfosCard-imgBox-img" src="./images/avatar.png" alt="">
                         </div>
                         <div class="InfosCard-textBox">
-                            <p class="InfosCard-textBox-title">Loïs Lane</p>
-                            <p class="InfosCard-textBox-email">loislane@dailyplanet.com</p>
-                            <p class="InfosCard-textBox-tel">06 85 43 26 87</p>
+                            <p class="InfosCard-textBox-title"    th:text="|${user.firstname} ${user.lastname}|"></p>
+                            <p class="InfosCard-textBox-email" th:text="|${user.email}|"></p>
+                            <p class="InfosCard-textBox-tel" th:text="|${user.phone}|"></p>
                             <a class="InfosCard-btn Btn" href="">Modifier</a>
                         </div>
 
@@ -100,7 +100,7 @@
 
 
                     <div class="PageMain-centralBox-reports-wrapper">
-                        <div class="PageMain-centralBox-reports-card ReportCard" data-filter-status="signalé">
+                        <div th:each="incident : ${incidents}" class="PageMain-centralBox-reports-card ReportCard" data-filter-status="signalé">
                             <div class="ReportCard-imgBox">
                                 <img class="ReportCard-imgBox-img" src="./images/cityscape-9388403_640.jpg" alt="">
                             </div>

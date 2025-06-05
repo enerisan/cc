@@ -796,10 +796,16 @@ h2 {
   }
 }
 
+.WrapperBoss {
+  max-width: 1440px;
+  min-height: 100vh;
+  margin: 0 auto;
+
+}
 @media screen and (min-width: 750px) {
   .PageMain {
     border: 2 px solid green;
-    width: 1150px;
+    width: calc(100vw - 290px);
   }
 }
 .PageMain-centralBox {
@@ -912,12 +918,11 @@ h2 {
 }
 @media screen and (min-width: 750px) {
   .PageMain-bar {
-    position: absolute;
     bottom: 0;
     right: 0;
     left: auto;
     width: 280px;
-    min-height: 100vh;
+    min-height: 100%;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;

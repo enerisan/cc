@@ -24,6 +24,19 @@ public class Incident {
     @JoinColumn(name = "city_id", nullable = false)
     private City city;
 
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
+
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(name = "status_id", nullable = false)
+    private Status status;
+
+
+
     @jakarta.validation.constraints.Size(max = 255)
     @jakarta.validation.constraints.NotNull
     @Column(name = "title", nullable = false)
@@ -160,4 +173,19 @@ public class Incident {
         this.longitude = longitude;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
 }

@@ -1,7 +1,9 @@
 package enerisan.incident.controller;
 
 import enerisan.incident.model.Incident;
+import enerisan.incident.model.User;
 import enerisan.incident.repository.IncidentRepository;
+import enerisan.incident.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,19 +18,31 @@ public class IncidentController {
     @Autowired
     private IncidentRepository incidentRepository;
 
+    @Autowired
+    private UserRepository userRepository;
 
     @GetMapping("/incidents")
     public List<Incident> getAllIncidents() {
         return incidentRepository.findAll();
     }
 
-    @GetMapping("/incidents/{id}")
+    @GetMapping("/incident/{id}")
     public Optional<Incident> getIncidentById(@PathVariable Integer id){
         return incidentRepository.findById(id);
     }
 
+    @GetMapping("/incidents/{userId}")
+    public Optional<Incident> getIncidenstByUserId(@PathVariable Integer userId){
+        return incidentRepository.findByUserId(userId);
+    }
+
     @PostMapping("/incident")
-    public Incident addIncident(@RequestBody Incident incident) {
+    public Incident addIncident(@RequestBody Incident incident, @AuthenticationPrincipal UserDetails userDetails) {
+
+        User user = userRepository.findByUsername(userDetails.getUsername())
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+
+        incident.setUser(user);  // Asignar el usuario autenticado
         return incidentRepository.save(incident);
     }
 
