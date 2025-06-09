@@ -28,7 +28,7 @@ public class IncidentController {
     }
 
     @GetMapping("/incidents/{userId}")
-    public Optional<Incident> getIncidenstByUserId(@PathVariable Integer userId){
+    public  List <Incident> getIncidenstByUserId(@PathVariable Integer userId){
         return incidentRepository.findByUserId(userId);
     }
 

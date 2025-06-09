@@ -6,6 +6,11 @@ import enerisan.webapp.model.User;
 import enerisan.webapp.service.client.IncidentFeignClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.List;
 
 @Service
 public class IncidentService {
@@ -15,7 +20,13 @@ public class IncidentService {
     @Autowired
     SessionService sessionService;
 
-    public Incident addPatient(IncidentForm form) {
+    public List<Incident> getAllIncidentsByUserId(Integer userId) {
+        return incidentFeignClient.getAllIncidentsByUserId(userId);
+    }
+
+
+    @PostMapping("/incident")
+    public Incident addIncident(IncidentForm form) {
         User user = sessionService.sessionUser();
         Incident incident = new Incident();
         incident.setTitle(form.getTitle());
@@ -32,4 +43,7 @@ public class IncidentService {
 
         return incidentFeignClient.createIncident(incident);
     }
+
+
+
 }
