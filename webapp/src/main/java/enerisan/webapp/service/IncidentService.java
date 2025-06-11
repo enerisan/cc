@@ -1,7 +1,9 @@
 package enerisan.webapp.service;
 
 import enerisan.webapp.dto.IncidentForm;
+import enerisan.webapp.model.City;
 import enerisan.webapp.model.Incident;
+import enerisan.webapp.model.Status;
 import enerisan.webapp.model.User;
 import enerisan.webapp.service.client.IncidentFeignClient;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,14 +34,19 @@ public class IncidentService {
         incident.setTitle(form.getTitle());
         incident.setDescription(form.getDescription());
         incident.setAddress(form.getAddress());
-        incident.setCityId(1);
+        City city = new City();
+        city.setId(1);
+        city.setName("Aix-en-Provence");
         incident.setImage(form.getImage());
         incident.setLatitude(form.getLatitude());
         incident.setLongitude(form.getLongitude());
         incident.setNeighborhood(form.getNeighborhood());
         incident.setPostalCode(form.getPostalCode());
-        incident.setStatusId(1);
-        incident.setUserId(user.getId());
+        Status status = new Status();
+        status.setId(1);
+        status.setType("signalé");
+        incident.setStatus(status);
+        incident.setUser(user);
 
         return incidentFeignClient.createIncident(incident);
     }

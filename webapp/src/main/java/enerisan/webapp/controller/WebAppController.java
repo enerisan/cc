@@ -4,6 +4,7 @@ package enerisan.webapp.controller;
 
 import enerisan.webapp.dto.SignUpForm;
 import enerisan.webapp.model.User;
+import enerisan.webapp.service.IncidentService;
 import enerisan.webapp.service.SessionService;
 import enerisan.webapp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,13 +26,16 @@ public class WebAppController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    IncidentService incidentService;
+
     @GetMapping("/")
     public ModelAndView welcome(Model model) {
         User user = sessionService.sessionUser();
 
-
         if (user.getRole().getId() == 2) {
             model.addAttribute("user", user);
+            model.addAttribute("incidents", incidentService.getAllIncidentsByUserId(user.getId()));
             return new ModelAndView("user_dashboard");
         } else if (user.getRole().getId() == 1) {
             model.addAttribute("user", user);

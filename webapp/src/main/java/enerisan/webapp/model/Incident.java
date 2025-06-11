@@ -9,9 +9,9 @@ import java.time.LocalDateTime;
 public class Incident {
 
     private Integer id;
-    private Integer cityId;
-    private Integer userId;
-    private Integer statusId;
+    private Status status;
+    private City city;
+    private User user;
     private String title;
     private String address;
     private String neighborhood;
@@ -31,28 +31,28 @@ public class Incident {
         this.id = id;
     }
 
-    public Integer getCityId() {
-        return cityId;
+    public Status getStatus() {
+        return status;
     }
 
-    public void setCityId(Integer cityId) {
-        this.cityId = cityId;
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
-    public Integer getUserId() {
-        return userId;
+    public City getCity() {
+        return city;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setCity(City city) {
+        this.city = city;
     }
 
-    public Integer getStatusId() {
-        return statusId;
+    public User getUser() {
+        return user;
     }
 
-    public void setStatusId(Integer statusId) {
-        this.statusId = statusId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getTitle() {

@@ -25,13 +25,13 @@ public class IncidentController {
     SessionService sessionService;
 
 
-    @GetMapping("/incidents/{userId}")
-    public String getAllIncidentsByUserId(@PathVariable Integer userId, Model model) {
-        User user = sessionService.sessionUser();
-
-        model.addAttribute("incidents", incidentService.getAllIncidentsByUserId(userId));
-        return "user_dashboard" ;
-    }
+//    @GetMapping("/incidents/{userId}")
+//    public String getAllIncidentsByUserId(@PathVariable Integer userId, Model model) {
+//        User user = sessionService.sessionUser();
+//
+//        model.addAttribute("incidents", incidentService.getAllIncidentsByUserId(userId));
+//        return "user_dashboard" ;
+//    }
 
     @PostMapping("/patient")
     public ModelAndView processPatient(
