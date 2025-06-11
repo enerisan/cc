@@ -1,6 +1,7 @@
 package enerisan.webapp.service;
 
 import enerisan.webapp.dto.IncidentForm;
+import enerisan.webapp.dto.IncidentWithCategoriesDto;
 import enerisan.webapp.model.City;
 import enerisan.webapp.model.Incident;
 import enerisan.webapp.model.Status;
@@ -22,8 +23,8 @@ public class IncidentService {
     @Autowired
     SessionService sessionService;
 
-    public List<Incident> getAllIncidentsByUserId(Integer userId) {
-        return incidentFeignClient.getAllIncidentsByUserId(userId);
+    public List <IncidentWithCategoriesDto> getAllIncidentsWithCategoriesByUserId(Integer userId) {
+        return incidentFeignClient.getAllIncidentsWithCategoriesByUserId((userId));
     }
 
 

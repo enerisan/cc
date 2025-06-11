@@ -1,5 +1,6 @@
 package enerisan.incident.repository;
 
+import enerisan.incident.dto.IncidentWithCategoriesDto;
 import enerisan.incident.model.Incident;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

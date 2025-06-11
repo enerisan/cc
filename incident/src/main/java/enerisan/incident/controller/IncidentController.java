@@ -1,6 +1,11 @@
 package enerisan.incident.controller;
 
+import enerisan.incident.dto.CategoryDto;
+import enerisan.incident.dto.IncidentWithCategoriesDto;
+import enerisan.incident.model.Category;
 import enerisan.incident.model.Incident;
+import enerisan.incident.model.IncidentCategory;
+import enerisan.incident.repository.IncidentCategoryRepository;
 import enerisan.incident.repository.IncidentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -8,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api")
@@ -15,7 +21,8 @@ public class IncidentController {
 
     @Autowired
     private IncidentRepository incidentRepository;
-
+    @Autowired
+    private IncidentCategoryRepository incidentCategoryRepository;
 
     @GetMapping("/incidents")
     public List<Incident> getAllIncidents() {
@@ -28,9 +35,36 @@ public class IncidentController {
     }
 
     @GetMapping("/incidents/{userId}")
-    public  List <Incident> getIncidenstByUserId(@PathVariable Integer userId){
-        return incidentRepository.findByUserId(userId);
+    public List<IncidentWithCategoriesDto> getIncidentsWithCategoriesByUserId(@PathVariable Integer userId) {
+        List<Incident> incidents = incidentRepository.findByUserId(userId);
+
+        return incidents.stream().map(incident -> {
+            List<CategoryDto> categories = incidentCategoryRepository.findByIncidentId(incident.getId())
+                    .stream()
+                    .map(incidentCategory -> new CategoryDto(incidentCategory.getCategory()))
+                    .collect(Collectors.toList());
+
+            return new IncidentWithCategoriesDto(
+                    incident.getId(),
+                    incident.getCity().getId(),
+                    incident.getUser().getId(),
+                    incident.getStatus().getId(),
+                    incident.getTitle(),
+                    incident.getAddress(),
+                    incident.getNeighborhood(),
+                    incident.getPostalCode(),
+                    incident.getImage(),
+                    incident.getDescription(),
+                    incident.getCreatedAt(),
+                    incident.getClosedAt(),
+                    incident.getLatitude(),
+                    incident.getLongitude(),
+                    categories
+            );
+        }).collect(Collectors.toList());
     }
+
+
 
     @PostMapping("/incident")
     public Incident addIncident(@RequestBody Incident incident) {

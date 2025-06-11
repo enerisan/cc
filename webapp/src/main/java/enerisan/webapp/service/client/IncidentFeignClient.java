@@ -1,5 +1,6 @@
 package enerisan.webapp.service.client;
 
+import enerisan.webapp.dto.IncidentWithCategoriesDto;
 import enerisan.webapp.dto.UserDto;
 import enerisan.webapp.model.Incident;
 import enerisan.webapp.model.User;
@@ -17,7 +18,7 @@ public interface IncidentFeignClient {
     public User findUserByUsername(@RequestParam("email") String email);
 
     @GetMapping(value = "/api/incidents/{userId}", consumes = "application/json")
-    List<Incident> getAllIncidentsByUserId(@PathVariable("userId") Integer userId);
+    List<IncidentWithCategoriesDto> getAllIncidentsWithCategoriesByUserId(@PathVariable("userId") Integer userId);
 
 
     @PostMapping(value= "api/incident", consumes = "application/json")

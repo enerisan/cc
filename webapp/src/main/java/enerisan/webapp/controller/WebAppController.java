@@ -2,7 +2,9 @@ package enerisan.webapp.controller;
 
 
 
+import enerisan.webapp.dto.IncidentWithCategoriesDto;
 import enerisan.webapp.dto.SignUpForm;
+import enerisan.webapp.model.Incident;
 import enerisan.webapp.model.User;
 import enerisan.webapp.service.IncidentService;
 import enerisan.webapp.service.SessionService;
@@ -14,6 +16,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 
 @RestController
@@ -35,7 +39,12 @@ public class WebAppController {
 
         if (user.getRole().getId() == 2) {
             model.addAttribute("user", user);
-            model.addAttribute("incidents", incidentService.getAllIncidentsByUserId(user.getId()));
+            List<IncidentWithCategoriesDto> incidentsWithCategories = incidentService.getAllIncidentsWithCategoriesByUserId(user.getId());
+
+
+
+            model.addAttribute("incidents", incidentService.getAllIncidentsWithCategoriesByUserId((user.getId())));
+
             return new ModelAndView("user_dashboard");
         } else if (user.getRole().getId() == 1) {
             model.addAttribute("user", user);
