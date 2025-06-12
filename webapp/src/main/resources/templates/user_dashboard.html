@@ -12,32 +12,7 @@
 
 <body>
     <div class="WrapperBoss">
-        <header class="PageHeader">
-            <img class="PageHeader-logo" src="./images/logo-cc-horizontal.png" alt="logo City Care">
-
-            <div class="PageHeader-userBox">
-                <h2>Mon espace</h2>
-                <img src="./images/avatar.png" alt="avatar">
-            </div>
-
-            <nav class="PageHeader-userBoxNav">
-                <img class="PageHeader-userBoxNav-logo" src="" alt="">
-                <div class="PageHeader-userBoxNav-mentionBox">
-                    <a href="">Méntions Legales</a>
-                    <p> © 2025 citycare.net</p>
-                </div>
-                <div class="PageHeader-userBoxNav-SocialMediaBox">
-                    <a href="https://www.linkedin.com/in/enerisan/" target="_blank" class="text-white fs-3"><i
-                            class="fa-brands fa-linkedin-in" style="color: #ffffff;"></i></a>
-                    <a href="https://www.linkedin.com/in/enerisan/" target="_blank" class="text-white fs-3"><i
-                            class="fa-brands fa-linkedin-in" style="color: #ffffff;"></i></a>
-                    <a href="https://www.linkedin.com/in/enerisan/" target="_blank" class="text-white fs-3"><i
-                            class="fa-brands fa-linkedin-in" style="color: #ffffff;"></i></a>
-                    <a href="https://www.linkedin.com/in/enerisan/" target="_blank" class="text-white fs-3"><i
-                            class="fa-brands fa-linkedin-in" style="color: #ffffff;"></i></a>
-                </div>
-            </nav>
-        </header>
+        <div th:insert="fragments/header::header"></div>
 
         <main class="PageMain">
             <div class="PageMain-centralBox">
@@ -205,9 +180,7 @@
             </menu>
 
         </nav>
-        <footer class="PageFooter">
-            <p>© 2025 City Care</p>
-        </footer>
+        <div th:insert="fragments/footer::footer"></div>
 
     </div>
     <script src="./script.js"></script>
