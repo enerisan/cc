@@ -44,7 +44,7 @@ public class WebAppController {
             List<IncidentWithCategoriesDto> incidentsWithCategories = incidentService.getAllIncidentsWithCategoriesByUserId(user.getId());
             model.addAttribute("incidents", incidentService.getAllIncidentsWithCategoriesByUserId((user.getId())));
             Map<String, String> categoryIcons = new HashMap<>();
-            categoryIcons.put("Voirie", "fa-solid fa-road");
+            categoryIcons.put("Voirie", "fa-solid fa-triangle-exclamation");
             categoryIcons.put("Éclairage public", "fa-solid fa-lightbulb");
             categoryIcons.put("Trottoirs", "fa-solid fa-shoe-prints");
             categoryIcons.put("Conteneurs à déchets", "fa-solid fa-trash");
@@ -59,6 +59,7 @@ public class WebAppController {
             categoryIcons.put("Égouts", "fa-solid fa-water");
             categoryIcons.put("Circulation", "fa-solid fa-car-side");
             categoryIcons.put("Autres", "fa-solid fa-ellipsis-h");
+            categoryIcons.put("Accessibilité", "fa-solid fa-wheelchair");
 
             model.addAttribute("categoryIcons", categoryIcons);
             return new ModelAndView("user_dashboard");
@@ -69,7 +70,7 @@ public class WebAppController {
         return new ModelAndView("access_denied");
     }
 
-        @GetMapping("/signup")
+    @GetMapping("/signup")
     public ModelAndView showRegisterForm() {
         return new ModelAndView("signup", "signUpForm", new SignUpForm());
     }

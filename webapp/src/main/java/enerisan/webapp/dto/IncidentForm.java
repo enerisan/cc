@@ -10,6 +10,33 @@ public class IncidentForm {
     private String title;
     private String address;
     private String neighborhood;
+    private String category;
+    private String postalCode;
+    private String image;
+    private String description;
+    private LocalDateTime createdAt =  LocalDateTime.now();
+    private LocalDateTime closedAt;
+    private BigDecimal latitude;
+    private BigDecimal longitude;
+
+    public IncidentForm() {
+    }
+
+    public IncidentForm(Integer userId, Integer statusId, String title, String address, String neighborhood, String category, String postalCode, String image, String description, LocalDateTime createdAt, LocalDateTime closedAt, BigDecimal latitude, BigDecimal longitude) {
+        this.userId = userId;
+        this.statusId = statusId;
+        this.title = title;
+        this.address = address;
+        this.neighborhood = neighborhood;
+        this.category = category;
+        this.postalCode = postalCode;
+        this.image = image;
+        this.description = description;
+        this.createdAt = createdAt;
+        this.closedAt = closedAt;
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
 
     public Integer getUserId() {
         return userId;
@@ -49,6 +76,14 @@ public class IncidentForm {
 
     public void setNeighborhood(String neighborhood) {
         this.neighborhood = neighborhood;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public String getPostalCode() {
@@ -106,13 +141,4 @@ public class IncidentForm {
     public void setLongitude(BigDecimal longitude) {
         this.longitude = longitude;
     }
-
-    private String postalCode;
-    private String image;
-    private String description;
-    private LocalDateTime createdAt =  LocalDateTime.now();
-    private LocalDateTime closedAt;
-    private BigDecimal latitude;
-    private BigDecimal longitude;
-
 }

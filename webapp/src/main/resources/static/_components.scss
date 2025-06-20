@@ -29,7 +29,6 @@
          img {
              height: 100%;
              width: 100%;
-
              object-fit: cover;
 
          }
@@ -101,20 +100,11 @@
          justify-content: center;
          gap: 1em;
 
-
-
-
-
          &-header {
              display: flex;
              flex-direction: row;
              align-items: center;
              justify-content: space-between;
-
-
-
-
-
 
              &-title {
                  font-weight: bold;
@@ -139,8 +129,9 @@
 
              }
 
-
-
+            &-icon {
+             color: $firstColor;
+             }
          }
 
          @media screen and (min-width:$tablet) {
@@ -161,8 +152,14 @@
      color: $backgroundColor;
      box-shadow: 5px 5px 10px black;
      outline: 1px solid $secondColor;
- }
-
+    &-textBox {
+        &-items {
+            &-icon {
+                color: $thirdColor;
+            }
+        }
+    }
+}
  .AllSee {
      a {
          text-decoration: none;
