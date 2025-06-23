@@ -105,15 +105,14 @@ h2 {
 .InfosCard-imgBox img {
   height: 100%;
   width: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 
 .ReportCard {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: row;
-  max-height: 6em;
+  height: auto;
   width: 100%;
   gap: 1em;
   font-size: 1em;
@@ -145,8 +144,7 @@ h2 {
   height: 100%;
   width: 100%;
   border-radius: 0.5em;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 @media screen and (min-width: 750px) {
   .ReportCard-imgBox img {
@@ -174,17 +172,9 @@ h2 {
   align-items: center;
   gap: 1em;
 }
-
 .ReportCard-textBox-items-icon {
-color: #124e78;
+  color: #124e78;
 }
-
-.ReportCard:hover {
-    .ReportCard-textBox-items-icon {
-        color: #F5F5F5;
-    }
-}
-
 .ReportCard-textBox-items a {
   margin-left: 0.5em;
 }
@@ -208,12 +198,220 @@ color: #124e78;
   box-shadow: 5px 5px 10px black;
   outline: 1px solid #FFC42B;
 }
+.ReportCard:hover .ReportCard-textBox-items-icon {
+  color: #124e78;
+}
 
 .AllSee a {
   text-decoration: none;
   font-size: 1em;
   padding-left: 0.12em;
   color: inherit;
+}
+
+.FormContainer {
+  min-height: 70vh;
+  background-color: #124e78;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 2em;
+}
+@media screen and (min-width: 750px) {
+  .FormContainer {
+    align-items: center;
+    padding: 0;
+    min-width: 35%;
+    background-color: #F2F2F7;
+  }
+}
+.FormContainer .Form {
+  text-align: center;
+  width: 90%;
+  background-color: #124e78;
+  border-radius: 20px;
+  /* Input wrapper */
+  /* Inputs */
+  /* Hidden Label */
+  /* Showing label*/
+  /* Field password */
+  /* Eye */
+  /* Botón enviar */
+}
+@media screen and (min-width: 750px) {
+  .FormContainer .Form {
+    text-align: center;
+    width: 430px;
+    height: 420px;
+    background-color: #F5F5F5;
+    border-radius: 20px;
+    box-shadow: 0px 4px 24px 0px rgba(0, 0, 0, 0.25);
+    padding: 50px;
+  }
+}
+.FormContainer .Form h3 {
+  color: #B3B3B3;
+  font-size: 1em;
+  font-weight: lighter;
+  margin-bottom: 0.8em;
+}
+@media screen and (min-width: 750px) {
+  .FormContainer .Form h3 {
+    font-size: 36px;
+    margin-bottom: 0.5em;
+  }
+}
+.FormContainer .Form .input-group {
+  position: relative;
+  width: 100%;
+  height: 72px;
+}
+@media screen and (min-width: 750px) {
+  .FormContainer .Form .input-group {
+    width: 328px;
+  }
+}
+.FormContainer .Form .input-group input {
+  background: none;
+  border: 1px solid #F5F5F5;
+  border-radius: 4px;
+  height: 56px;
+  width: 100%;
+  color: #F5F5F5;
+  font-weight: bold;
+  outline: none;
+  padding-inline: 12px;
+}
+@media screen and (min-width: 750px) {
+  .FormContainer .Form .input-group input {
+    color: #124e78;
+    height: 56px;
+    padding-inline: 12px;
+    border: 1px solid #124e78;
+    font-size: 16px;
+    transition: border-color 0.3s;
+  }
+}
+.FormContainer .Form .input-group input:focus,
+.FormContainer .Form .input-group input:not(:placeholder-shown) {
+  border-color: #FFC42B;
+}
+.FormContainer .Form .input-group label {
+  position: absolute;
+  top: 0;
+  left: 12px;
+  background: #124e78;
+  padding: 0 4px;
+  font-size: 16px;
+  font-weight: bold;
+  transform: translateY(-50%);
+  opacity: 0;
+  color: transparent;
+  transition: 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  height: 14px;
+  pointer-events: none;
+  width: auto;
+}
+@media screen and (min-width: 750px) {
+  .FormContainer .Form .input-group label {
+    background: #F2F2F7;
+  }
+}
+.FormContainer .Form .input-group input:focus + label,
+.FormContainer .Form .input-group input:not(:placeholder-shown) + label {
+  opacity: 1;
+  color: #F5F5F5;
+}
+@media screen and (min-width: 750px) {
+  .FormContainer .Form .input-group input:focus + label,
+  .FormContainer .Form .input-group input:not(:placeholder-shown) + label {
+    color: #124e78;
+  }
+}
+.FormContainer .Form .input-group.icon-right {
+  display: flex;
+}
+.FormContainer .Form .toggle-password {
+  border: none;
+  position: absolute;
+  top: 40%;
+  right: 12px;
+  transform: translateY(-50%);
+  background: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 2em;
+  height: 56px;
+  width: 24px;
+}
+.FormContainer .Form .toggle-password svg {
+  width: 24px;
+  height: 24px;
+  pointer-events: none;
+  color: #F5F5F5;
+}
+@media screen and (min-width: 750px) {
+  .FormContainer .Form .toggle-password svg {
+    color: #124e78;
+  }
+}
+.FormContainer .Form .submit-button {
+  width: 100%;
+  height: 56px;
+  background-color: #FFC42B;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  color: #F5F5F5;
+  font-size: 24px;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+@media screen and (min-width: 750px) {
+  .FormContainer .Form .submit-button {
+    width: 328px;
+  }
+}
+.FormContainer .Form .submit-button:hover {
+  background-color: #F5F5F5;
+  color: #124e78;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+@media screen and (min-width: 750px) {
+  .FormContainer .Form .submit-button:hover {
+    background-color: #124e78;
+    color: #F5F5F5;
+  }
+}
+.FormContainer .Form .text-line {
+  margin-top: 1em;
+  display: flex;
+  justify-content: center;
+  color: #F5F5F5;
+  font-weight: bold;
+  font-size: 16px;
+  gap: 0.5em;
+}
+@media screen and (min-width: 750px) {
+  .FormContainer .Form .text-line {
+    font-size: 20px;
+    color: #B3B3B3;
+  }
+}
+.FormContainer .Form .text-line a {
+  color: #F5F5F5;
+}
+@media screen and (min-width: 750px) {
+  .FormContainer .Form .text-line a {
+    color: #B3B3B3;
+  }
 }
 
 .Wrapper {
@@ -297,218 +495,9 @@ color: #124e78;
   }
 }
 
-.FormContainer2 {
-  min-height: 70vh;
-  background-color: #124e78;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  padding-top: 2em;
-}
 @media screen and (min-width: 750px) {
-  .FormContainer2 {
-    align-items: center;
-    padding: 0;
-    min-width: 35%;
-    background-color: #F2F2F7;
-  }
-}
-.FormContainer2-login {
-  text-align: center;
-  width: 90%;
-  background-color: #124e78;
-  border-radius: 20px;
-  /* Input wrapper */
-  /* Inputs */
-  /* Hidden Label */
-  /* Showing label*/
-  /* Fiel password */
-  /* Eye */
-  /* Botón enviar */
-}
-@media screen and (min-width: 750px) {
-  .FormContainer2-login {
-    text-align: center;
-    width: 430px;
-    height: 680px;
-    background-color: #F5F5F5;
-    border-radius: 20px;
-    box-shadow: 0px 4px 24px 0px rgba(0, 0, 0, 0.25);
-    padding: 50px;
-  }
-}
-.FormContainer2-login h3 {
-  color: #B3B3B3;
-  font-size: 1em;
-  font-weight: lighter;
-  margin-bottom: 0.8em;
-}
-@media screen and (min-width: 750px) {
-  .FormContainer2-login h3 {
-    font-size: 36px;
-    margin-bottom: 0.5em;
-  }
-}
-.FormContainer2-login .input-group {
-  position: relative;
-  width: 100%;
-  height: 72px;
-}
-@media screen and (min-width: 750px) {
-  .FormContainer2-login .input-group {
-    width: 328px;
-  }
-}
-.FormContainer2-login .input-group input {
-  background: none;
-  border: 1px solid #F5F5F5;
-  border-radius: 4px;
-  height: 56px;
-  width: 100%;
-  color: #F5F5F5;
-  font-weight: bold;
-  outline: none;
-  padding-inline: 12px;
-}
-@media screen and (min-width: 750px) {
-  .FormContainer2-login .input-group input {
-    color: #124e78;
-    height: 56px;
-    padding-inline: 12px;
-    border: 1px solid #124e78;
-    font-size: 16px;
-    transition: border-color 0.3s;
-  }
-}
-.FormContainer2-login .input-group input:not(:-moz-placeholder-shown) {
-  border-color: #FFC42B;
-}
-.FormContainer2-login .input-group input:focus,
-.FormContainer2-login .input-group input:not(:placeholder-shown) {
-  border-color: #FFC42B;
-}
-.FormContainer2-login .input-group label {
-  position: absolute;
-  top: 0;
-  left: 12px;
-  background: #124e78;
-  padding: 0 4px;
-  font-size: 16px;
-  font-weight: bold;
-  transform: translateY(-50%);
-  opacity: 0;
-  color: transparent;
-  transition: 0.2s;
-  display: flex;
-  align-items: center;
-  gap: 3px;
-  height: 14px;
-  pointer-events: none;
-  width: auto;
-}
-@media screen and (min-width: 750px) {
-  .FormContainer2-login .input-group label {
-    background: #F2F2F7;
-  }
-}
-.FormContainer2-login .input-group input:not(:-moz-placeholder-shown) + label {
-  opacity: 1;
-  color: #F5F5F5;
-}
-.FormContainer2-login .input-group input:focus + label,
-.FormContainer2-login .input-group input:not(:placeholder-shown) + label {
-  opacity: 1;
-  color: #F5F5F5;
-}
-@media screen and (min-width: 750px) {
-  .FormContainer2-login .input-group input:not(:-moz-placeholder-shown) + label {
-    color: #124e78;
-  }
-  .FormContainer2-login .input-group input:focus + label,
-  .FormContainer2-login .input-group input:not(:placeholder-shown) + label {
-    color: #124e78;
-  }
-}
-.FormContainer2-login .input-group.icon-right {
-  display: flex;
-}
-.FormContainer2-login .toggle-password {
-  border: none;
-  position: absolute;
-  top: 40%;
-  right: 12px;
-  transform: translateY(-50%);
-  background: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  padding: 0;
-  margin-bottom: 2em;
-  height: 56px;
-  width: 24px;
-}
-.FormContainer2-login .toggle-password svg {
-  width: 24px;
-  height: 24px;
-  pointer-events: none;
-  color: #F5F5F5;
-}
-@media screen and (min-width: 750px) {
-  .FormContainer2-login .toggle-password svg {
-    color: #124e78;
-  }
-}
-.FormContainer2-login .submit-button {
-  width: 100%;
-  height: 56px;
-  background-color: #FFC42B;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  color: #F5F5F5;
-  font-size: 24px;
-  border: none;
-  border-radius: 4px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-@media screen and (min-width: 750px) {
-  .FormContainer2-login .submit-button {
-    width: 328px;
-  }
-}
-.FormContainer2-login .submit-button:hover {
-  background-color: #F5F5F5;
-  color: #124e78;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-}
-@media screen and (min-width: 750px) {
-  .FormContainer2-login .submit-button:hover {
-    background-color: #124e78;
-    color: #F5F5F5;
-  }
-}
-.FormContainer2-login .text-line {
-  margin-top: 1em;
-  display: flex;
-  justify-content: center;
-  color: #F5F5F5;
-  font-weight: bold;
-  font-size: 16px;
-  gap: 0.5em;
-}
-@media screen and (min-width: 750px) {
-  .FormContainer2-login .text-line {
-    font-size: 20px;
-    color: #B3B3B3;
-  }
-}
-.FormContainer2-login .text-line a {
-  color: #F5F5F5;
-}
-@media screen and (min-width: 750px) {
-  .FormContainer2-login .text-line a {
-    color: #B3B3B3;
+  .FormContainer-signup {
+    height: 680px !important;
   }
 }
 
@@ -593,229 +582,168 @@ color: #124e78;
   }
 }
 
-.FormContainer {
-  min-height: 70vh;
-  background-color: #124e78;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  padding-top: 2em;
-}
-@media screen and (min-width: 750px) {
-  .FormContainer {
-    align-items: center;
-    min-width: 35%;
-    background-color: #F2F2F7;
-  }
-}
-.FormContainer-login {
-  text-align: center;
-  width: 90%;
-  background-color: #124e78;
-  border-radius: 20px;
-  /* Input wrapper */
-  /* Inputs */
-  /* Hidden Label */
-  /* Showing label*/
-  /* Fiel password */
-  /* Eye */
-  /* Botón enviar */
-}
-@media screen and (min-width: 750px) {
-  .FormContainer-login {
-    text-align: center;
-    width: 430px;
-    height: 420px;
-    background-color: #F5F5F5;
-    border-radius: 20px;
-    box-shadow: 0px 4px 24px 0px rgba(0, 0, 0, 0.25);
-    padding: 50px;
-  }
-}
-.FormContainer-login h3 {
-  color: #B3B3B3;
-  font-size: 1em;
-  font-weight: lighter;
-  margin-bottom: 0.8em;
-}
-@media screen and (min-width: 750px) {
-  .FormContainer-login h3 {
-    font-size: 36px;
-    margin-bottom: 0.5em;
-  }
-}
-.FormContainer-login .input-group {
-  position: relative;
-  width: 100%;
-  height: 72px;
-}
-@media screen and (min-width: 750px) {
-  .FormContainer-login .input-group {
-    width: 328px;
-  }
-}
-.FormContainer-login .input-group input {
-  background: none;
-  border: 1px solid #F5F5F5;
-  border-radius: 4px;
-  height: 56px;
-  width: 100%;
-  color: #F5F5F5;
-  font-weight: bold;
-  outline: none;
-  padding-inline: 12px;
-}
-@media screen and (min-width: 750px) {
-  .FormContainer-login .input-group input {
-    color: #124e78;
-    height: 56px;
-    padding-inline: 12px;
-    border: 1px solid #124e78;
-    font-size: 16px;
-    transition: border-color 0.3s;
-  }
-}
-.FormContainer-login .input-group input:not(:-moz-placeholder-shown) {
-  border-color: #FFC42B;
-}
-.FormContainer-login .input-group input:focus,
-.FormContainer-login .input-group input:not(:placeholder-shown) {
-  border-color: #FFC42B;
-}
-.FormContainer-login .input-group label {
-  position: absolute;
-  top: 0;
-  left: 12px;
-  background: #124e78;
-  padding: 0 4px;
-  font-size: 16px;
-  font-weight: bold;
-  transform: translateY(-50%);
-  opacity: 0;
-  color: transparent;
-  transition: 0.2s;
-  display: flex;
-  align-items: center;
-  gap: 3px;
-  height: 14px;
-  pointer-events: none;
-  width: auto;
-}
-@media screen and (min-width: 750px) {
-  .FormContainer-login .input-group label {
-    background: #F2F2F7;
-  }
-}
-.FormContainer-login .input-group input:not(:-moz-placeholder-shown) + label {
-  opacity: 1;
-  color: #F5F5F5;
-}
-.FormContainer-login .input-group input:focus + label,
-.FormContainer-login .input-group input:not(:placeholder-shown) + label {
-  opacity: 1;
-  color: #F5F5F5;
-}
-@media screen and (min-width: 750px) {
-  .FormContainer-login .input-group input:not(:-moz-placeholder-shown) + label {
-    color: #124e78;
-  }
-  .FormContainer-login .input-group input:focus + label,
-  .FormContainer-login .input-group input:not(:placeholder-shown) + label {
-    color: #124e78;
-  }
-}
-.FormContainer-login .input-group.icon-right {
-  display: flex;
-}
-.FormContainer-login .toggle-password {
-  border: none;
-  position: absolute;
-  top: 40%;
-  right: 12px;
-  transform: translateY(-50%);
-  background: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  padding: 0;
-  margin-bottom: 2em;
-  height: 56px;
-  width: 24px;
-}
-.FormContainer-login .toggle-password svg {
-  width: 24px;
-  height: 24px;
-  pointer-events: none;
-  color: #F5F5F5;
-}
-@media screen and (min-width: 750px) {
-  .FormContainer-login .toggle-password svg {
-    color: #124e78;
-  }
-}
-.FormContainer-login .submit-button {
-  width: 100%;
-  height: 56px;
-  background-color: #FFC42B;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  color: #F5F5F5;
-  font-size: 24px;
-  border: none;
-  border-radius: 4px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-@media screen and (min-width: 750px) {
-  .FormContainer-login .submit-button {
-    width: 328px;
-  }
-}
-.FormContainer-login .submit-button:hover {
+.FormAdd {
   background-color: #F5F5F5;
-  color: #124e78;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.FormContainer-addincident.Form {
+  background-color: transparent;
+  /*Disabled Geolocation*/
+  /*Geolocation activated*/
 }
 @media screen and (min-width: 750px) {
-  .FormContainer-login .submit-button:hover {
-    background-color: #124e78;
-    color: #F5F5F5;
+  .FormContainer-addincident.Form {
+    width: 600px;
+    height: 100%;
   }
 }
-.FormContainer-login .text-line {
+.FormContainer-addincident.Form .location {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 0.6em;
+  align-items: center;
+}
+.FormContainer-addincident.Form .location-text {
+  font-size: 0.8em;
+  padding-bottom: 0.5em;
+}
+@media screen and (min-width: 750px) {
+  .FormContainer-addincident.Form .input-group {
+    width: 100%;
+  }
+}
+.FormContainer-addincident.Form .input-group input {
+  color: #124e78;
+  border: 1px solid #124e78;
+  transition: border-color 0.3s;
+}
+@media screen and (min-width: 750px) {
+  .FormContainer-addincident.Form .input-group input {
+    border: 1px solid #124e78;
+    min-width: 100%;
+  }
+}
+.FormContainer-addincident.Form .input-group select {
+  background-color: transparent;
+  width: 100%;
+  border: 1px solid #124e78;
+  border-radius: 4px;
+  padding: 8px;
+  color: #124e78;
+  transition: border-color 0.3s;
+  height: 56px;
+}
+.FormContainer-addincident.Form .AddImage {
+  margin-bottom: 1em;
+}
+.FormContainer-addincident.Form .num-code {
+  display: flex;
+  flex-direction: row;
+  gap: 1em;
+  width: 100%;
+}
+@media screen and (min-width: 750px) {
+  .FormContainer-addincident.Form .num-code .input-width-control {
+    gap: 2em;
+    max-width: auto;
+  }
+}
+.FormContainer-addincident.Form .input-group textarea {
+  background-color: transparent;
+  width: 100%;
+  border: 1px solid #124e78;
+  border-radius: 4px;
+  padding: 8px;
+  color: #124e78;
+  transition: border-color 0.3s;
+}
+.FormContainer-addincident.Form .input-group label {
+  background: #F2F2F7;
+  opacity: 0;
+}
+.FormContainer-addincident.Form .input-group input:focus + label,
+.FormContainer-addincident.Form .input-group input:not(:placeholder-shown) + label {
+  opacity: 1;
+  color: #124e78;
+}
+.FormContainer-addincident.Form .input-group select:focus {
+  border-color: #FFC42B;
+}
+.FormContainer-addincident.Form .input-group textarea:focus {
+  border-color: #FFC42B;
+}
+.FormContainer-addincident.Form .input-group select:focus + label,
+.FormContainer-addincident.Form .input-group select:valid + label {
+  opacity: 1;
+  color: #124e78;
+}
+.FormContainer-addincident.Form .input-group textarea:focus + label,
+.FormContainer-addincident.Form .input-group textarea:valid + label {
+  opacity: 1;
+  color: #124e78;
+}
+.FormContainer-addincident.Form .submit-button {
   margin-top: 1em;
   display: flex;
+  flex-direction: row;
+  align-items: center;
   justify-content: center;
-  color: #F5F5F5;
-  font-weight: bold;
-  font-size: 16px;
-  gap: 0.5em;
+}
+.FormContainer-addincident.Form .submit-button p {
+  font-size: 0.9em;
 }
 @media screen and (min-width: 750px) {
-  .FormContainer-login .text-line {
-    font-size: 20px;
-    color: #B3B3B3;
+  .FormContainer-addincident.Form .submit-button p {
+    font-size: 1.2em;
   }
-}
-.FormContainer-login .text-line a {
-  color: #F5F5F5;
 }
 @media screen and (min-width: 750px) {
-  .FormContainer-login .text-line a {
-    color: #B3B3B3;
+  .FormContainer-addincident.Form .submit-button {
+    min-width: 100%;
   }
+}
+.FormContainer-addincident.Form .submit-button:hover {
+  background-color: #124e78;
+}
+.FormContainer-addincident.Form .submit-button:hover p {
+  color: #F5F5F5;
+}
+.FormContainer-addincident.Form .toggle-location {
+  border: none;
+  background-color: transparent;
+}
+.FormContainer-addincident.Form .toggle-location svg .knob {
+  transition: transform 0.3s ease, fill 0.3s ease;
+  transform: translateX(0);
+  fill: #D8D8D8;
+}
+.FormContainer-addincident.Form .toggle-location svg .knobShadow {
+  transition: transform 0.4s ease, fill 0.4s ease;
+}
+.FormContainer-addincident.Form .toggle-location svg .bg {
+  transition: fill 0.3s ease;
+  fill: #D8D8D8;
+}
+.FormContainer-addincident.Form .toggle-location.active svg .knob {
+  transform: translateX(14px);
+  /* moves to right */
+  fill: #FFC42B;
+}
+.FormContainer-addincident.Form .toggle-location.active svg .knobShadow {
+  transform: translateX(14px);
+}
+.FormContainer-addincident.Form .toggle-location.active svg .bg {
+  fill: #124e78;
 }
 
 .WrapperBoss {
   max-width: 1440px;
   min-height: 100vh;
   margin: 0 auto;
-
 }
 @media screen and (min-width: 750px) {
   .PageMain {
-    border: 2 px solid green;
+    border: 2px solid red;
     width: calc(100vw - 290px);
   }
 }
@@ -1060,4 +988,6 @@ color: #124e78;
   .PageMain-bar-menu-link:hover i {
     color: #124e78;
   }
-}/*# sourceMappingURL=style.css.map */
+}
+
+/*# sourceMappingURL=style.css.map */

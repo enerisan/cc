@@ -22,12 +22,13 @@
             </div>
 
         </div>
-        <div class="FormContainer2">
+        <div class="FormContainer">
 
-            <form class="FormContainer2-login" th:action="@{/signup}"  th:object="${signUpForm}" method="post">
+            <form class="FormContainer-signup Form" th:action="@{/signup}" th:object="${signUpForm}" method="post">
                 <h3>Inscription</h3>
                 <div class="input-group">
-                    <input th:field="*{firstname}" id="firstname" name="firstname" placeholder="Votre prénom" required />
+                    <input th:field="*{firstname}" id="firstname" name="firstname" placeholder="Votre prénom"
+                        required />
                     <label for="firstname">*Prénom</label>
                 </div>
 
@@ -47,7 +48,8 @@
                 </div>
 
                 <div class="input-group icon-right">
-                    <input th:field="*{password}" id="password" name="password" placeholder="Votre mot de passe" required />
+                    <input th:field="*{password}" id="password" name="password" placeholder="Votre mot de passe"
+                        required />
                     <label for="password">*Mot de passe</label>
                     <button type="button" class="toggle-password" aria-label="Afficher/Masquer le mot de passe">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
@@ -59,7 +61,7 @@
                 </div>
 
                 <div class="input-group icon-right">
-                    <input  id="confirmPassword" name="confirmPassword" placeholder="Confirmez votre mot de passe"
+                    <input id="confirmPassword" name="confirmPassword" placeholder="Confirmez votre mot de passe"
                         required />
                     <label for="confirmPassword">* Confirmation de mot de passe</label>
                     <button type="button" class="toggle-password" aria-label="Afficher/Masquer le mot de passe">

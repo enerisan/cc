@@ -1,0 +1,309 @@
+@use 'variables' as * ;
+//General
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+h2 {
+    font-family: $textFont ;
+    font-size: $space;
+    color: $firstColor;
+
+    @media screen and (min-width:$tablet) {
+        font-size: $spaceM;
+    }
+
+
+}
+
+//By component
+
+.InfosCard {
+    box-shadow: $shadow;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: 1em;
+    font-family: $textFont ;
+    font-size: $space;
+    border-radius: $spaceS;
+    padding: $space;
+
+    &-textBox {
+        &-title {
+            font-weight: bold;
+        }
+
+    }
+
+    &-imgBox {
+        max-height: 6em;
+        max-width: 6em;
+
+        &-titre {
+            font-weight: bold;
+        }
+
+        img {
+            height: 100%;
+            width: 100%;
+
+            object-fit: cover;
+
+        }
+    }
+
+
+}
+
+.ReportCard {
+    box-shadow: $shadowLight;
+    display: flex;
+    flex-direction: row;
+    max-height: 6em;
+    width: 100%;
+    gap: 1em;
+    font-family: $textFont ;
+    font-size: $space;
+    border-radius: $spaceS;
+    padding: $spaceS;
+
+    &-imgBox {
+        max-height: 90%;
+
+        max-width: 30%;
+
+        &-titre {
+            font-weight: bold;
+        }
+
+        img {
+            height: 100%;
+            width: 100%;
+            border-radius: $spaceS;
+            object-fit: cover;
+
+        }
+    }
+
+    &-textBox {
+        min-width: 65%;
+
+        &-header {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+
+
+
+
+
+
+            &-title {
+                font-weight: bold;
+
+            }
+        }
+
+
+        &-items {
+            display: flex;
+            align-items: center;
+            gap: 1em;
+        }
+
+    }
+
+
+
+
+}
+
+.AllSee {
+    a {
+        text-decoration: none;
+        font-family: $textFont ;
+        font-size: $space;
+        padding-left: $spaceXS;
+
+    }
+}
+
+
+
+//By section
+.Wrapper {
+    background-color: black;
+
+    @media screen and (min-width:$tablet) {}
+
+}
+
+.PageHeader {
+    background-color: $firstColor;
+    min-height: $spaceXXL;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: $spaceS;
+
+    @media screen and (min-width:$tablet) {
+        padding-inline: $spaceM;
+    }
+
+    &-logo {
+        max-height: $spaceL;
+
+        @media screen and (min-width:$tablet) {
+            max-height: $spaceXXL;
+        }
+    }
+
+    &-userBox {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: $spaceL;
+
+
+        h2 {
+            color: $thirdColor;
+        }
+
+
+        img {
+            max-height: $spaceL;
+            background-color: $thirdColor;
+            border: 1px solid $secondColor;
+            border-radius: 50%;
+
+            @media screen and (min-width:$tablet) {
+                max-height: $spaceXL;
+            }
+        }
+    }
+
+    &-userBoxNav {
+        display: none;
+    }
+}
+
+.PageMain {
+
+
+    &-centralBox {
+        background-color: $thirdColor;
+        padding: $space;
+        display: flex;
+        flex-direction: column;
+        gap: $spaceL;
+
+
+        &-statistics {
+            &-header {
+                display: flex;
+                flex-direction: row;
+
+
+
+            }
+
+            &-wrapper {
+                display: flex;
+                justify-content: center;
+
+                padding-top: $space;
+                background-color: whitesmoke;
+                min-height: 700px;
+
+                &-graphic {
+                    min-width: 900px;
+                    max-height: 500px;
+                    box-shadow: 5px 5px 5px gray;
+                    border-radius: 10px;
+                }
+            }
+        }
+
+
+
+
+
+    }
+
+    &-bar {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background-color: $firstColor;
+        max-height: $spaceXXL;
+        min-height: $spaceXXL;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding-left: 0.2em;
+
+
+        &-addBtn {
+
+            min-height: 70px;
+            min-width: 70px;
+            border-radius: 50%;
+            position: absolute;
+            top: -35px;
+            right: 10px;
+
+            border-radius: 50%;
+            background-image: linear-gradient(0, white 0 55%, rgba(255, 255, 255, 0) 55% 100%);
+
+            &-in {
+                background-color: $secondColor;
+                min-height: 55px;
+                min-width: 55px;
+                border-radius: 50%;
+                position: absolute;
+                top: 5px;
+                right: 8px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+
+            }
+
+
+        }
+
+        &-menu {
+            max-height: 95%;
+            max-width: 80%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            margin: 0;
+            padding: 0px;
+            align-items: center;
+            padding-right: 0.3em;
+
+
+            &-link {
+
+                color: $thirdColor;
+                font-family: $textFont;
+                font-size: 11px;
+                text-align: center;
+                display: flex;
+                flex-direction: column;
+                gap: $spaceS;
+
+
+
+            }
+        }
+    }
+}

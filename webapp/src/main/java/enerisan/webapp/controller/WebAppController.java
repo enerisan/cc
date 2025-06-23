@@ -35,6 +35,7 @@ public class WebAppController {
     @Autowired
     IncidentService incidentService;
 
+
     @GetMapping("/")
     public ModelAndView welcome(Model model) {
         User user = sessionService.sessionUser();
