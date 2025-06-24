@@ -2,7 +2,8 @@
 
  .PageHeader {
      background-color: $firstColor;
-     min-height: $spaceXXL;
+     height: 5em;
+     width: 100% ;
      display: flex;
      justify-content: space-between;
      align-items: center;
@@ -10,8 +11,11 @@
      position: relative;
      z-index: 10;
 
+
      @media screen and (min-width:$tablet) {
          padding-inline: $spaceM;
+         position: sticky;
+         top:0;
      }
 
      &-logo {

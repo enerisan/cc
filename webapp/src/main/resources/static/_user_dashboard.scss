@@ -2,18 +2,24 @@
 
  .WrapperBoss {
      max-width: 1440px;
-     min-height: 100vh;
      margin: 0 auto;
+     min-height: 100vh;
 
 
-     @media screen and (min-width: $tablet) {}
+
+     @media screen and (min-width: $tablet) {
+
+     }
  }
 
  .PageMain {
 
      @media screen and (min-width: $tablet) {
-         border: 2px solid red;
-         width: calc(100vw - 290px);
+         width: 100%;
+         margin:0;
+         padding: 0;
+         display:flex;
+         align-items: flex-start;
 
      }
 
@@ -26,8 +32,9 @@
 
 
          @media screen and (min-width: $tablet) {
-             padding: 2em;
 
+             width: calc(100% - 280px);
+             padding: 2em;
              display: grid;
              grid-template-columns: 1fr 1fr;
              grid-template-rows: auto auto;
@@ -173,22 +180,20 @@
          z-index: 1;
 
          @media screen and (min-width: $tablet) {
-
-             bottom: 0;
-             right: 0;
-             left: auto;
              width: 280px;
-             min-height: 100%;
-             flex-direction: column;
-             align-items: center;
+             min-height: 100vh;
+             max-height: none;
+             position: sticky;
+             top: 5em;
+             align-self: flex-start;
              justify-content: flex-start;
              padding: 0;
+
 
 
          }
 
          &-addBtn {
-
              min-height: 70px;
              min-width: 70px;
              border-radius: 50%;
@@ -222,7 +227,8 @@
          }
 
          &-menu {
-             max-height: 95%;
+             border: 1px solid red;
+             height: 100%;
              max-width: 80%;
              display: flex;
              flex-direction: row;
@@ -241,6 +247,7 @@
                  max-height: none;
                  min-width: 100%;
                  padding: 0;
+
 
 
              }

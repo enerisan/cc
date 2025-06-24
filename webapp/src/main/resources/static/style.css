@@ -37,7 +37,8 @@ h2 {
 
 .PageHeader {
   background-color: #124e78;
-  min-height: 4em;
+  height: 5em;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -48,6 +49,8 @@ h2 {
 @media screen and (min-width: 750px) {
   .PageHeader {
     padding-inline: 1.5em;
+    position: sticky;
+    top: 0;
   }
 }
 .PageHeader-logo {
@@ -199,7 +202,7 @@ h2 {
   outline: 1px solid #FFC42B;
 }
 .ReportCard:hover .ReportCard-textBox-items-icon {
-  color: #124e78;
+  color: #F5F5F5;
 }
 
 .AllSee a {
@@ -738,13 +741,16 @@ h2 {
 
 .WrapperBoss {
   max-width: 1440px;
-  min-height: 100vh;
   margin: 0 auto;
+  min-height: 100vh;
 }
 @media screen and (min-width: 750px) {
   .PageMain {
-    border: 2px solid red;
-    width: calc(100vw - 290px);
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: flex-start;
   }
 }
 .PageMain-centralBox {
@@ -756,6 +762,7 @@ h2 {
 }
 @media screen and (min-width: 750px) {
   .PageMain-centralBox {
+    width: calc(100% - 280px);
     padding: 2em;
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -857,13 +864,12 @@ h2 {
 }
 @media screen and (min-width: 750px) {
   .PageMain-bar {
-    bottom: 0;
-    right: 0;
-    left: auto;
     width: 280px;
-    min-height: 100%;
-    flex-direction: column;
-    align-items: center;
+    min-height: 100vh;
+    max-height: none;
+    position: sticky;
+    top: 5em;
+    align-self: flex-start;
     justify-content: flex-start;
     padding: 0;
   }
@@ -897,7 +903,8 @@ h2 {
   align-items: center;
 }
 .PageMain-bar-menu {
-  max-height: 95%;
+  border: 1px solid red;
+  height: 100%;
   max-width: 80%;
   display: flex;
   flex-direction: row;
