@@ -865,7 +865,7 @@ h2 {
 @media screen and (min-width: 750px) {
   .PageMain-bar {
     width: 280px;
-    min-height: 100vh;
+    min-height: calc(100vh + 5em);
     max-height: none;
     position: sticky;
     top: 5em;
@@ -903,14 +903,12 @@ h2 {
   align-items: center;
 }
 .PageMain-bar-menu {
-  border: 1px solid red;
-  height: 100%;
   max-width: 80%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   margin: 0;
-  padding: 0px;
+  padding: 0;
   align-items: center;
 }
 @media screen and (min-width: 750px) {
