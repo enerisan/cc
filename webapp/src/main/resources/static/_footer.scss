@@ -1,0 +1,22 @@
+ @use 'variables' as *;
+
+ .PageFooter {
+
+
+     @media screen and (min-width:$tablet) {
+
+         background-color: $firstColor;
+         color:$thirdColor;
+         height: 5em;
+         width: calc(100% - 280px);
+         display: flex;
+         flex-direction: column;
+         justify-content: center;
+         align-items: center;
+         padding: $spaceS;
+         position: relative;
+         z-index: 10;
+
+     }
+
+ }

@@ -1,8 +1,16 @@
  @use 'variables' as *;
 
 
+ .CtBoxForm {
+     display: block;
+     text-align: center;
+     height: 100%;
+
+
+ }
  .FormAdd {
      background-color: $thirdColor;
+     height: 100%;
  }
 
  .FormContainer {
@@ -16,9 +24,6 @@
          @media screen and (min-width: $tablet) {
              width: 600px;
              height: 100%;
-
-
-
          }
 
          .location {

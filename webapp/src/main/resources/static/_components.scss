@@ -1,5 +1,50 @@
  @use 'variables' as *;
 
+ .WrapperBoss {
+     max-width: 1440px;
+     margin: 0 auto;
+
+
+     @media screen and (min-width: $tablet) {
+         position: relative;
+
+     }
+ }
+
+
+ .PageMain {
+
+     @media screen and (min-width: $tablet) {
+         width: 100%;
+         margin: 0;
+         padding: 0;
+         display: flex;
+         align-items: stretch;
+
+     }
+
+     &-centralBox {
+         background-color: $thirdColor;
+         padding: $space;
+         display: flex;
+         flex-direction: column;
+         gap: $spaceL;
+
+
+         @media screen and (min-width: $tablet) {
+
+             width: calc(100% - 280px);
+             padding: 2em;
+             display: grid;
+             grid-template-columns: 1fr 1fr;
+             grid-template-rows: auto auto;
+             gap: $spaceXXXL;
+             font-size: $space;
+
+         }
+
+     }
+ }
  .InfosCard {
      box-shadow: $shadow;
      display: flex;
