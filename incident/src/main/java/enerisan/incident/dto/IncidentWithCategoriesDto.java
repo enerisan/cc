@@ -27,9 +27,21 @@ public class IncidentWithCategoriesDto {
     private BigDecimal latitude;
     private BigDecimal longitude;
 
-    private List<CategoryDto> categories;
+    private List<Integer> categoryIds;
 
     public IncidentWithCategoriesDto() {
+    }
+
+    public IncidentWithCategoriesDto(List<Integer> categoryIds) {
+        this.categoryIds = categoryIds;
+    }
+
+    public List<Integer> getCategoryIds() {
+        return categoryIds;
+    }
+
+    public void setCategoryIds(List<Integer> categoryIds) {
+        this.categoryIds = categoryIds;
     }
 
     public IncidentWithCategoriesDto(Integer id, Integer cityId, Integer userId, Integer statusId, String title, String address, String neighborhood, String postalCode, String image, String description, LocalDateTime createdAt, LocalDateTime closedAt, BigDecimal latitude, BigDecimal longitude, List<CategoryDto> categories) {
@@ -47,7 +59,7 @@ public class IncidentWithCategoriesDto {
         this.closedAt = closedAt;
         this.latitude = latitude;
         this.longitude = longitude;
-        this.categories = categories;
+
     }
 
     public Integer getId() {
@@ -162,11 +174,5 @@ public class IncidentWithCategoriesDto {
         this.longitude = longitude;
     }
 
-    public List<CategoryDto> getCategories() {
-        return categories;
-    }
 
-    public void setCategories(List<CategoryDto> categories) {
-        this.categories = categories;
-    }
 }

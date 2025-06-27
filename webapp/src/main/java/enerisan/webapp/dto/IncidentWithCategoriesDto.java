@@ -1,6 +1,11 @@
 package enerisan.webapp.dto;
 
 
+import enerisan.webapp.model.City;
+import enerisan.webapp.model.Incident;
+import enerisan.webapp.model.Status;
+import enerisan.webapp.model.User;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -24,9 +29,21 @@ public class IncidentWithCategoriesDto {
     private BigDecimal latitude;
     private BigDecimal longitude;
 
-    private List<CategoryDto> categories;
+    private List<Integer> categoryIds;
 
     public IncidentWithCategoriesDto() {
+    }
+
+    public IncidentWithCategoriesDto(List<Integer> categoryIds) {
+        this.categoryIds = categoryIds;
+    }
+
+    public List<Integer> getCategoryIds() {
+        return categoryIds;
+    }
+
+    public void setCategoryIds(List<Integer> categoryIds) {
+        this.categoryIds = categoryIds;
     }
 
     public IncidentWithCategoriesDto(Integer id, Integer cityId, Integer userId, Integer statusId, String title, String address, String neighborhood, String postalCode, String image, String description, LocalDateTime createdAt, LocalDateTime closedAt, BigDecimal latitude, BigDecimal longitude, List<CategoryDto> categories) {
@@ -44,7 +61,7 @@ public class IncidentWithCategoriesDto {
         this.closedAt = closedAt;
         this.latitude = latitude;
         this.longitude = longitude;
-        this.categories = categories;
+
     }
 
     public Integer getId() {
@@ -159,11 +176,38 @@ public class IncidentWithCategoriesDto {
         this.longitude = longitude;
     }
 
-    public List<CategoryDto> getCategories() {
-        return categories;
+
+    // This method converts the DTO into an Incident entity that will be sent to ms-incident via the IncidentFeignClient.
+
+    public Incident toIncident() {
+        Incident incident = new Incident();
+
+        incident.setId(this.id);
+
+        City city = new City();
+        city.setId(this.cityId);
+        incident.setCity(city);
+
+        User user = new User();
+        user.setId(this.userId);
+        incident.setUser(user);
+
+        Status status = new Status();
+        status.setId(this.statusId);
+        incident.setStatus(status);
+
+        incident.setTitle(this.title);
+        incident.setAddress(this.address);
+        incident.setNeighborhood(this.neighborhood);
+        incident.setPostalCode(this.postalCode);
+        incident.setImage(this.image);
+        incident.setDescription(this.description);
+        incident.setCreatedAt(this.createdAt);
+        incident.setClosedAt(this.closedAt);
+        incident.setLatitude(this.latitude);
+        incident.setLongitude(this.longitude);
+
+        return incident;
     }
 
-    public void setCategories(List<CategoryDto> categories) {
-        this.categories = categories;
-    }
 }

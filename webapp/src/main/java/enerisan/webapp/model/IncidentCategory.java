@@ -4,14 +4,20 @@ package enerisan.webapp.model;
 
 public class IncidentCategory {
 
-    private Integer id;
+
+    private IncidentCategoryId id;
+
+
     private Incident incident;
+
+
     private Category category;
-    public Integer getId() {
+
+    public IncidentCategoryId getId() {
         return id;
     }
 
-    public void setId(Integer  id) {
+    public void setId(IncidentCategoryId id) {
         this.id = id;
     }
 
@@ -30,5 +36,6 @@ public class IncidentCategory {
     public void setCategory(Category category) {
         this.category = category;
     }
+
 
 }

@@ -21,8 +21,8 @@ public interface IncidentFeignClient {
     List<IncidentWithCategoriesDto> getAllIncidentsWithCategoriesByUserId(@PathVariable("userId") Integer userId);
 
 
-    @PostMapping(value= "api/incident", consumes = "application/json")
-    Incident createIncident(Incident incident);
+    @PostMapping("/api/incident")
+    Incident createIncident(@RequestBody Incident incident);
 
 
 

@@ -1,11 +1,13 @@
 package enerisan.webapp.service;
 
+import enerisan.webapp.dto.IncidentCategoryDto;
 import enerisan.webapp.dto.IncidentForm;
 import enerisan.webapp.dto.IncidentWithCategoriesDto;
 import enerisan.webapp.model.City;
 import enerisan.webapp.model.Incident;
 import enerisan.webapp.model.Status;
 import enerisan.webapp.model.User;
+import enerisan.webapp.service.client.IncidentCategoryFeignClient;
 import enerisan.webapp.service.client.IncidentFeignClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,37 +23,27 @@ public class IncidentService {
     IncidentFeignClient incidentFeignClient;
 
     @Autowired
+    IncidentCategoryFeignClient incidentCategoryFeignClient;
+
+    @Autowired
     SessionService sessionService;
 
-    public List <IncidentWithCategoriesDto> getAllIncidentsWithCategoriesByUserId(Integer userId) {
+    public List<IncidentWithCategoriesDto> getAllIncidentsWithCategoriesByUserId(Integer userId) {
         return incidentFeignClient.getAllIncidentsWithCategoriesByUserId((userId));
     }
 
 
-    @PostMapping("/incident")
-    public Incident addIncident(IncidentForm form) {
-        User user = sessionService.sessionUser();
-        Incident incident = new Incident();
-        incident.setTitle(form.getTitle());
-        incident.setDescription(form.getDescription());
-        incident.setAddress(form.getAddress());
-        City city = new City();
-        city.setId(1);
-        city.setName("Aix-en-Provence");
-        incident.setImage(form.getImage());
-        incident.setLatitude(form.getLatitude());
-        incident.setLongitude(form.getLongitude());
-        incident.setNeighborhood(form.getNeighborhood());
-        incident.setPostalCode(form.getPostalCode());
-        Status status = new Status();
-        status.setId(1);
-        status.setType("signalé");
-        incident.setStatus(status);
-        incident.setUser(user);
+    //To create and IncidentWithCategories
+    public void createIncidentWithCategories(IncidentWithCategoriesDto dto) {
+        // I create the incident
+        Incident incident = incidentFeignClient.createIncident(dto.toIncident());
 
-        return incidentFeignClient.createIncident(incident);
+        // I add the categories to the created incident
+        for (Integer categoryId : dto.getCategoryIds()) {
+            IncidentCategoryDto incidentCategoryDto = new IncidentCategoryDto(incident.getId(), categoryId);
+            incidentCategoryFeignClient.addIncidentCategory(incidentCategoryDto);
+        }
+
+
     }
-
-
-
 }

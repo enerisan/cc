@@ -2,11 +2,8 @@ package enerisan.incident.controller;
 
 import enerisan.incident.dto.CategoryDto;
 import enerisan.incident.dto.IncidentWithCategoriesDto;
-import enerisan.incident.model.Category;
-import enerisan.incident.model.Incident;
-import enerisan.incident.model.IncidentCategory;
-import enerisan.incident.repository.IncidentCategoryRepository;
-import enerisan.incident.repository.IncidentRepository;
+import enerisan.incident.model.*;
+import enerisan.incident.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,13 +21,20 @@ public class IncidentController {
     @Autowired
     private IncidentCategoryRepository incidentCategoryRepository;
 
+    @Autowired
+    private CategoryRepository categoryRepository;
+    @Autowired
+    private CityRepository cityRepository;
+    @Autowired
+    private UserRepository userRepository;
+
     @GetMapping("/incidents")
     public List<Incident> getAllIncidents() {
         return incidentRepository.findAll();
     }
 
     @GetMapping("/incident/{id}")
-    public Optional<Incident> getIncidentById(@PathVariable Integer id){
+    public Optional<Incident> getIncidentById(@PathVariable Integer id) {
         return incidentRepository.findById(id);
     }
 
@@ -64,8 +68,6 @@ public class IncidentController {
         }).collect(Collectors.toList());
     }
 
-
-
     @PostMapping("/incident")
     public Incident addIncident(@RequestBody Incident incident) {
         return incidentRepository.save(incident);
@@ -96,7 +98,7 @@ public class IncidentController {
     }
 
     @DeleteMapping("/incidents/{id}")
-    public void deleteIncidentById(@PathVariable Integer id){
+    public void deleteIncidentById(@PathVariable Integer id) {
         incidentRepository.deleteById(id);
     }
 }
