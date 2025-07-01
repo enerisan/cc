@@ -31,6 +31,7 @@ public class IncidentWithCategoriesDto {
 
     private List<Integer> categoryIds;
 
+
     public IncidentWithCategoriesDto() {
     }
 
@@ -178,7 +179,6 @@ public class IncidentWithCategoriesDto {
 
 
     // This method converts the DTO into an Incident entity that will be sent to ms-incident via the IncidentFeignClient.
-
     public Incident toIncident() {
         Incident incident = new Incident();
 

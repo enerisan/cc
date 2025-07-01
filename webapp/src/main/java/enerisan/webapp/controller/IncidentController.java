@@ -1,5 +1,6 @@
 package enerisan.webapp.controller;
 
+import enerisan.webapp.dto.CategoryDto;
 import enerisan.webapp.dto.IncidentForm;
 import enerisan.webapp.dto.IncidentWithCategoriesDto;
 import enerisan.webapp.model.Incident;
@@ -14,6 +15,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 @Controller
 public class IncidentController {
@@ -32,15 +35,20 @@ public class IncidentController {
     //To show incidentAdd form :
     @GetMapping("/addIncident")
     public ModelAndView showAddIncidentForm() {
-        IncidentForm incidentForm= new IncidentForm();
+       IncidentWithCategoriesDto  incidentWithCategoriesDto= new IncidentWithCategoriesDto();
+        List<CategoryDto> categories = incidentService.getAllCategories();
+        ModelAndView mav = new ModelAndView("add_incident");
+        mav.addObject("incidentWithCategoriesDto", incidentWithCategoriesDto);
+        mav.addObject("categories", categories);
 
-        return new ModelAndView("add_incident", "incidentForm", incidentForm);
+        return mav;
     }
 
     @PostMapping
-    public ResponseEntity<Void> createIncident(@RequestBody IncidentWithCategoriesDto dto) {
+    public String createIncident(@ModelAttribute IncidentWithCategoriesDto dto) {
         incidentService.createIncidentWithCategories(dto);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+        return "redirect:/";
+
     }
 
 }

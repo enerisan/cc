@@ -18,7 +18,7 @@
         <div class="PageMain-centralBox CtBoxForm">
             <div class="FormContainer FormAdd">
 
-                <form class="FormContainer-addincident Form" th:action="@{/incident}" th:object="${incidentForm}"
+                <form class="FormContainer-addincident Form" th:action="@{/incident}" th:object="${incidentWithCategoriesDto}"
                       method="post">
                     <h3>Ajouter un signalement</h3>
 
@@ -85,11 +85,11 @@
                         <input th:field="*{address}" id="address" name="address" placeholder="Adresse" required/>
                         <label for="address">*Addresse</label>
                     </div>
-                    <div class="num-code">
+                    <div class="city-code">
                         <div class="input-group input-width-control">
-                            <input th:field="*{neighborhood}" id="neighborhood" name="neighborhood"
-                                   placeholder="Quartier" required/>
-                            <label for="neighborhood">*Quartier</label>
+                            <input th:field="*{cityId}" id="city" name="city"
+                                   placeholder="City" required/>
+                            <label for="city">*City</label>
                         </div>
 
                         <div class="input-group input-width-control">
@@ -100,25 +100,13 @@
                     </div>
 
                     <div class="input-group">
-                        <select th:field="*{category}" id="category" required>
-                            <option value="" disabled selected hidden>Catégorie</option>
-                            <option th:value="'1'" th:text="'Voirie'"></option>
-                            <option th:value="'2'" th:text="'Éclairage public'"></option>
-                            <option th:value="'3'" th:text="'Trottoirs'"></option>
-                            <option th:value="'4'" th:text="'Conteneurs à déchets'"></option>
-                            <option th:value="'5'" th:text="'Aire de jeux'"></option>
-                            <option th:value="'6'" th:text="'Fontaines'"></option>
-                            <option th:value="'7'" th:text="'Propreté'"></option>
-                            <option th:value="'8'" th:text="'Gestion des déchets'"></option>
-                            <option th:value="'9'" th:text="'Espaces verts'"></option>
-                            <option th:value="'10'" th:text="'Installations sportives'"></option>
-                            <option th:value="'11'" th:text="'Bâtiments publics'"></option>
-                            <option th:value="'12'" th:text="'Nuisibles'"></option>
-                            <option th:value="'13'" th:text="'Égouts'"></option>
-                            <option th:value="'14'" th:text="'Circulation'"></option>
-                            <option th:value="'15'" th:text="'Autres'"></option>
+                        <select multiple th:field="*{categoryIds}" id="categoryIds" required>
+                            <option value="" disabled hidden>Catégorie</option>
+                            <option th:each="cat : ${categories}"
+                                    th:value="${cat.id}"
+                                    th:text="${cat.name}"></option>
                         </select>
-                        <label for="category" class="labelCat">*Catégorie</label>
+                        <label for="categoryIds" class="labelCat">*Catégories</label>
                     </div>
 
                     <div class="AddImage">

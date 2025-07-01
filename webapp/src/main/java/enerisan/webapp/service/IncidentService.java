@@ -1,5 +1,6 @@
 package enerisan.webapp.service;
 
+import enerisan.webapp.dto.CategoryDto;
 import enerisan.webapp.dto.IncidentCategoryDto;
 import enerisan.webapp.dto.IncidentForm;
 import enerisan.webapp.dto.IncidentWithCategoriesDto;
@@ -32,6 +33,10 @@ public class IncidentService {
         return incidentFeignClient.getAllIncidentsWithCategoriesByUserId((userId));
     }
 
+
+    public List <CategoryDto> getAllCategories() {
+        return incidentFeignClient.getAllCategories();
+    }
 
     //To create and IncidentWithCategories
     public void createIncidentWithCategories(IncidentWithCategoriesDto dto) {

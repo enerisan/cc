@@ -1,5 +1,6 @@
 package enerisan.webapp.service.client;
 
+import enerisan.webapp.dto.CategoryDto;
 import enerisan.webapp.dto.IncidentWithCategoriesDto;
 import enerisan.webapp.dto.UserDto;
 import enerisan.webapp.model.Incident;
@@ -24,7 +25,8 @@ public interface IncidentFeignClient {
     @PostMapping("/api/incident")
     Incident createIncident(@RequestBody Incident incident);
 
-
+    @GetMapping("/api/categories")
+    List<CategoryDto> getAllCategories();
 
 
 }
