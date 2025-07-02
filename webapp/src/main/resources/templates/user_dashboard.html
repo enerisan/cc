@@ -132,7 +132,9 @@
                             <div class="ReportCard-textBox-items">
                                 <p th:text="${#temporals.format(incident.createdAt, 'dd/MM/yy')}" class="ReportCard-textBox-items-date">24/01/25</p>
 
-                                <i th:class="${categoryIcons[incident.categories[0].name]} + ' ReportCard-textBox-items-icon'" ></i>
+                                <div th:each="category : ${incident.categories}">
+                                    <i th:class="${categoryIcons[category.name]} + ' ReportCard-textBox-items-icon'"></i>
+                                </div>
                                 <a class="Report-btn Btn" href="">Voir détail</a>
                             </div>
 

@@ -1,6 +1,5 @@
 package enerisan.webapp.dto;
 
-
 import enerisan.webapp.model.City;
 import enerisan.webapp.model.Incident;
 import enerisan.webapp.model.Status;
@@ -31,6 +30,7 @@ public class IncidentWithCategoriesDto {
 
     private List<Integer> categoryIds;
 
+    private List<CategoryDto> categories;
 
     public IncidentWithCategoriesDto() {
     }
@@ -39,15 +39,11 @@ public class IncidentWithCategoriesDto {
         this.categoryIds = categoryIds;
     }
 
-    public List<Integer> getCategoryIds() {
-        return categoryIds;
-    }
-
-    public void setCategoryIds(List<Integer> categoryIds) {
-        this.categoryIds = categoryIds;
-    }
-
-    public IncidentWithCategoriesDto(Integer id, Integer cityId, Integer userId, Integer statusId, String title, String address, String neighborhood, String postalCode, String image, String description, LocalDateTime createdAt, LocalDateTime closedAt, BigDecimal latitude, BigDecimal longitude, List<CategoryDto> categories) {
+    public IncidentWithCategoriesDto(Integer id, Integer cityId, Integer userId, Integer statusId,
+                                     String title, String address, String neighborhood, String postalCode,
+                                     String image, String description, LocalDateTime createdAt,
+                                     LocalDateTime closedAt, BigDecimal latitude, BigDecimal longitude,
+                                     List<CategoryDto> categories) {
         this.id = id;
         this.cityId = cityId;
         this.userId = userId;
@@ -62,8 +58,10 @@ public class IncidentWithCategoriesDto {
         this.closedAt = closedAt;
         this.latitude = latitude;
         this.longitude = longitude;
-
+        this.categories = categories;
     }
+
+    // Getters and setters
 
     public Integer getId() {
         return id;
@@ -177,8 +175,27 @@ public class IncidentWithCategoriesDto {
         this.longitude = longitude;
     }
 
+    public List<Integer> getCategoryIds() {
+        return categoryIds;
+    }
 
-    // This method converts the DTO into an Incident entity that will be sent to ms-incident via the IncidentFeignClient.
+    public void setCategoryIds(List<Integer> categoryIds) {
+        this.categoryIds = categoryIds;
+    }
+
+    public List<CategoryDto> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<CategoryDto> categories) {
+        this.categories = categories;
+    }
+
+
+//     Converts this DTO into an Incident entity.
+//     This method is used by the IncidentFeignClient to send data to ms-incident.
+
+
     public Incident toIncident() {
         Incident incident = new Incident();
 
@@ -209,5 +226,4 @@ public class IncidentWithCategoriesDto {
 
         return incident;
     }
-
 }

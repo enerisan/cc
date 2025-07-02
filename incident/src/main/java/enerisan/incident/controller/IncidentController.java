@@ -48,7 +48,11 @@ public class IncidentController {
                     .map(incidentCategory -> new CategoryDto(incidentCategory.getCategory()))
                     .collect(Collectors.toList());
 
-            return new IncidentWithCategoriesDto(
+            List<Integer> categoryIds = categories.stream()
+                    .map(CategoryDto::getId)
+                    .collect(Collectors.toList());
+
+            IncidentWithCategoriesDto dto = new IncidentWithCategoriesDto(
                     incident.getId(),
                     incident.getCity().getId(),
                     incident.getUser().getId(),
@@ -65,8 +69,13 @@ public class IncidentController {
                     incident.getLongitude(),
                     categories
             );
+
+            dto.setCategoryIds(categoryIds);
+
+            return dto;
         }).collect(Collectors.toList());
     }
+
 
     @PostMapping("/incident")
     public Incident addIncident(@RequestBody Incident incident) {

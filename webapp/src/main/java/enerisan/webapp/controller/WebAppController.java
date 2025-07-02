@@ -40,10 +40,17 @@ public class WebAppController {
     public ModelAndView welcome(Model model) {
         User user = sessionService.sessionUser();
 
+        // Check if user is a regular user (role id 2)
         if (user.getRole().getId() == 2) {
             model.addAttribute("user", user);
+
+            // Fetch incidents with categories for this user
             List<IncidentWithCategoriesDto> incidentsWithCategories = incidentService.getAllIncidentsWithCategoriesByUserId(user.getId());
-            model.addAttribute("incidents", incidentService.getAllIncidentsWithCategoriesByUserId((user.getId())));
+
+            // Add incidents to the model
+            model.addAttribute("incidents", incidentsWithCategories);
+
+            // Map of category names to their corresponding icon classes
             Map<String, String> categoryIcons = new HashMap<>();
             categoryIcons.put("Voirie", "fa-solid fa-triangle-exclamation");
             categoryIcons.put("Éclairage public", "fa-solid fa-lightbulb");
@@ -62,14 +69,22 @@ public class WebAppController {
             categoryIcons.put("Autres", "fa-solid fa-ellipsis-h");
             categoryIcons.put("Accessibilité", "fa-solid fa-wheelchair");
 
+            // Add category icons map to the model
             model.addAttribute("categoryIcons", categoryIcons);
+
+            // Return user dashboard view
             return new ModelAndView("user_dashboard");
+
         } else if (user.getRole().getId() == 1) {
+            // Admin user
             model.addAttribute("user", user);
             return new ModelAndView("admin_dashboard");
         }
+
+        // Access denied for other roles or unauthenticated users
         return new ModelAndView("access_denied");
     }
+
 
     @GetMapping("/signup")
     public ModelAndView showRegisterForm() {

@@ -8,7 +8,7 @@ import enerisan.webapp.model.City;
 import enerisan.webapp.model.Incident;
 import enerisan.webapp.model.Status;
 import enerisan.webapp.model.User;
-import enerisan.webapp.service.client.IncidentCategoryFeignClient;
+//import enerisan.webapp.service.client.IncidentCategoryFeignClient;
 import enerisan.webapp.service.client.IncidentFeignClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,8 +23,8 @@ public class IncidentService {
     @Autowired
     IncidentFeignClient incidentFeignClient;
 
-    @Autowired
-    IncidentCategoryFeignClient incidentCategoryFeignClient;
+//    @Autowired
+//    IncidentCategoryFeignClient incidentCategoryFeignClient;
 
     @Autowired
     SessionService sessionService;
@@ -46,7 +46,7 @@ public class IncidentService {
         // I add the categories to the created incident
         for (Integer categoryId : dto.getCategoryIds()) {
             IncidentCategoryDto incidentCategoryDto = new IncidentCategoryDto(incident.getId(), categoryId);
-            incidentCategoryFeignClient.addIncidentCategory(incidentCategoryDto);
+            incidentFeignClient.addIncidentCategory(incidentCategoryDto);
         }
 
 
