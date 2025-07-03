@@ -236,22 +236,19 @@ h2 {
   }
 }
 
-@media screen and (min-width: 750px) {
-  .PageFooter {
-    background-color: #124e78;
-    color: #F5F5F5;
-    height: 5em;
-    width: calc(100% - 280px);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 0.5em;
-    position: relative;
-    z-index: 10;
-  }
+.PageFooter {
+  background-color: #124e78;
+  color: #F5F5F5;
+  height: 5em;
+  width: calc(100% - 280px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5em;
+  position: relative;
+  z-index: 10;
 }
-
 .WrapperBoss {
   max-width: 1440px;
   margin: 0 auto;

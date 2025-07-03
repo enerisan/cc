@@ -7,6 +7,10 @@
     <link rel="stylesheet" href="/style.css">
     <link rel="icon" href="public/images/logo.ico" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css" />
+
+
+
 
 </head>
 
@@ -99,15 +103,12 @@
                         </div>
                     </div>
 
-                    <div class="input-group">
-                        <select multiple th:field="*{categoryIds}" id="categoryIds" required>
-                            <option value="" disabled hidden>Catégorie</option>
-                            <option th:each="cat : ${categories}"
-                                    th:value="${cat.id}"
-                                    th:text="${cat.name}"></option>
-                        </select>
-                        <label for="categoryIds" class="labelCat">*Catégories</label>
-                    </div>
+
+<!--                    <label for="categoryIds" class="labelCat">*Catégories</label>-->
+                    <select class="input-group input" id="categoryIds" th:field="*{categoryIds}" multiple required>
+                        <option th:each="cat : ${categories}" th:value="${cat.id}" th:text="${cat.name}"></option>
+                    </select>
+
 
                     <div class="AddImage">
                         <a href="">
@@ -146,7 +147,9 @@
     <footer th:replace="~{fragments/footer::footer}" class="PageFooter"></footer>
 
 </div>
-<script src="./script.js"></script>
 
+
+<script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
+<script src="./script.js"></script>
 </body>
 </html>
