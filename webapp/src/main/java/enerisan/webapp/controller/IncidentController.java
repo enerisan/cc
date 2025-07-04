@@ -35,7 +35,7 @@ public class IncidentController {
     //To show incidentAdd form :
     @GetMapping("/addIncident")
     public ModelAndView showAddIncidentForm() {
-       IncidentWithCategoriesDto  incidentWithCategoriesDto= new IncidentWithCategoriesDto();
+       IncidentWithCategoriesDto  incidentWithCategoriesDto = new IncidentWithCategoriesDto();
         List<CategoryDto> categories = incidentService.getAllCategories();
         ModelAndView mav = new ModelAndView("add_incident");
         mav.addObject("incidentWithCategoriesDto", incidentWithCategoriesDto);
@@ -44,11 +44,18 @@ public class IncidentController {
         return mav;
     }
 
-    @PostMapping
-    public String createIncident(@ModelAttribute IncidentWithCategoriesDto dto) {
-        incidentService.createIncidentWithCategories(dto);
-        return "redirect:/";
+    @PostMapping("/addIncident")
+    public String createIncident(@ModelAttribute("incidentWithCategoriesDto") IncidentWithCategoriesDto dto) {
 
+        User user = sessionService.sessionUser();
+
+        dto.setUserId(1);
+        dto.setStatusId(1);
+
+        incidentService.createIncidentWithCategories(dto);
+
+        return "redirect:/";
     }
+
 
 }

@@ -196,10 +196,41 @@ public class IncidentWithCategoriesDto {
 //     This method is used by the IncidentFeignClient to send data to ms-incident.
 
 
+//    public Incident toIncident() {
+//        Incident incident = new Incident();
+//
+//        incident.setId(this.id);
+//
+//        City city = new City();
+//        city.setId(this.cityId);
+//        incident.setCity(city);
+//
+//        User user = new User();
+//        user.setId(this.userId);
+//        incident.setUser(user);
+//
+//        Status status = new Status();
+//        status.setId(this.statusId);
+//        incident.setStatus(status);
+//
+//        incident.setTitle(this.title);
+//        incident.setAddress(this.address);
+//        incident.setNeighborhood(this.neighborhood);
+//        incident.setPostalCode(this.postalCode);
+//        incident.setImage(this.image);
+//        incident.setDescription(this.description);
+//        incident.setCreatedAt(this.createdAt);
+//        incident.setClosedAt(this.closedAt);
+//        incident.setLatitude(this.latitude);
+//        incident.setLongitude(this.longitude);
+//
+//        return incident;
+//    }
+
     public Incident toIncident() {
         Incident incident = new Incident();
 
-        incident.setId(this.id);
+
 
         City city = new City();
         city.setId(this.cityId);
@@ -210,20 +241,21 @@ public class IncidentWithCategoriesDto {
         incident.setUser(user);
 
         Status status = new Status();
-        status.setId(this.statusId);
+        status.setId(1);
         incident.setStatus(status);
 
         incident.setTitle(this.title);
         incident.setAddress(this.address);
-        incident.setNeighborhood(this.neighborhood);
+        incident.setNeighborhood("");
         incident.setPostalCode(this.postalCode);
-        incident.setImage(this.image);
+        incident.setImage(this.image != null ? this.image : "imagen.jpg");
         incident.setDescription(this.description);
-        incident.setCreatedAt(this.createdAt);
+        incident.setCreatedAt(LocalDateTime.now());
         incident.setClosedAt(this.closedAt);
-        incident.setLatitude(this.latitude);
-        incident.setLongitude(this.longitude);
+        incident.setLatitude(this.latitude != null ? this.latitude : new BigDecimal("0.0"));
+        incident.setLongitude(this.longitude != null ? this.longitude : new BigDecimal("0.0"));
 
         return incident;
     }
+
 }

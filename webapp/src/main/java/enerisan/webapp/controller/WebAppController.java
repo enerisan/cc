@@ -93,7 +93,7 @@ public class WebAppController {
 
 
     @PostMapping("/signup")
-    public ModelAndView processRequest(@ModelAttribute("signUpForm") SignUpForm form) {
+    public ModelAndView processRequest(@ModelAttribute("incidentWithCategoriesDto") SignUpForm form) {
         userService.register(form);
         return new ModelAndView("signin");
     }

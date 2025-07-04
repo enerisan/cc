@@ -5,6 +5,8 @@ import enerisan.incident.dto.IncidentWithCategoriesDto;
 import enerisan.incident.model.*;
 import enerisan.incident.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
@@ -20,6 +22,8 @@ public class IncidentController {
     private IncidentRepository incidentRepository;
     @Autowired
     private IncidentCategoryRepository incidentCategoryRepository;
+    @Autowired
+    private StatusRepository statusRepository;
 
     @Autowired
     private CategoryRepository categoryRepository;
@@ -78,8 +82,32 @@ public class IncidentController {
 
 
     @PostMapping("/incident")
-    public Incident addIncident(@RequestBody Incident incident) {
-        return incidentRepository.save(incident);
+    public ResponseEntity<?> addIncident(@RequestBody Incident incident) {
+        try {
+            City city = cityRepository.findById(incident.getCity().getId())
+                    .orElseThrow(() -> new IllegalArgumentException("City not found"));
+
+            User user = userRepository.findById(incident.getUser().getId())
+                    .orElseThrow(() -> new IllegalArgumentException("User not found"));
+
+            Status status = statusRepository.findById(incident.getStatus().getId())
+                    .orElseThrow(() -> new IllegalArgumentException("Status not found"));
+
+            incident.setCity(city);
+            incident.setUser(user);
+            incident.setStatus(status);
+
+            if (incident.getCreatedAt() == null) {
+                incident.setCreatedAt(LocalDateTime.now());
+            }
+
+            Incident saved = incidentRepository.save(incident);
+            return ResponseEntity.ok(saved);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Error al guardar incidente: " + e.getMessage());
+        }
     }
 
     @PutMapping("/incidents/{id}")
