@@ -51,4 +51,8 @@ public class IncidentService {
 
 
     }
+
+    public List<City> getAllCities() {
+        return incidentFeignClient.getAllCities();
+    }
 }

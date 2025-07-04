@@ -4,6 +4,7 @@ import enerisan.webapp.dto.CategoryDto;
 import enerisan.webapp.dto.IncidentCategoryDto;
 import enerisan.webapp.dto.IncidentWithCategoriesDto;
 import enerisan.webapp.dto.UserDto;
+import enerisan.webapp.model.City;
 import enerisan.webapp.model.Incident;
 import enerisan.webapp.model.User;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -29,7 +30,11 @@ public interface IncidentFeignClient {
     @GetMapping("/api/categories")
     List<CategoryDto> getAllCategories();
 
+
     @PostMapping("/incident-categories")
     void addIncidentCategory(@RequestBody IncidentCategoryDto dto);
 
+
+    @GetMapping("/api/cities")
+    List<City> getAllCities();
 }

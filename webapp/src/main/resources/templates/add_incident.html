@@ -90,12 +90,19 @@
                         <label for="address">*Addresse</label>
                     </div>
                     <div class="city-code">
-                        <div class="input-group input-width-control">
-                            <input th:field="*{cityId}" id="city" name="city"
-                                   placeholder="City" required/>
-                            <label for="city">*City</label>
-                        </div>
+<!--                        <div class="input-group input-width-control">-->
+<!--                            <input th:field="*{cityId}" id="city" name="city"-->
+<!--                                   placeholder="City" required/>-->
+<!--                            <label for="city">*City</label>-->
+<!--                        </div>-->
 
+                        <select class="input-group input" id="cities" th:field="*{cityId}" required>
+                            <option value="" disabled selected hidden>Ville</option>
+                            <option th:each="city : ${cities}"
+                                    th:value="${city.id}"
+                                    th:text="${city.name}">
+                            </option>
+                        </select>
                         <div class="input-group input-width-control">
                             <input th:field="*{postalCode}" id="postalCode" name="postalCode" placeholder="Code postal"
                                    required/>
