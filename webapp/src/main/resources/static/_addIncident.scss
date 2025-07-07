@@ -131,7 +131,7 @@
 
 
          .input-group select:focus+label,
-         .input-group select:valid+label {
+         .input-group+label {
              opacity: 1;
              color: $firstColor;
          }

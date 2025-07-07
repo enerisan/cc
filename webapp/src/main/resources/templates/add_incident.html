@@ -5,11 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>City Care</title>
     <link rel="stylesheet" href="/style.css">
-    <link rel="icon" href="public/images/logo.ico" />
+    <link rel="icon" href="public/images/logo.ico"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css" />
-
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css"/>
 
 
 </head>
@@ -22,7 +20,8 @@
         <div class="PageMain-centralBox CtBoxForm">
             <div class="FormContainer FormAdd">
 
-                <form class="FormContainer-addincident Form" th:action="@{/addIncident}" th:object="${incidentWithCategoriesDto}"
+                <form class="FormContainer-addincident Form" th:action="@{/addIncident}"
+                      th:object="${incidentWithCategoriesDto}"
                       method="post">
                     <h3>Ajouter un signalement</h3>
 
@@ -90,19 +89,16 @@
                         <label for="address">*Addresse</label>
                     </div>
                     <div class="city-code">
-<!--                        <div class="input-group input-width-control">-->
-<!--                            <input th:field="*{cityId}" id="city" name="city"-->
-<!--                                   placeholder="City" required/>-->
-<!--                            <label for="city">*City</label>-->
-<!--                        </div>-->
-
-                        <select class="input-group input" id="cities" th:field="*{cityId}" required>
-                            <option value="" disabled selected hidden>Ville</option>
-                            <option th:each="city : ${cities}"
-                                    th:value="${city.id}"
-                                    th:text="${city.name}">
-                            </option>
-                        </select>
+                        <div class="input-group">
+                            <select class="input" id="cities" th:field="*{cityId}" required>
+                                <option value="" disabled hidden>Ville</option>
+                                <option th:each="city : ${cities}"
+                                        th:value="${city.id}"
+                                        th:text="${city.name}">
+                                </option>
+                            </select>
+                            <label for="cities">*City</label>
+                        </div>
                         <div class="input-group input-width-control">
                             <input th:field="*{postalCode}" id="postalCode" name="postalCode" placeholder="Code postal"
                                    required/>
@@ -111,7 +107,7 @@
                     </div>
 
 
-<!--                    <label for="categoryIds" class="labelCat">*Catégories</label>-->
+                    <!--                    <label for="categoryIds" class="labelCat">*Catégories</label>-->
                     <select class="input-group input" id="categoryIds" th:field="*{categoryIds}" multiple required>
                         <option th:each="cat : ${categories}" th:value="${cat.id}" th:text="${cat.name}"></option>
                     </select>

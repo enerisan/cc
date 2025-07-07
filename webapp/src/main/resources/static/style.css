@@ -885,7 +885,7 @@ h2 {
   border-color: #FFC42B;
 }
 .FormContainer-addincident.Form .input-group select:focus + label,
-.FormContainer-addincident.Form .input-group select:valid + label {
+.FormContainer-addincident.Form .input-group + label {
   opacity: 1;
   color: #124e78;
 }
