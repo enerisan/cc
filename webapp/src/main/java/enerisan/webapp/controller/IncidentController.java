@@ -52,7 +52,7 @@ public class IncidentController {
 
         User user = sessionService.sessionUser();
 
-        dto.setUserId(1);
+        dto.setUserId(user.getId());
         dto.setStatusId(1);
 
         incidentService.createIncidentWithCategories(dto);

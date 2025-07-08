@@ -4,6 +4,7 @@ import enerisan.webapp.model.City;
 import enerisan.webapp.model.Incident;
 import enerisan.webapp.model.Status;
 import enerisan.webapp.model.User;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -19,7 +20,17 @@ public class IncidentWithCategoriesDto {
     private String address;
     private String neighborhood;
     private String postalCode;
-    private String image;
+    private MultipartFile image;
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    private String imageUrl;
     private String description;
 
     private LocalDateTime createdAt;
@@ -41,7 +52,7 @@ public class IncidentWithCategoriesDto {
 
     public IncidentWithCategoriesDto(Integer id, Integer cityId, Integer userId, Integer statusId,
                                      String title, String address, String neighborhood, String postalCode,
-                                     String image, String description, LocalDateTime createdAt,
+                                     MultipartFile image, String imageUrl, String description, LocalDateTime createdAt,
                                      LocalDateTime closedAt, BigDecimal latitude, BigDecimal longitude,
                                      List<CategoryDto> categories) {
         this.id = id;
@@ -53,6 +64,7 @@ public class IncidentWithCategoriesDto {
         this.neighborhood = neighborhood;
         this.postalCode = postalCode;
         this.image = image;
+        this.imageUrl = imageUrl;
         this.description = description;
         this.createdAt = createdAt;
         this.closedAt = closedAt;
@@ -127,11 +139,11 @@ public class IncidentWithCategoriesDto {
         this.postalCode = postalCode;
     }
 
-    public String getImage() {
+    public MultipartFile getImage() {
         return image;
     }
 
-    public void setImage(String image) {
+    public void setImage(MultipartFile image) {
         this.image = image;
     }
 
@@ -192,40 +204,6 @@ public class IncidentWithCategoriesDto {
     }
 
 
-//     Converts this DTO into an Incident entity.
-//     This method is used by the IncidentFeignClient to send data to ms-incident.
-
-
-//    public Incident toIncident() {
-//        Incident incident = new Incident();
-//
-//        incident.setId(this.id);
-//
-//        City city = new City();
-//        city.setId(this.cityId);
-//        incident.setCity(city);
-//
-//        User user = new User();
-//        user.setId(this.userId);
-//        incident.setUser(user);
-//
-//        Status status = new Status();
-//        status.setId(this.statusId);
-//        incident.setStatus(status);
-//
-//        incident.setTitle(this.title);
-//        incident.setAddress(this.address);
-//        incident.setNeighborhood(this.neighborhood);
-//        incident.setPostalCode(this.postalCode);
-//        incident.setImage(this.image);
-//        incident.setDescription(this.description);
-//        incident.setCreatedAt(this.createdAt);
-//        incident.setClosedAt(this.closedAt);
-//        incident.setLatitude(this.latitude);
-//        incident.setLongitude(this.longitude);
-//
-//        return incident;
-//    }
 
     public Incident toIncident() {
         Incident incident = new Incident();
@@ -248,7 +226,7 @@ public class IncidentWithCategoriesDto {
         incident.setAddress(this.address);
         incident.setNeighborhood("");
         incident.setPostalCode(this.postalCode);
-        incident.setImage(this.image != null ? this.image : "imagen.jpg");
+        incident.setImage(this.imageUrl != null ? this.imageUrl : "imagen.jpg");
         incident.setDescription(this.description);
         incident.setCreatedAt(LocalDateTime.now());
         incident.setClosedAt(this.closedAt);
