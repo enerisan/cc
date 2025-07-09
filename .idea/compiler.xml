@@ -10,6 +10,7 @@
         <module name="webapp" />
         <module name="configserver" />
         <module name="incident" />
+        <module name="image-service" />
       </profile>
     </annotationProcessing>
   </component>
@@ -17,6 +18,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="configserver" options="-parameters" />
       <module name="eurekaserver" options="-parameters" />
+      <module name="image-service" options="-parameters" />
       <module name="incident" options="-parameters" />
       <module name="webapp" options="-parameters" />
     </option>
