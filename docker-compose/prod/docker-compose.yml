@@ -10,5 +10,16 @@ services:
       file: common-config.yml
       service: microservice-db-config
 
+  ccmongodb:
+    image: mongodb/mongodb-community-server:latest
+    container_name: incidentimagesdb
+    ports:
+      - '27018:27017'
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: 123
+    networks:
+      - citycare
+
 networks:
   citycare:
