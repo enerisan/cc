@@ -1,0 +1,56 @@
+package enerisan.image_service.controller;
+
+
+
+import enerisan.image_service.model.IncidentImage;
+import enerisan.image_service.repository.IncidentImageRepository;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import jakarta.servlet.http.HttpServletRequest;
+import java.io.IOException;
+import java.time.LocalDateTime;
+
+@RestController
+@RequestMapping("/api/images")
+public class IncidentImageController {
+
+    private final IncidentImageRepository incidentImageRepository;
+
+    public IncidentImageController(IncidentImageRepository incidentImageRepository) {
+        this.incidentImageRepository = incidentImageRepository;
+    }
+
+    @PostMapping(value = "/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<String> uploadImage(@RequestParam("file") MultipartFile file,
+                                              @RequestParam("incidentId") String incidentId,
+                                              HttpServletRequest request) throws IOException {
+        IncidentImage image = new IncidentImage();
+        image.setIncidentId(incidentId);
+        image.setFileName(file.getOriginalFilename());
+        image.setContentType(file.getContentType());
+        image.setData(file.getBytes());
+        image.setSize(file.getSize());
+        image.setUploadDate(LocalDateTime.now());
+
+        incidentImageRepository.save(image);
+
+        String baseUrl = request.getRequestURL().toString().replace(request.getRequestURI(), "");
+        String imageUrl = baseUrl + "/api/images/" + incidentId;
+
+        return ResponseEntity.ok(imageUrl);
+    }
+
+    @GetMapping("/{incidentId}")
+    public ResponseEntity<byte[]> getImageByIncidentId(@PathVariable Integer incidentId) {
+        return incidentImageRepository.findByIncidentId(incidentId)
+                .map(image -> ResponseEntity.ok()
+                        .header(HttpHeaders.CONTENT_DISPOSITION, "inline; filename=\"" + image.getFileName() + "\"")
+                        .contentType(MediaType.parseMediaType(image.getContentType()))
+                        .body(image.getData()))
+                .orElse(ResponseEntity.notFound().build());
+    }
+}
