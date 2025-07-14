@@ -13,17 +13,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class IncidentService {
     @Autowired
     IncidentFeignClient incidentFeignClient;
 
-//    @Autowired
-//    IncidentCategoryFeignClient incidentCategoryFeignClient;
 
-    @Autowired
-    SessionService sessionService;
+
     @Autowired
     private ImageServiceFeignClient imageServiceFeignClient;
 
@@ -54,8 +52,12 @@ public class IncidentService {
             IncidentCategoryDto incidentCategoryDto = new IncidentCategoryDto(newIncident.getId(), categoryId);
             incidentFeignClient.addIncidentCategory(incidentCategoryDto);
         }
+    }
 
+    //To show incident detail
 
+    public IncidentWithCategoriesDto getIncidentWithCategoriesById(Integer id) {
+       return incidentFeignClient.getIncidentById(id);
     }
 
     public List<City> getAllCities() {

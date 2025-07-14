@@ -11,10 +11,11 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @FeignClient("incident")
 public interface IncidentFeignClient {
-    @PostMapping(value= "api/user", consumes = "application/json")
+    @PostMapping(value = "api/user", consumes = "application/json")
     public User createUser(@RequestBody UserDto user);
 
     @GetMapping(value = "/api/findUserByUsername", consumes = "application/json")
@@ -23,6 +24,8 @@ public interface IncidentFeignClient {
     @GetMapping(value = "/api/incidents/{userId}", consumes = "application/json")
     List<IncidentWithCategoriesDto> getAllIncidentsWithCategoriesByUserId(@PathVariable("userId") Integer userId);
 
+    @GetMapping("/api/incident/{id}")
+    IncidentWithCategoriesDto  getIncidentById(@PathVariable Integer id);
 
     @PostMapping("/api/incident")
     Incident createIncident(@RequestBody Incident incident);

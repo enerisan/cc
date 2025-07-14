@@ -92,13 +92,12 @@
                     <div class="city-code">
                         <div class="input-group">
                             <select class="input" id="cities" th:field="*{cityId}" required>
-                                <option value="" disabled hidden>Ville</option>
                                 <option th:each="city : ${cities}"
                                         th:value="${city.id}"
                                         th:text="${city.name}">
                                 </option>
                             </select>
-                            <label for="cities">*City</label>
+                            <label for="cities">*Ville</label>
                         </div>
                         <div class="input-group input-width-control">
                             <input th:field="*{postalCode}" id="postalCode" name="postalCode" placeholder="Code postal"
@@ -108,7 +107,6 @@
                     </div>
 
 
-                    <!--                    <label for="categoryIds" class="labelCat">*Catégories</label>-->
                     <select class="input-group input" id="categoryIds" th:field="*{categoryIds}" multiple required>
                         <option th:each="cat : ${categories}" th:value="${cat.id}" th:text="${cat.name}"></option>
                     </select>
@@ -123,7 +121,8 @@
                                         fill="#124E78"/>
                             </svg>
                         </label>
-                        <input type="file" th:field="*{image}" id="image"  name="image" accept="image/*" placeholder="Image" style="display: none;" />
+                        <input type="file" th:field="*{image}" id="image" name="image" accept="image/*" placeholder="Image" style="display: none;" />
+                        <p id="fileName"></p>
                     </div>
 
 

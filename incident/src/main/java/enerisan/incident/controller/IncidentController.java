@@ -4,6 +4,7 @@ import enerisan.incident.dto.CategoryDto;
 import enerisan.incident.dto.IncidentWithCategoriesDto;
 import enerisan.incident.model.*;
 import enerisan.incident.repository.*;
+import enerisan.incident.service.IncidentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,14 +33,18 @@ public class IncidentController {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private IncidentService incidentService;
+
     @GetMapping("/incidents")
     public List<Incident> getAllIncidents() {
         return incidentRepository.findAll();
     }
 
     @GetMapping("/incident/{id}")
-    public Optional<Incident> getIncidentById(@PathVariable Integer id) {
-        return incidentRepository.findById(id);
+    public IncidentWithCategoriesDto getIncidentWithCategoriesById (@PathVariable Integer id) {
+
+      return incidentService.findIncidentWithCategoriesById(id);
     }
 
     @GetMapping("/incidents/{userId}")
@@ -107,6 +112,8 @@ public class IncidentController {
                     .body("Error saving the incident: " + e.getMessage());
         }
     }
+
+
 
     @PutMapping("/incidents/{id}")
     public Incident updateIncident(@RequestBody Incident incident, @PathVariable Integer id) {

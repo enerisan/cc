@@ -2,6 +2,7 @@ package enerisan.webapp.controller;
 
 import enerisan.webapp.dto.CategoryDto;
 import enerisan.webapp.dto.IncidentForm;
+import enerisan.webapp.dto.IncidentWithCategoriesDto;
 import enerisan.webapp.model.City;
 import enerisan.webapp.model.User;
 import enerisan.webapp.service.IncidentService;
@@ -58,5 +59,14 @@ public class IncidentController {
         return "redirect:/";
     }
 
+    @GetMapping("/incident/{id}")
+    public ModelAndView showIncidentDetail(@PathVariable Integer id) {
+
+        ModelAndView mav = new ModelAndView("incident_detail");
+        IncidentWithCategoriesDto dto = incidentService.getIncidentWithCategoriesById(id);
+        mav.addObject("incident", dto);
+
+        return mav;
+    }
 
 }

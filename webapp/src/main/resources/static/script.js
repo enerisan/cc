@@ -32,6 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
         checkbox.addEventListener("change", showCards);
     });
 
+    //Toggle location
     const toggleButton = document.querySelector('.toggle-location');
     if (toggleButton) {
         toggleButton.addEventListener('click', () => {
@@ -39,6 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    //To mangage multiple choices in category fields
     const element = document.getElementById('categoryIds');
 
     if (element) {
@@ -54,4 +56,11 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+ //To show image name added in addIncident template
+    document.getElementById('image').addEventListener('change', function() {
+        const fileName = this.files.length > 0 ? this.files[0].name : '';
+        document.getElementById('fileName').textContent = fileName;
+    });
 });
+

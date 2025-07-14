@@ -1,0 +1,35 @@
+ <html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>City Care</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="icon" href="public/images/logo.ico"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css"/>
+
+
+</head>
+
+<body>
+<div class="WrapperBoss">
+    <header th:replace="~{fragments/header::header}"></header>
+
+    <main class="PageMain">
+        <div    th:object="${incident}"  class="PageMain-centralBox CtBoxForm">
+            <p th:text="${incident.title}"/>;
+
+        </div>
+
+        <nav th:replace="~{fragments/bar::bar}" class="PageMain-bar"></nav>
+    </main>
+    <footer th:replace="~{fragments/footer::footer}" class="PageFooter"></footer>
+
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
+<script src="./script.js"></script>
+</body>
+</html>

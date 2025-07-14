@@ -135,7 +135,7 @@
                                 <div th:each="category : ${incident.categories}">
                                     <i th:class="${categoryIcons[category.name]} + ' ReportCard-textBox-items-icon'"></i>
                                 </div>
-                                <a class="Report-btn Btn" href="">Voir détail</a>
+                                <a class="Report-btn Btn" th:href="@{/incident/{id}(id=${incident.id})}">Voir détail</a>
                             </div>
 
                         </div>

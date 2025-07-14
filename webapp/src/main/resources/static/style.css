@@ -947,6 +947,9 @@ h2 {
 .FormContainer-addincident.Form .toggle-location.active svg .bg {
   fill: #124e78;
 }
+.FormContainer .choices.is-invalid {
+  border: 2px solid red;
+}
 
 .PageMain-centralBox-infos {
   grid-column: 1/2;
