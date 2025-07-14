@@ -1,41 +1,54 @@
 package enerisan.webapp.dto;
 
+import enerisan.webapp.model.City;
+import enerisan.webapp.model.Incident;
+import enerisan.webapp.model.Status;
+import enerisan.webapp.model.User;
+import org.springframework.web.multipart.MultipartFile;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class IncidentForm {
-
+    private Integer id;
+    private Integer cityId;
     private Integer userId;
     private Integer statusId;
+
     private String title;
     private String address;
     private String neighborhood;
-    private String category;
     private String postalCode;
-    private String image;
+    private MultipartFile image;
+    private String imageUrl;
     private String description;
-    private LocalDateTime createdAt =  LocalDateTime.now();
+
+    private LocalDateTime createdAt;
     private LocalDateTime closedAt;
+
     private BigDecimal latitude;
     private BigDecimal longitude;
 
-    public IncidentForm() {
+    private List<Integer> categoryIds;
+    private List<CategoryDto> categories;
+
+    public IncidentForm() {}
+
+    public Integer getId() {
+        return id;
     }
 
-    public IncidentForm(Integer userId, Integer statusId, String title, String address, String neighborhood, String category, String postalCode, String image, String description, LocalDateTime createdAt, LocalDateTime closedAt, BigDecimal latitude, BigDecimal longitude) {
-        this.userId = userId;
-        this.statusId = statusId;
-        this.title = title;
-        this.address = address;
-        this.neighborhood = neighborhood;
-        this.category = category;
-        this.postalCode = postalCode;
-        this.image = image;
-        this.description = description;
-        this.createdAt = createdAt;
-        this.closedAt = closedAt;
-        this.latitude = latitude;
-        this.longitude = longitude;
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getCityId() {
+        return cityId;
+    }
+
+    public void setCityId(Integer cityId) {
+        this.cityId = cityId;
     }
 
     public Integer getUserId() {
@@ -78,14 +91,6 @@ public class IncidentForm {
         this.neighborhood = neighborhood;
     }
 
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
     public String getPostalCode() {
         return postalCode;
     }
@@ -94,12 +99,20 @@ public class IncidentForm {
         this.postalCode = postalCode;
     }
 
-    public String getImage() {
+    public MultipartFile getImage() {
         return image;
     }
 
-    public void setImage(String image) {
+    public void setImage(MultipartFile image) {
         this.image = image;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public String getDescription() {
@@ -140,5 +153,50 @@ public class IncidentForm {
 
     public void setLongitude(BigDecimal longitude) {
         this.longitude = longitude;
+    }
+
+    public List<Integer> getCategoryIds() {
+        return categoryIds;
+    }
+
+    public void setCategoryIds(List<Integer> categoryIds) {
+        this.categoryIds = categoryIds;
+    }
+
+    public List<CategoryDto> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<CategoryDto> categories) {
+        this.categories = categories;
+    }
+
+    public Incident toIncident() {
+        Incident incident = new Incident();
+
+        City city = new City();
+        city.setId(this.cityId);
+        incident.setCity(city);
+
+        User user = new User();
+        user.setId(this.userId);
+        incident.setUser(user);
+
+        Status status = new Status();
+        status.setId(this.statusId != null ? this.statusId : 1);
+        incident.setStatus(status);
+
+        incident.setTitle(this.title);
+        incident.setAddress(this.address);
+        incident.setNeighborhood(this.neighborhood != null ? this.neighborhood : "");
+        incident.setPostalCode(this.postalCode);
+        incident.setImage(this.imageUrl != null ? this.imageUrl : "imagen.jpg");
+        incident.setDescription(this.description);
+        incident.setCreatedAt(this.createdAt != null ? this.createdAt : LocalDateTime.now());
+        incident.setClosedAt(this.closedAt);
+        incident.setLatitude(this.latitude != null ? this.latitude : new BigDecimal("0.0"));
+        incident.setLongitude(this.longitude != null ? this.longitude : new BigDecimal("0.0"));
+
+        return incident;
     }
 }

@@ -2,18 +2,14 @@ package enerisan.webapp.controller;
 
 import enerisan.webapp.dto.CategoryDto;
 import enerisan.webapp.dto.IncidentForm;
-import enerisan.webapp.dto.IncidentWithCategoriesDto;
 import enerisan.webapp.model.City;
-import enerisan.webapp.model.Incident;
 import enerisan.webapp.model.User;
 import enerisan.webapp.service.IncidentService;
 import enerisan.webapp.service.SessionService;
 import enerisan.webapp.service.UserService;
+import enerisan.webapp.service.client.ImageServiceFeignClient;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -32,15 +28,18 @@ public class IncidentController {
     @Autowired
     IncidentService incidentService;
 
+    @Autowired
+    ImageServiceFeignClient imageServiceFeignClient;
+
 
     //To show incidentAdd form :
     @GetMapping("/addIncident")
     public ModelAndView showAddIncidentForm() {
-       IncidentWithCategoriesDto  incidentWithCategoriesDto = new IncidentWithCategoriesDto();
-       List<City> Cities = incidentService.getAllCities();
+        IncidentForm  incidentForm = new IncidentForm();
+        List<City> Cities = incidentService.getAllCities();
         List<CategoryDto> categories = incidentService.getAllCategories();
         ModelAndView mav = new ModelAndView("add_incident");
-        mav.addObject("incidentWithCategoriesDto", incidentWithCategoriesDto);
+        mav.addObject("incidentForm", incidentForm);
         mav.addObject("categories", categories);
         mav.addObject("cities", Cities);
 
@@ -48,10 +47,9 @@ public class IncidentController {
     }
 
     @PostMapping("/addIncident")
-    public String createIncident(@ModelAttribute("incidentWithCategoriesDto") IncidentWithCategoriesDto dto) {
+    public String addIncident(@ModelAttribute IncidentForm dto) {
 
         User user = sessionService.sessionUser();
-
         dto.setUserId(user.getId());
         dto.setStatusId(1);
 

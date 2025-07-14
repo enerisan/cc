@@ -21,9 +21,10 @@
             <div class="FormContainer FormAdd">
 
                 <form class="FormContainer-addincident Form" th:action="@{/addIncident}"
-                      th:object="${incidentWithCategoriesDto}"
-                      method="post">
-                    <h3>Ajouter un signalement</h3>
+                      th:object="${incidentForm}"
+                      method="post" enctype="multipart/form-data">
+
+                <h3>Ajouter un signalement</h3>
 
                     <div class="input-group">
                         <input th:field="*{title}" id="title" name="title" placeholder="Titre signalement"

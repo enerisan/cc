@@ -6,15 +6,11 @@ import enerisan.webapp.dto.IncidentForm;
 import enerisan.webapp.dto.IncidentWithCategoriesDto;
 import enerisan.webapp.model.City;
 import enerisan.webapp.model.Incident;
-import enerisan.webapp.model.Status;
-import enerisan.webapp.model.User;
 //import enerisan.webapp.service.client.IncidentCategoryFeignClient;
+import enerisan.webapp.service.client.ImageServiceFeignClient;
 import enerisan.webapp.service.client.IncidentFeignClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
@@ -28,6 +24,8 @@ public class IncidentService {
 
     @Autowired
     SessionService sessionService;
+    @Autowired
+    private ImageServiceFeignClient imageServiceFeignClient;
 
     public List<IncidentWithCategoriesDto> getAllIncidentsWithCategoriesByUserId(Integer userId) {
         return incidentFeignClient.getAllIncidentsWithCategoriesByUserId((userId));
@@ -39,13 +37,21 @@ public class IncidentService {
     }
 
     //To create and IncidentWithCategories
-    public void createIncidentWithCategories(IncidentWithCategoriesDto dto) {
+    public void createIncidentWithCategories(IncidentForm dto) {
+
+
         // I create the incident
-        Incident incident = incidentFeignClient.createIncident(dto.toIncident());
+        Incident incident = dto.toIncident();
+
+        String imageUrl = imageServiceFeignClient.uploadImage(dto.getImage());
+
+        incident.setImage(imageUrl);
+
+        Incident newIncident = incidentFeignClient.createIncident(incident);
 
         // I add the categories to the created incident
         for (Integer categoryId : dto.getCategoryIds()) {
-            IncidentCategoryDto incidentCategoryDto = new IncidentCategoryDto(incident.getId(), categoryId);
+            IncidentCategoryDto incidentCategoryDto = new IncidentCategoryDto(newIncident.getId(), categoryId);
             incidentFeignClient.addIncidentCategory(incidentCategoryDto);
         }
 

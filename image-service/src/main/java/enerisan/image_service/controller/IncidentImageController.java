@@ -26,10 +26,8 @@ public class IncidentImageController {
 
     @PostMapping(value = "/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<String> uploadImage(@RequestParam("file") MultipartFile file,
-                                              @RequestParam("incidentId") String incidentId,
                                               HttpServletRequest request) throws IOException {
         IncidentImage image = new IncidentImage();
-        image.setIncidentId(incidentId);
         image.setFileName(file.getOriginalFilename());
         image.setContentType(file.getContentType());
         image.setData(file.getBytes());
@@ -39,14 +37,15 @@ public class IncidentImageController {
         incidentImageRepository.save(image);
 
         String baseUrl = request.getRequestURL().toString().replace(request.getRequestURI(), "");
-        String imageUrl = baseUrl + "/api/images/" + incidentId;
+
+        String imageUrl = baseUrl + "/api/images/by-id/" + image.getId();
 
         return ResponseEntity.ok(imageUrl);
     }
 
-    @GetMapping("/{incidentId}")
-    public ResponseEntity<byte[]> getImageByIncidentId(@PathVariable Integer incidentId) {
-        return incidentImageRepository.findByIncidentId(incidentId)
+    @GetMapping("/by-id/{imageId}")
+    public ResponseEntity<byte[]> getImageById(@PathVariable String imageId) {
+        return incidentImageRepository.findById(imageId)
                 .map(image -> ResponseEntity.ok()
                         .header(HttpHeaders.CONTENT_DISPOSITION, "inline; filename=\"" + image.getFileName() + "\"")
                         .contentType(MediaType.parseMediaType(image.getContentType()))

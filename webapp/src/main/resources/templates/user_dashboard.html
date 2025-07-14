@@ -77,7 +77,7 @@
                 <div class="PageMain-centralBox-reports-wrapper">
                     <div th:each="incident : ${incidents}" class="PageMain-centralBox-reports-card ReportCard" data-filter-status="signalé">
                         <div class="ReportCard-imgBox">
-                            <img class="ReportCard-imgBox-img" src="./images/cityscape-9388403_640.jpg" alt="">
+                            <img class="ReportCard-imgBox-img" th:src="${incident.imageUrl}" alt="">
                         </div>
                         <div class="ReportCard-textBox">
                             <div class="ReportCard-textBox-header">

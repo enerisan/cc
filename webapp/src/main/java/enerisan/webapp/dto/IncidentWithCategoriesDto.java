@@ -20,15 +20,6 @@ public class IncidentWithCategoriesDto {
     private String address;
     private String neighborhood;
     private String postalCode;
-    private MultipartFile image;
-
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
 
     private String imageUrl;
     private String description;
@@ -40,40 +31,9 @@ public class IncidentWithCategoriesDto {
     private BigDecimal longitude;
 
     private List<Integer> categoryIds;
-
     private List<CategoryDto> categories;
 
-    public IncidentWithCategoriesDto() {
-    }
-
-    public IncidentWithCategoriesDto(List<Integer> categoryIds) {
-        this.categoryIds = categoryIds;
-    }
-
-    public IncidentWithCategoriesDto(Integer id, Integer cityId, Integer userId, Integer statusId,
-                                     String title, String address, String neighborhood, String postalCode,
-                                     MultipartFile image, String imageUrl, String description, LocalDateTime createdAt,
-                                     LocalDateTime closedAt, BigDecimal latitude, BigDecimal longitude,
-                                     List<CategoryDto> categories) {
-        this.id = id;
-        this.cityId = cityId;
-        this.userId = userId;
-        this.statusId = statusId;
-        this.title = title;
-        this.address = address;
-        this.neighborhood = neighborhood;
-        this.postalCode = postalCode;
-        this.image = image;
-        this.imageUrl = imageUrl;
-        this.description = description;
-        this.createdAt = createdAt;
-        this.closedAt = closedAt;
-        this.latitude = latitude;
-        this.longitude = longitude;
-        this.categories = categories;
-    }
-
-    // Getters and setters
+    public IncidentWithCategoriesDto() {}
 
     public Integer getId() {
         return id;
@@ -139,12 +99,14 @@ public class IncidentWithCategoriesDto {
         this.postalCode = postalCode;
     }
 
-    public MultipartFile getImage() {
-        return image;
+
+
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public void setImage(MultipartFile image) {
-        this.image = image;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public String getDescription() {
@@ -202,38 +164,4 @@ public class IncidentWithCategoriesDto {
     public void setCategories(List<CategoryDto> categories) {
         this.categories = categories;
     }
-
-
-
-    public Incident toIncident() {
-        Incident incident = new Incident();
-
-
-
-        City city = new City();
-        city.setId(this.cityId);
-        incident.setCity(city);
-
-        User user = new User();
-        user.setId(this.userId);
-        incident.setUser(user);
-
-        Status status = new Status();
-        status.setId(1);
-        incident.setStatus(status);
-
-        incident.setTitle(this.title);
-        incident.setAddress(this.address);
-        incident.setNeighborhood("");
-        incident.setPostalCode(this.postalCode);
-        incident.setImage(this.imageUrl != null ? this.imageUrl : "imagen.jpg");
-        incident.setDescription(this.description);
-        incident.setCreatedAt(LocalDateTime.now());
-        incident.setClosedAt(this.closedAt);
-        incident.setLatitude(this.latitude != null ? this.latitude : new BigDecimal("0.0"));
-        incident.setLongitude(this.longitude != null ? this.longitude : new BigDecimal("0.0"));
-
-        return incident;
-    }
-
 }

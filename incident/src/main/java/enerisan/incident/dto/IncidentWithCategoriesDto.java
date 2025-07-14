@@ -14,7 +14,7 @@ public class IncidentWithCategoriesDto {
     private String address;
     private String neighborhood;
     private String postalCode;
-    private String image;
+    private String imageUrl;
     private String description;
 
     private LocalDateTime createdAt;
@@ -33,9 +33,7 @@ public class IncidentWithCategoriesDto {
         this.categoryIds = categoryIds;
     }
 
-    public IncidentWithCategoriesDto(Integer id, Integer cityId, Integer userId, Integer statusId, String title, String address, String neighborhood,
-                                     String postalCode, String image, String description, LocalDateTime createdAt, LocalDateTime closedAt,
-                                     BigDecimal latitude, BigDecimal longitude, List<CategoryDto> categories) {
+    public IncidentWithCategoriesDto(Integer id, Integer cityId, Integer userId, Integer statusId, String title, String address, String neighborhood, String postalCode, String imageUrl, String description, LocalDateTime createdAt, LocalDateTime closedAt, BigDecimal latitude, BigDecimal longitude, List<Integer> categoryIds, List<CategoryDto> categories) {
         this.id = id;
         this.cityId = cityId;
         this.userId = userId;
@@ -44,16 +42,17 @@ public class IncidentWithCategoriesDto {
         this.address = address;
         this.neighborhood = neighborhood;
         this.postalCode = postalCode;
-        this.image = image;
+        this.imageUrl = imageUrl;
         this.description = description;
         this.createdAt = createdAt;
         this.closedAt = closedAt;
         this.latitude = latitude;
         this.longitude = longitude;
+        this.categoryIds = categoryIds;
         this.categories = categories;
     }
 
-    // Getters y setters
+// Getters y setters
 
     public Integer getId() {
         return id;
@@ -119,12 +118,12 @@ public class IncidentWithCategoriesDto {
         this.postalCode = postalCode;
     }
 
-    public String getImage() {
-        return image;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public String getDescription() {

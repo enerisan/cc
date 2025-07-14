@@ -56,24 +56,22 @@ public class IncidentController {
                     .map(CategoryDto::getId)
                     .collect(Collectors.toList());
 
-            IncidentWithCategoriesDto dto = new IncidentWithCategoriesDto(
-                    incident.getId(),
-                    incident.getCity().getId(),
-                    incident.getUser().getId(),
-                    incident.getStatus().getId(),
-                    incident.getTitle(),
-                    incident.getAddress(),
-                    incident.getNeighborhood(),
-                    incident.getPostalCode(),
-                    incident.getImage(),
-                    incident.getDescription(),
-                    incident.getCreatedAt(),
-                    incident.getClosedAt(),
-                    incident.getLatitude(),
-                    incident.getLongitude(),
-                    categories
-            );
-
+            IncidentWithCategoriesDto dto = new IncidentWithCategoriesDto();
+            dto.setId(incident.getId());
+            dto.setCityId(incident.getCity().getId());
+            dto.setUserId(incident.getUser().getId());
+            dto.setStatusId(incident.getStatus().getId());
+            dto.setTitle(incident.getTitle());
+            dto.setAddress(incident.getAddress());
+            dto.setNeighborhood(incident.getNeighborhood());
+            dto.setPostalCode(incident.getPostalCode());
+            dto.setImageUrl(incident.getImage());
+            dto.setDescription(incident.getDescription());
+            dto.setCreatedAt(incident.getCreatedAt());
+            dto.setClosedAt(incident.getClosedAt());
+            dto.setLatitude(incident.getLatitude());
+            dto.setLongitude(incident.getLongitude());
+            dto.setCategories(categories);
             dto.setCategoryIds(categoryIds);
 
             return dto;
@@ -106,7 +104,7 @@ public class IncidentController {
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("Error al guardar incidente: " + e.getMessage());
+                    .body("Error saving the incident: " + e.getMessage());
         }
     }
 
