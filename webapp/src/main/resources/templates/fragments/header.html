@@ -13,11 +13,11 @@
 <body>
     <div class="WrapperBoss">
         <header th:fragment ="header" class="PageHeader">
-            <img class="PageHeader-logo" src="./images/logo-cc-horizontal.png" alt="logo City Care">
+            <img class="PageHeader-logo" th:src="@{/images/logo-cc-horizontal.png}" alt="logo City Care">
 
             <div class="PageHeader-userBox">
                 <h2>Mon espace</h2>
-                <img src="./images/avatar.png" alt="avatar">
+                <img th:src="@{/images/avatar.png}" alt="avatar">
             </div>
 
             <nav class="PageHeader-userBoxNav">

@@ -61,7 +61,7 @@ public class IncidentController {
 
     @GetMapping("/incident/{id}")
     public ModelAndView showIncidentDetail(@PathVariable Integer id) {
-
+        User user = sessionService.sessionUser();
         ModelAndView mav = new ModelAndView("incident_detail");
         IncidentWithCategoriesDto dto = incidentService.getIncidentWithCategoriesById(id);
         mav.addObject("incident", dto);
