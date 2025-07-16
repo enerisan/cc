@@ -77,19 +77,12 @@
                 <div class="PageMain-centralBox-reports-wrapper">
                     <div th:each="incident : ${incidents}" class="PageMain-centralBox-reports-card ReportCard" data-filter-status="signalé">
                         <div class="ReportCard-imgBox">
-                            <img class="ReportCard-imgBox-img" th:src="${incident.imageUrl}" alt="">
+                            <img class="ReportCard-imgBox-img" th:src="${incident.imageUrl}" alt="incident">
                         </div>
                         <div class="ReportCard-textBox">
                             <div class="ReportCard-textBox-header">
 
                                 <p th:text="${incident.title}" class="ReportCard-textBox-header-title">Marche trop haute</p>
-
-                                <!--                                    Para ver el los objetos en consola-->
-                                <script th:inline="javascript">
-                                    /*<![CDATA[*/
-                                    console.log([[${incident}]]);
-                                    /*]]>*/
-                                </script>
 
 
 
@@ -155,6 +148,14 @@
 
 </div>
 <script src="./script.js"></script>
+
+<!--                                    Para ver el los objetos en consola-->
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    console.log([[${incident}]]);
+    /*]]>*/
+</script>
+
 
     </body>
 </html>

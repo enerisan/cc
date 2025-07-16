@@ -13,6 +13,9 @@ import java.util.List;
 public class IncidentWithCategoriesDto {
     private Integer id;
     private Integer cityId;
+
+
+    private String cityName;
     private Integer userId;
     private Integer statusId;
 
@@ -49,6 +52,14 @@ public class IncidentWithCategoriesDto {
 
     public void setCityId(Integer cityId) {
         this.cityId = cityId;
+    }
+
+    public String getCityName() {
+        return cityName;
+    }
+
+    public void setCityName(String cityName) {
+        this.cityName = cityName;
     }
 
     public Integer getUserId() {

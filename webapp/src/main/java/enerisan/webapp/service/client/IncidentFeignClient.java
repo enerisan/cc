@@ -40,4 +40,6 @@ public interface IncidentFeignClient {
 
     @GetMapping("/api/cities")
     List<City> getAllCities();
+
+
 }

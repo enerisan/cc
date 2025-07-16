@@ -5,6 +5,7 @@ import enerisan.webapp.dto.IncidentForm;
 import enerisan.webapp.dto.IncidentWithCategoriesDto;
 import enerisan.webapp.model.City;
 import enerisan.webapp.model.User;
+import enerisan.webapp.service.CategoryIconsService;
 import enerisan.webapp.service.IncidentService;
 import enerisan.webapp.service.SessionService;
 import enerisan.webapp.service.UserService;
@@ -14,7 +15,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class IncidentController {
@@ -22,15 +25,16 @@ public class IncidentController {
     @Autowired
     SessionService sessionService;
 
+    @Autowired
+    IncidentService incidentService;
 
     @Autowired
     UserService userService;
 
     @Autowired
-    IncidentService incidentService;
+    CategoryIconsService categoryIconsService;
 
-    @Autowired
-    ImageServiceFeignClient imageServiceFeignClient;
+
 
 
     //To show incidentAdd form :
@@ -64,8 +68,9 @@ public class IncidentController {
         User user = sessionService.sessionUser();
         ModelAndView mav = new ModelAndView("incident_detail");
         IncidentWithCategoriesDto dto = incidentService.getIncidentWithCategoriesById(id);
+        Map<String, String> categoryIcons = categoryIconsService.getCategoryIcons();
         mav.addObject("incident", dto);
-
+        mav.addObject("categoryIcons", categoryIcons);
         return mav;
     }
 

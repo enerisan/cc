@@ -1,11 +1,11 @@
 package enerisan.webapp.controller;
 
 
-
 import enerisan.webapp.dto.IncidentWithCategoriesDto;
 import enerisan.webapp.dto.SignUpForm;
 import enerisan.webapp.model.Incident;
 import enerisan.webapp.model.User;
+import enerisan.webapp.service.CategoryIconsService;
 import enerisan.webapp.service.IncidentService;
 import enerisan.webapp.service.SessionService;
 import enerisan.webapp.service.UserService;
@@ -35,6 +35,9 @@ public class WebAppController {
     @Autowired
     IncidentService incidentService;
 
+    @Autowired
+    private CategoryIconsService categoryIconsService;
+
 
     @GetMapping("/")
     public ModelAndView welcome(Model model) {
@@ -50,26 +53,8 @@ public class WebAppController {
             // Add incidents to the model
             model.addAttribute("incidents", incidentsWithCategories);
 
-            // Map of category names to their corresponding icon classes
-            Map<String, String> categoryIcons = new HashMap<>();
-            categoryIcons.put("Voirie", "fa-solid fa-triangle-exclamation");
-            categoryIcons.put("Éclairage public", "fa-solid fa-lightbulb");
-            categoryIcons.put("Trottoirs", "fa-solid fa-shoe-prints");
-            categoryIcons.put("Conteneurs à déchets", "fa-solid fa-trash");
-            categoryIcons.put("Aire de jeux", "fa-solid fa-child");
-            categoryIcons.put("Fontaines", "fa-solid fa-faucet");
-            categoryIcons.put("Propreté", "fa-solid fa-broom");
-            categoryIcons.put("Gestion des déchets", "fa-solid fa-recycle");
-            categoryIcons.put("Espaces verts", "fa-solid fa-tree");
-            categoryIcons.put("Installations sportives", "fa-solid fa-dumbbell");
-            categoryIcons.put("Bâtiments publics", "fa-solid fa-building");
-            categoryIcons.put("Nuisibles", "fa-solid fa-bug");
-            categoryIcons.put("Égouts", "fa-solid fa-water");
-            categoryIcons.put("Circulation", "fa-solid fa-car-side");
-            categoryIcons.put("Autres", "fa-solid fa-ellipsis-h");
-            categoryIcons.put("Accessibilité", "fa-solid fa-wheelchair");
-
             // Add category icons map to the model
+            Map<String, String> categoryIcons = categoryIconsService.getCategoryIcons();
             model.addAttribute("categoryIcons", categoryIcons);
 
             // Return user dashboard view

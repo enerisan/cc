@@ -7,6 +7,9 @@ import java.util.List;
 public class IncidentWithCategoriesDto {
     private Integer id;
     private Integer cityId;
+
+
+    private String cityName;
     private Integer userId;
     private Integer statusId;
 
@@ -33,9 +36,10 @@ public class IncidentWithCategoriesDto {
         this.categoryIds = categoryIds;
     }
 
-    public IncidentWithCategoriesDto(Integer id, Integer cityId, Integer userId, Integer statusId, String title, String address, String neighborhood, String postalCode, String imageUrl, String description, LocalDateTime createdAt, LocalDateTime closedAt, BigDecimal latitude, BigDecimal longitude, List<Integer> categoryIds, List<CategoryDto> categories) {
+    public IncidentWithCategoriesDto(Integer id, Integer cityId, String cityName, Integer userId, Integer statusId, String title, String address, String neighborhood, String postalCode, String imageUrl, String description, LocalDateTime createdAt, LocalDateTime closedAt, BigDecimal latitude, BigDecimal longitude, List<Integer> categoryIds, List<CategoryDto> categories) {
         this.id = id;
         this.cityId = cityId;
+        this.cityName = cityName;
         this.userId = userId;
         this.statusId = statusId;
         this.title = title;
@@ -68,6 +72,15 @@ public class IncidentWithCategoriesDto {
 
     public void setCityId(Integer cityId) {
         this.cityId = cityId;
+    }
+
+
+    public String getCityName() {
+        return cityName;
+    }
+
+    public void setCityName(String cityName) {
+        this.cityName = cityName;
     }
 
     public Integer getUserId() {

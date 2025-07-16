@@ -2,9 +2,12 @@ package enerisan.incident.service;
 
 import enerisan.incident.dto.CategoryDto;
 import enerisan.incident.dto.IncidentWithCategoriesDto;
+import enerisan.incident.model.City;
 import enerisan.incident.model.Incident;
+import enerisan.incident.repository.CityRepository;
 import enerisan.incident.repository.IncidentCategoryRepository;
 import enerisan.incident.repository.IncidentRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,12 +22,20 @@ public class IncidentService {
     @Autowired
     IncidentCategoryRepository incidentCategoryRepository;
 
+    @Autowired
+    CityRepository cityRepository;
+
 
     public IncidentWithCategoriesDto findIncidentWithCategoriesById(Integer id) {
         Optional<Incident> incident = incidentRepository.findById(id);
         IncidentWithCategoriesDto dto = new IncidentWithCategoriesDto();
+
         if (incident.isPresent()) {
             dto.setId(incident.get().getId());
+            City city = cityRepository.findById(incident.get().getCity().getId())
+                    .orElseThrow(() -> new EntityNotFoundException("City not found"));
+            String cityName = city.getName();
+            dto.setCityName(cityName);
             dto.setCityId(incident.get().getCity().getId());
             dto.setUserId(incident.get().getUser().getId());
             dto.setStatusId(incident.get().getStatus().getId());

@@ -5,6 +5,7 @@ import enerisan.incident.dto.IncidentWithCategoriesDto;
 import enerisan.incident.model.*;
 import enerisan.incident.repository.*;
 import enerisan.incident.service.IncidentService;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -61,9 +62,11 @@ public class IncidentController {
                     .map(CategoryDto::getId)
                     .collect(Collectors.toList());
 
+
             IncidentWithCategoriesDto dto = new IncidentWithCategoriesDto();
             dto.setId(incident.getId());
             dto.setCityId(incident.getCity().getId());
+            dto.setCityName(incident.getCity().getName());
             dto.setUserId(incident.getUser().getId());
             dto.setStatusId(incident.getStatus().getId());
             dto.setTitle(incident.getTitle());

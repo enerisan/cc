@@ -1026,4 +1026,61 @@ h2 {
   }
 }
 
+.PageMain-centralBoxDetail {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid pink;
+  background-color: #F2F2F7;
+  padding-top: 1em;
+}
+
+.DetailCard {
+  width: 90%;
+  height: 80%;
+  border-radius: 4px;
+  background-color: #ffffff;
+  border: 1px solid blue;
+}
+.DetailCard-header {
+  display: flex;
+  flex-direction: column;
+  height: 70px;
+  justify-content: center;
+  padding-left: 1em;
+}
+.DetailCard-header-title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.DetailCard-imgBox {
+  width: 100%;
+}
+.DetailCard-imgBox-img {
+  width: 100%;
+}
+.DetailCard-catBox {
+  display: flex;
+  padding: 1em;
+  gap: 1em;
+}
+.DetailCard-des {
+  display: flex;
+  flex-direction: column;
+  padding: 0 1em 1em 1em;
+}
+.DetailCard-address {
+  display: flex;
+  flex-direction: column;
+  padding: 0 1em 1em 1em;
+}
+.DetailCard-address-first {
+  display: flex;
+  align-items: center;
+}
+.DetailCard-address-second {
+  padding-left: 0.5em;
+}
+
 /*# sourceMappingURL=style.css.map */

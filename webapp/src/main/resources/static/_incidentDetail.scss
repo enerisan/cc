@@ -1,226 +1,72 @@
- @use 'variables' as *;
-
-
- .CtBoxForm {
-     display: block;
-     text-align: center;
-     height: 100%;
-
-
- }
- .FormAdd {
-     background-color: $thirdColor;
-     height: 100%;
- }
-
- .FormContainer {
-
-
-
-     &-addincident.Form {
-
-         background-color: transparent;
-
-         @media screen and (min-width: $tablet) {
-             width: 600px;
-             height: 100%;
-         }
-
-         .location {
-             display: flex;
-             flex-direction: row;
-
-             margin-bottom: 0.6em;
-             align-items: center;
-
-             &-text {
-                 font-size: 0.8em;
-                 padding-bottom: 0.5em;
-
-             }
-         }
-
-         .input-group {
-             @media screen and (min-width: $tablet) {
-
-                 width: 100%;
-             }
-         }
-
-         .input-group input {
-             color: $firstColor;
-             border: 1px solid $firstColor;
-             transition: border-color 0.3s;
-
-             @media screen and (min-width: $tablet) {
-                 border: 1px solid $firstColor;
-                 min-width: 100%;
-
-
-             }
-
-         }
-
-         .input-group select {
-             background-color: transparent;
-             width: 100%;
-             border: 1px solid $firstColor;
-             border-radius: 4px;
-             padding: 8px;
-             color: $firstColor;
-             transition: border-color 0.3s;
-             height: 56px;
-
-
-
-         }
-
-         .AddImage {
-             margin-bottom: 1em;
-
-         }
-
-         .num-code {
-             display: flex;
-             flex-direction: row;
-             gap: 1em;
-             width: 100%;
-
-             .input-width-control {
-                 @media screen and (min-width: $tablet) {
-                     gap: 2em;
-                     max-width: auto;
-                 }
-             }
-         }
-
-
-         .input-group textarea {
-             background-color: transparent;
-             width: 100%;
-             border: 1px solid $firstColor;
-             border-radius: 4px;
-             padding: 8px;
-             color: $firstColor;
-             transition: border-color 0.3s;
-         }
-
-         .input-group label {
-             background: $backgroundColor;
-             opacity: 0;
-         }
-
-
-
-         .input-group input:focus+label,
-         .input-group input:not(:placeholder-shown)+label {
-             opacity: 1;
-             color: $firstColor;
-         }
-
-
-
-
-         .input-group select:focus {
-             border-color: $secondColor;
-         }
-
-         .input-group textarea:focus {
-             border-color: $secondColor;
-         }
-
-
-         .input-group select:focus+label,
-         .input-group+label {
-             opacity: 1;
-             color: $firstColor;
-         }
-
-         .input-group textarea:focus+label,
-         .input-group textarea:valid+label {
-             opacity: 1;
-             color: $firstColor;
-         }
-
-         .submit-button {
-             margin-top: 1em;
-             display: flex;
-             flex-direction: row;
-             align-items: center;
-             justify-content: center;
-
-             p {
-                 font-size: 0.9em;
-
-                 @media screen and (min-width: $tablet) {
-
-                     font-size: 1.2em;
-
-
-                 }
-             }
-
-             @media screen and (min-width: $tablet) {
-                 min-width: 100%;
-             }
-
-         }
-
-         .submit-button:hover {
-             background-color: $firstColor;
-
-             p {
-                 color: $thirdColor;
-             }
-
-         }
-
-
-         .toggle-location {
-             border: none;
-             background-color: transparent;
-         }
-
-         /*Disabled Geolocation*/
-         .toggle-location svg .knob {
-             transition: transform 0.3s ease, fill 0.3s ease;
-             transform: translateX(0);
-             fill: #D8D8D8;
-
-         }
-
-         .toggle-location svg .knobShadow {
-             transition: transform 0.4s ease, fill 0.4s ease;
-
-
-         }
-
-         .toggle-location svg .bg {
-             transition: fill 0.3s ease;
-             fill: #D8D8D8;
-
-         }
-
-
-         /*Geolocation activated*/
-         .toggle-location.active svg .knob {
-             transform: translateX(14px);
-             /* moves to right */
-             fill: $secondColor;
-
-         }
-
-         .toggle-location.active svg .knobShadow {
-             transform: translateX(14px);
-         }
-
-         .toggle-location.active svg .bg {
-             fill: $firstColor;
-         }
-
-
-     }
-     .choices.is-invalid {
-         border: 2px solid red;
-     }
- }
+@use 'variables' as *;
+
+
+.PageMain-centralBoxDetail {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid pink;
+  background-color: $backgroundColor;
+  padding-top: $space;
+}
+
+.DetailCard {
+  width: 90%;
+  height: 80%;
+  border-radius: 4px;
+  background-color: #ffffff;
+  border: 1px solid blue;
+
+  &-header {
+    display: flex;
+    flex-direction: column;
+    height: 70px;
+    justify-content: center;
+    padding-left: $space;
+
+    &-title {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+  }
+
+  &-imgBox {
+    width: 100%;
+
+    &-img {
+      width: 100%;
+    }
+  }
+
+  &-catBox {
+    display: flex;
+    padding: $space;
+    gap: $space;
+  }
+
+  &-des {
+    display: flex;
+    flex-direction: column;
+    padding: 0 $space $space $space;
+
+  }
+
+  &-address {
+    display: flex;
+    flex-direction: column;
+    padding: 0 $space $space $space;
+
+    &-first {
+      display: flex;
+      align-items: center;
+
+    }
+
+    &-second {
+      padding-left: $spaceS;
+    }
+
+  }
+}
