@@ -1030,7 +1030,6 @@ h2 {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 2px solid pink;
   background-color: #F2F2F7;
   padding-top: 1em;
 }
@@ -1040,7 +1039,6 @@ h2 {
   height: 80%;
   border-radius: 4px;
   background-color: #ffffff;
-  border: 1px solid blue;
 }
 .DetailCard-header {
   display: flex;
@@ -1081,6 +1079,72 @@ h2 {
 }
 .DetailCard-address-second {
   padding-left: 0.5em;
+}
+.DetailCard .DetailCard-progressBar {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  width: 100%;
+  align-items: center;
+  padding-left: 1em;
+}
+.DetailCard .DetailCard-progressBar-step {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex: 1;
+}
+.DetailCard .DetailCard-progressBar-step-statusLabel {
+  min-height: 1.5em;
+  text-align: center;
+  font-weight: bolder;
+}
+.DetailCard .DetailCard-progressBar-step-witness {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 40px;
+}
+.DetailCard .DetailCard-progressBar-step-witness svg {
+  flex-shrink: 0;
+}
+.DetailCard .DetailCard-progressBar-step-witness-bar {
+  flex-grow: 1;
+  height: 6px;
+  background-color: #E1E1E2;
+  min-width: 40px;
+  max-width: 100%;
+}
+.DetailCard .DetailCard-progressBar-step-witness-bar.active {
+  background-color: #4CAF50;
+}
+.DetailCard .DetailCard-progressBar-step.active svg path:first-of-type {
+  fill: #4CAF50;
+}
+.DetailCard .DetailCard-progressBar-step.active svg path:last-of-type {
+  fill: #34C759;
+  opacity: 0.5;
+}
+.DetailCard-Btns {
+  display: flex;
+  flex-direction: row;
+  padding: 1em;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1em;
+}
+
+.Button {
+  display: flex;
+  padding: 6px 6px 6px 8px;
+  align-items: flex-start;
+  border: none;
+  border-radius: 4px;
+  background-color: inherit;
+}
+.Button:hover {
+  border-radius: 4px;
+  border: 1px solid var(--Outline, rgba(0, 0, 0, 0.12));
 }
 
 /*# sourceMappingURL=style.css.map */
