@@ -25,8 +25,19 @@
      @media screen and (min-width:$tablet) {
          font-size: $spaceM;
      }
+ }
 
+ h3 {
+   @media screen and (min-width:$tablet) {
+     font-size: $spaceM;
+   }
+ }
 
+ p {
+
+   @media screen and (min-width:$tablet) {
+     font-size: $space;
+   }
  }
 
  .Btn {

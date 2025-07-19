@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>City Care</title>
     <link rel="stylesheet" href="/style.css">
-    <link rel="icon" href="public/images/logo.ico"/>
+    <link rel="icon" th:href="@{/images/logo.ico}"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css"/>
 
@@ -16,14 +16,14 @@
 <div class="WrapperBoss">
     <header th:replace="~{fragments/header::header}"></header>
 
-    <main class="PageMain">
+    <main class="PageMain PageMainDetail">
         <div th:object="${incident}" class="PageMain-centralBoxDetail">
 
             <div class="DetailCard">
                 <div class="DetailCard-header">
                     <div class="DetailCard-header-title">
                         <h2 th:text="${incident.title}"></h2>
-                        <i>
+
                             <svg th:if="${incident.statusId == 1}" xmlns="http://www.w3.org/2000/svg" width="28"
                                  height="28" viewBox="0 0 28 28" fill="none">
                                 <path d="M7 2.33331H21V9.33331L16.3333 14L21 18.6666V25.6666H7V18.6666L11.6667 14L7 9.33331V2.33331ZM18.6667 19.25L14 14.5833L9.33333 19.25V23.3333H18.6667V19.25ZM14 13.4166L18.6667 8.74998V4.66665H9.33333V8.74998L14 13.4166ZM11.6667 6.99998H16.3333V7.87498L14 10.2083L11.6667 7.87498V6.99998Z"
@@ -78,9 +78,9 @@
                                 </defs>
                                 </g>-
                             </svg>
-                        </i>
+
                     </div>
-                    <p th:text="${#temporals.format(incident.createdAt, 'dd/MM/yy')}"/>
+                    <p th:text="${#temporals.format(incident.createdAt, 'dd/MM/yy')}"></p>
                 </div>
 
                 <div class="DetailCard-imgBox">
@@ -93,11 +93,12 @@
                 </div>
 
                 <div class="DetailCard-des">
-                    <h4>Description </h4>
+                    <h3>Description </h3>
                     <p th:text="${incident.description}"></p>
                 </div>
 
                 <div class="DetailCard-address">
+
                     <div class="DetailCard-address-first">
                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
                             <path d="M16.0001 18.6667C18.9414 18.6667 21.3334 16.2747 21.3334 13.3333C21.3334 10.392 18.9414 8 16.0001 8C13.0587 8 10.6667 10.392 10.6667 13.3333C10.6667 16.2747 13.0587 18.6667 16.0001 18.6667ZM16.0001 10.6667C17.4707 10.6667 18.6667 11.8627 18.6667 13.3333C18.6667 14.804 17.4707 16 16.0001 16C14.5294 16 13.3334 14.804 13.3334 13.3333C13.3334 11.8627 14.5294 10.6667 16.0001 10.6667Z"
@@ -175,7 +176,7 @@
 
                     <div class="DetailCard-progressBar-step circle4"
                          th:classappend="${incident.statusId >= 4} ? ' active' : ''">
-                        <p th:text="${incident.statusId >= 4} ? 'résolou' : ''"
+                        <p th:text="${incident.statusId >= 4} ? 'résolu' : ''"
                            class="DetailCard-progressBar-step-statusLabel"></p>
                         <div class="DetailCard-progressBar-step-witness">
                             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 40 40" fill="none">
@@ -192,13 +193,14 @@
                 </div>
 
                 <div th:if="${incident.statusId == 1}" class="DetailCard-Btns">
-                    <button type="submit" class="Button">SUPPRIMMER</button>
-                    <button type="submit" class="Button">MODIFIER</button>
+                    <button type="button" class="Button">SUPPRIMER</button>
+                    <button type="button" class="Button">MODIFIER</button>
                 </div>
 
             </div>
-
+        </div>
         <nav th:replace="~{fragments/bar::bar}" class="PageMain-bar"></nav>
+
     </main>
     <footer th:replace="~{fragments/footer::footer}" class="PageFooter"></footer>
 
@@ -211,5 +213,6 @@
 
 <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
 <script src="./script.js"></script>
+
 </body>
 </html>
