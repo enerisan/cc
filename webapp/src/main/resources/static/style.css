@@ -1203,5 +1203,35 @@ h2 {
   border: 1px solid var(--Outline, rgba(0, 0, 0, 0.12));
   background-color: inherit;
 }
+.Button:hover {
+  cursor: pointer;
+}
+.Button .modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 1000;
+}
+.Button .modal-content {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  max-width: 600px;
+  width: 90%;
+  position: relative;
+}
+.Button .close {
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  font-size: 24px;
+  cursor: pointer;
+}
 
 /*# sourceMappingURL=style.css.map */

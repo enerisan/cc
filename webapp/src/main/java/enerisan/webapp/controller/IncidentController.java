@@ -69,8 +69,14 @@ public class IncidentController {
         ModelAndView mav = new ModelAndView("incident_detail");
         IncidentWithCategoriesDto dto = incidentService.getIncidentWithCategoriesById(id);
         Map<String, String> categoryIcons = categoryIconsService.getCategoryIcons();
+        IncidentForm  incidentForm = new IncidentForm();
+        List<City> Cities = incidentService.getAllCities();
+        List<CategoryDto> categories = incidentService.getAllCategories();
         mav.addObject("incident", dto);
         mav.addObject("categoryIcons", categoryIcons);
+        mav.addObject("incidentForm", incidentForm);
+        mav.addObject("categories", categories);
+        mav.addObject("cities", Cities);
         return mav;
     }
 
