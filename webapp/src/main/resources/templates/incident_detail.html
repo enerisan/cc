@@ -16,8 +16,8 @@
 <div class="WrapperBoss">
     <header th:replace="~{fragments/header::header}"></header>
 
-    <main id ="PageMainDetail" class="PageMain PageMainDetail">
-        <div th:object="${incident}" class="PageMain-centralBoxDetail">
+    <main id="PageMainDetail" class="PageMain PageMainDetail">
+        <div th:object="${incident}" id="PageMain-centralBoxDetail" class="PageMain-centralBoxDetail">
 
             <div class="DetailCard">
                 <div class="DetailCard-header">
@@ -200,14 +200,7 @@
                     <button type="button" class="Button">SUPPRIMER</button>
                     <button type="button"
                             class="Button"
-                            th:attr="data-id='${incident.id}',
-                                     data-title='${incident.title}',
-                                      data-address='${incident.address}',
-                                      data-postalcode='${incident.postalCode}',
-                                      data-description='${incident.description}',
-                                      data-city='${incident.cityId}',
-                                      data-categories='${incident.categoryIds}'"
-                            onclick="handleEditClick(this)">
+                            onclick="showEditModal()">
                         MODIFIER
                     </button>
                 </div>
@@ -224,18 +217,19 @@
 
 
 </div>
-<div id="editModal" class="modal" style="display: none;">
+<div id="editModal" class="modal" >
     <div class="modal-content">
-        <span class="close" onclick="closeEditModal()">&times;</span>
-        <form  class="FormContainer-addincident Form" th:action="@{/updateIncident}" method="post" enctype="multipart/form-data" th:object="${incidentForm}">
+        <div class="FormContainer FormAdd">
+        <div class="close" onclick="hideEditModal()">&times;</div>
+        <form class="FormContainer-addincident Form" th:action="@{/updateIncident}" method="post"
+              enctype="multipart/form-data" th:object="${updateIncidentForm}">
             <h3>Modifier mon signalement</h3>
 
-            <input type="hidden" id="edit-id" name="id"/>
+            <input type="hidden" th:field="*{incidentForm.id}"/>
 
             <div class="input-group">
-                <input th:field="*{title}" id="edit-title" name="title" th:placeholder="${incident.title}"
-                       required/>
-                <label for="edit-title">*Titre signalement</label>
+                <input th:field="*{incidentForm.title}" required/>
+                <label th:for="incidentForm.title">*Titre signalement</label>
             </div>
 
             <div class="location">
@@ -292,34 +286,31 @@
             </div>
 
             <div class="input-group">
-                <input th:field="*{address}" id="edit-address" name="address" th:placeholder="${incident.address}" required/>
-                <label for="edit-address">*Addresse</label>
+                <input th:field="*{incidentForm.address}" required/>
+                <label th:for ="incidentForm.address">*Addresse</label>
             </div>
+
             <div class="city-code">
                 <div class="input-group">
-                    <select class="input" id="edit-cityId" th:field="*{cityId}" required>
+                    <select th:field="*{incidentForm.cityId}" required>
                         <option th:each="city : ${cities}"
                                 th:value="${city.id}"
-                                th:text="${city.name}">
-                        </option>
+                                th:text="${city.name}"></option>
                     </select>
-                    <label for="edit-cityId">*Ville</label>
+                    <label th:for="incidentForm.cityId">*Ville</label>
                 </div>
                 <div class="input-group input-width-control">
-                    <input th:field="*{postalCode}" id="edit-postalCode" name="postalCode" th:placeholder="${incident.postalCode}"
-                           required/>
-                    <label for="edit-postalCode">*Code postal</label>
+                    <input th:field="*{incidentForm.postalCode}" required/>
+                    <label th:for="incidentForm.postalCode">*Code postal</label>
                 </div>
             </div>
 
-
-            <select class="input-group input" id="edit-categoryIds" th:field="*{categoryIds}" multiple required>
+            <select class="input-group input" th:field="*{incidentForm.categoryIds}" multiple required>
                 <option th:each="cat : ${categories}" th:value="${cat.id}" th:text="${cat.name}"></option>
             </select>
 
-
             <div class="AddImage">
-                <label for="edit-image" style="cursor: pointer;">
+                <label th:for="edit-image" style="cursor: pointer;">
                     <svg xmlns="http://www.w3.org/2000/svg" width="132" height="132" viewBox="0 0 132 132"
                          fill="none">
                         <path
@@ -327,16 +318,13 @@
                                 fill="#124E78"/>
                     </svg>
                 </label>
-                <input type="file" th:field="*{image}" id="edit-image" name="image" accept="image/*" placeholder="Image" style="display: none;" />
+                <input type="file" th:field="*{incidentForm.image}" accept="image/*" style="display: none;"/>
                 <p id="fileName"></p>
             </div>
 
-
-
             <div class="input-group">
-                        <textarea th:field="*{description}" id="edit-description" name="description"
-                                  placeholder="Décrivez brièvement l'incident" required></textarea>
-                <label for="edit-description">*Description</label>
+                <textarea th:field="*{incidentForm.description}" required></textarea>
+                <label th:for="incidentForm.description">*Description</label>
             </div>
 
             <button type="submit" class="submit-button">
@@ -348,55 +336,28 @@
                 <p>Enregistrer mes modifications</p>
             </button>
         </form>
+        </div>
     </div>
 </div>
+
 <script th:inline="javascript">
     /*<![CDATA[*/
     console.log([[${incident}]]);
     /*]]>*/
-</script><script>
-    function handleEditClick(button) {
+</script>
+<script>
+    function showEditModal() {
 
-        console.log("handleEditClick llamada")
-        const id = button.getAttribute("data-id");
-        const title = button.getAttribute("data-title");
-        const address = button.getAttribute("data-address");
-        const postalCode = button.getAttribute("data-postalcode");
-        const description = button.getAttribute("data-description");
-        const cityId = button.getAttribute("data-city");
-        const categoryIds = button.getAttribute("data-categories") || ""; // cadena CSV "1,2,3"
-
-        openEditModalWithData(id, title, address, postalCode, description, cityId, categoryIds);
+        document.getElementById('editModal').style.display = 'block';
+        // document.getElementById('PageMain-centralBoxDetail').style.visibility = 'hidden';
     }
 
-    function openEditModalWithData(id, title, address, postalCode, description, cityId, categoryIds) {
-        const modal = document.getElementById('editModal');
-        modal.style.display = 'flex';
-        document.getElementById('PageMainDetail').style.display = 'none';
-        document.getElementById('PageFooter').style.display = 'none';
-
-        document.getElementById('edit-id').value = id || "";
-        document.getElementById('edit-title').value = title || "";
-        document.getElementById('edit-address').value = address || "";
-        document.getElementById('edit-postalCode').value = postalCode || "";
-        document.getElementById('edit-description').value = description || "";
-        document.getElementById('edit-cityId').value = cityId || "";
-
-        const categorySelect = document.getElementById('edit-categoryIds');
-        const categoriesArray = categoryIds.split(',').map(c => c.trim()).filter(c => c !== "");
-        for (let i = 0; i < categorySelect.options.length; i++) {
-            categorySelect.options[i].selected = categoriesArray.includes(categorySelect.options[i].value);
-        }
-    }
-
-    function closeEditModal() {
-        const modal = document.getElementById('editModal');
-        modal.style.display = 'none';
-        document.getElementById('PageMainDetail').style.display = '';
-        document.getElementById('PageFooter').style.display = '';
-
+    function hideEditModal() {
+        document.getElementById('editModal').style.display = 'none';
+        // document.getElementById('PageMain-centralBoxDetail').style.display = 'visible'
     }
 </script>
+
 
 <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
 <script src="./script.js"></script>

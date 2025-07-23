@@ -1,8 +1,8 @@
 package enerisan.webapp.dto;
 
-
 import enerisan.webapp.model.IncidentCategory;
 import jakarta.validation.constraints.NotNull;
+
 
 public class IncidentCategoryDto {
 

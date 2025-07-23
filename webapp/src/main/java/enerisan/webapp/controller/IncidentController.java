@@ -3,6 +3,8 @@ package enerisan.webapp.controller;
 import enerisan.webapp.dto.CategoryDto;
 import enerisan.webapp.dto.IncidentForm;
 import enerisan.webapp.dto.IncidentWithCategoriesDto;
+import enerisan.webapp.dto.UpdateIncidentForm;
+import enerisan.webapp.mapper.IncidentMapper;
 import enerisan.webapp.model.City;
 import enerisan.webapp.model.User;
 import enerisan.webapp.service.CategoryIconsService;
@@ -69,7 +71,10 @@ public class IncidentController {
         ModelAndView mav = new ModelAndView("incident_detail");
         IncidentWithCategoriesDto dto = incidentService.getIncidentWithCategoriesById(id);
         Map<String, String> categoryIcons = categoryIconsService.getCategoryIcons();
-        IncidentForm  incidentForm = new IncidentForm();
+        IncidentForm incidentForm = IncidentMapper.toForm(dto);
+        UpdateIncidentForm updateIncidentForm = new UpdateIncidentForm();
+        updateIncidentForm.setIncidentWithCategories(dto);
+        updateIncidentForm.setIncidentForm(incidentForm);
         List<City> Cities = incidentService.getAllCities();
         List<CategoryDto> categories = incidentService.getAllCategories();
         mav.addObject("incident", dto);
@@ -77,6 +82,7 @@ public class IncidentController {
         mav.addObject("incidentForm", incidentForm);
         mav.addObject("categories", categories);
         mav.addObject("cities", Cities);
+        mav.addObject("updateIncidentForm", updateIncidentForm);
         return mav;
     }
 

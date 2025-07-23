@@ -207,35 +207,35 @@
 
   }
 
-  .modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: none;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(0,0,0,0.6);
-    z-index: 1000;
-  }
 
-  .modal-content {
-    background: white;
-    padding: 2rem;
-    border-radius: 10px;
-    max-width: 600px;
-    width: 90%;
-    position: relative;
-  }
+}
 
-  .close {
-    position: absolute;
-    right: 15px;
-    top: 10px;
-    font-size: 24px;
-    cursor: pointer;
-  }
+.modal {
+  position: fixed;
+  top: -150px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
 
+}
 
+.modal-content {
+  background: white;
+  margin: 10% auto;
+  padding: 2rem;
+  width: 50%;
+  border-radius: 8px;
+  position: relative;
+  z-index: 1001;
+}
+
+.close {
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  font-size: 24px;
+  cursor: pointer;
 }
