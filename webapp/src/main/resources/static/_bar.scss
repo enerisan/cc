@@ -18,9 +18,12 @@
     position: fixed;
     top: 5em;
     justify-content: flex-start;
-    border:1px solid green;
     align-self: stretch;
-    left: calc(50% + 440px);
+    left: auto;
+    right: max((100vw - 1440px) / 2, 1em);
+
+
+
 
   }
 
@@ -73,7 +76,6 @@
       gap: $spaceM;
       max-height: none;
       min-width: 100%;
-      border:1px solid red;
       flex-grow: 1;
 
 

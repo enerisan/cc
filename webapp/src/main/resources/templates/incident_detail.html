@@ -217,11 +217,11 @@
 
 
 </div>
-<div id="editModal" class="modal" >
-    <div class="modal-content">
-        <div class="FormContainer FormAdd">
+<div id="editModal" class="modal FormContainer" >
+    <div class="modal-content FormContainer">
+<!--        <div class="FormContainer FormAdd">-->
         <div class="close" onclick="hideEditModal()">&times;</div>
-        <form class="FormContainer-addincident Form" th:action="@{/updateIncident}" method="post"
+        <form class="FormContainer-addincident Form UpdateForm" th:action="@{/updateIncident}" method="post"
               enctype="multipart/form-data" th:object="${updateIncidentForm}">
             <h3>Modifier mon signalement</h3>
 
@@ -327,17 +327,17 @@
                 <label th:for="incidentForm.description">*Description</label>
             </div>
 
-            <button type="submit" class="submit-button">
+            <button type="submit" class="UpdateForm-btn submit-button ">
                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
                     <path
                             d="M27.1068 4.89344C26.8545 4.643 26.5381 4.46693 26.1923 4.38461C25.8466 4.30228 25.4848 4.31687 25.1468 4.42677L5.64008 10.9334C5.27831 11.0481 4.95863 11.2673 4.7214 11.5636C4.48418 11.8598 4.34006 12.2197 4.30724 12.5977C4.27443 12.9758 4.35439 13.3551 4.53703 13.6878C4.71968 14.0205 4.99681 14.2915 5.33342 14.4668L13.4268 18.4668L17.4268 26.5868C17.5875 26.9046 17.8335 27.1715 18.1373 27.3575C18.4411 27.5435 18.7906 27.6414 19.1468 27.6401H19.2801C19.6615 27.612 20.0257 27.4698 20.3253 27.2321C20.6249 26.9943 20.8461 26.6719 20.9601 26.3068L27.5601 6.85344C27.6779 6.51735 27.6979 6.1547 27.6176 5.8077C27.5374 5.46071 27.3602 5.14365 27.1068 4.89344ZM6.46675 12.7734L23.4934 7.09344L14.0401 16.5468L6.46675 12.7734ZM19.2401 25.5334L15.4534 17.9601L24.9068 8.50677L19.2401 25.5334Z"
                             fill="white"/>
                 </svg>
-                <p>Enregistrer mes modifications</p>
+                <p>Je valide</p>
             </button>
         </form>
         </div>
-    </div>
+
 </div>
 
 <script th:inline="javascript">

@@ -5,8 +5,10 @@
      margin: 0 auto;
 
 
+
      @media screen and (min-width: $tablet) {
          position: relative;
+         ;
 
      }
  }
@@ -20,6 +22,8 @@
          padding: 0;
          display: flex;
          align-items: stretch;
+         border-right:1em solid $firstColor;
+
 
 
      }
@@ -33,14 +37,17 @@
 
 
          @media screen and (min-width: $tablet) {
-
+             padding: $spaceL;
              width: calc(100% - 280px);
-             padding: 2em;
+
+             margin:0;
              display: grid;
              grid-template-columns: 1fr 1fr;
              grid-template-rows: auto auto;
              gap: $spaceXXXL;
              font-size: $space;
+
+
 
          }
 
@@ -397,7 +404,7 @@
              }
          }
 
-         /* Botón enviar */
+
          .submit-button {
              width: 100%;
              height: 56px;

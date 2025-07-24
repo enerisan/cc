@@ -1,4 +1,3 @@
-@charset "UTF-8";
 * {
   box-sizing: border-box;
   margin: 0;
@@ -121,9 +120,9 @@ h2 {
     position: fixed;
     top: 5em;
     justify-content: flex-start;
-    border: 1px solid green;
     align-self: stretch;
-    left: calc(50% + 440px);
+    left: auto;
+    right: max((100vw - 1440px) / 2, 1em);
   }
 }
 .PageMain-bar-addBtn {
@@ -171,7 +170,6 @@ h2 {
     gap: 1.5em;
     max-height: none;
     min-width: 100%;
-    border: 1px solid red;
     flex-grow: 1;
   }
 }
@@ -284,6 +282,7 @@ h2 {
     padding: 0;
     display: flex;
     align-items: stretch;
+    border-right: 1em solid #124e78;
   }
 }
 .PageMain-centralBox {
@@ -295,8 +294,9 @@ h2 {
 }
 @media screen and (min-width: 750px) {
   .PageMain-centralBox {
-    width: calc(100% - 280px);
     padding: 2em;
+    width: calc(100% - 280px);
+    margin: 0;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto auto;
@@ -459,7 +459,6 @@ h2 {
   /* Showing label*/
   /* Field password */
   /* Eye */
-  /* Botón enviar */
 }
 @media screen and (min-width: 750px) {
   .FormContainer .Form {
@@ -806,16 +805,21 @@ h2 {
 }
 
 .CtBoxForm {
-  display: block;
-  text-align: center;
-  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+  overflow-y: auto;
 }
 
 .FormAdd {
   background-color: #F5F5F5;
-  height: 100%;
+  min-height: 100vh;
 }
 
+.FormContainer {
+  overflow-y: auto;
+}
 .FormContainer-addincident.Form {
   background-color: transparent;
   /*Disabled Geolocation*/
@@ -1209,31 +1213,48 @@ h2 {
 
 .modal {
   position: fixed;
-  top: -150px;
+  top: -70px;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   z-index: 1000;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.8);
   display: none;
+  overflow-y: auto;
+}
+@media screen and (min-width: 750px) {
+  .modal {
+    top: -50px;
+    left: 50%;
+    height: calc(100vh + 50px);
+    transform: translateX(-50%);
+  }
 }
 
 .modal-content {
   background: white;
   margin: 10% auto;
-  padding: 2rem;
-  width: 50%;
+  width: 100%;
   border-radius: 8px;
   position: relative;
   z-index: 1001;
 }
-
-.close {
+@media screen and (min-width: 750px) {
+  .modal-content {
+    width: 80%;
+    padding: 2em;
+  }
+}
+.modal-content .close {
   position: absolute;
   right: 15px;
   top: 10px;
   font-size: 24px;
   cursor: pointer;
+}
+.modal-content .UpdateForm-btn {
+  border: 1px solid green !important;
+  margin-bottom: 2em;
 }
 
 /*# sourceMappingURL=style.css.map */

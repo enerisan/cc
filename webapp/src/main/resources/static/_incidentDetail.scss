@@ -212,30 +212,52 @@
 
 .modal {
   position: fixed;
-  top: -150px;
+  top: -70px;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   z-index: 1000;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.8);
   display: none;
+  overflow-y: auto;
+  @media screen and (min-width:$tablet) {
+    top: -50px;
+    left: 50%;
+    height: calc(100vh + 50px);
+    transform: translateX(-50%);
+  }
 
 }
 
 .modal-content {
   background: white;
   margin: 10% auto;
-  padding: 2rem;
-  width: 50%;
+  width: 100%;
   border-radius: 8px;
   position: relative;
   z-index: 1001;
-}
+  @media screen and (min-width: $tablet) {
+    width: 80%;
+    padding: $spaceL;
 
-.close {
-  position: absolute;
-  right: 15px;
-  top: 10px;
-  font-size: 24px;
-  cursor: pointer;
+  }
+
+  .close {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    font-size: 24px;
+    cursor: pointer;
+  }
+
+  .UpdateForm {
+
+    &-btn {
+      border: 1px solid green !important;
+
+      margin-bottom: 2em;
+    }
+
+
+  }
 }
