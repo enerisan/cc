@@ -30,6 +30,9 @@ public interface IncidentFeignClient {
     @PostMapping("/api/incident")
     Incident createIncident(@RequestBody Incident incident);
 
+    @PutMapping("/api/incidents/{id}")
+    Incident updateIncident(@PathVariable("id") Integer id, @RequestBody Incident incident);
+
     @GetMapping("/api/categories")
     List<CategoryDto> getAllCategories();
 
@@ -41,5 +44,7 @@ public interface IncidentFeignClient {
     @GetMapping("/api/cities")
     List<City> getAllCities();
 
+    @DeleteMapping("/incident-categories/{incidentId}")
+    void deleteIncidentCategoriesByIncidentId(@PathVariable("incidentId") Integer incidentId);
 
 }

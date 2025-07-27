@@ -14,6 +14,7 @@ import jakarta.servlet.http.HttpServletRequest;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/images")
@@ -25,6 +26,8 @@ public class IncidentImageController {
         this.incidentImageRepository = incidentImageRepository;
         this.config = imageServiceConfig;
     }
+
+
 
     @PostMapping(value = "/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<String> uploadImage(@RequestParam("file") MultipartFile file,
@@ -44,6 +47,24 @@ public class IncidentImageController {
         return ResponseEntity.ok(imageUrl);
     }
 
+    //To add incidentId after creating incident
+    @PutMapping("/by-id/{imageId}/assign-incident/{incidentId}")
+    public ResponseEntity<Void> assignIncidentIdToImage(@PathVariable String imageId, @PathVariable String incidentId) {
+        Optional<IncidentImage> optionalImage = incidentImageRepository.findById(imageId);
+
+        if (optionalImage.isPresent()) {
+            IncidentImage image = optionalImage.get();
+            image.setIncidentId(incidentId);
+            incidentImageRepository.save(image);
+            return ResponseEntity.ok().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+
+
+
     @GetMapping("/by-id/{imageId}")
     public ResponseEntity<byte[]> getImageById(@PathVariable String imageId) {
         return incidentImageRepository.findById(imageId)
@@ -53,4 +74,18 @@ public class IncidentImageController {
                         .body(image.getData()))
                 .orElse(ResponseEntity.notFound().build());
     }
+
+
+    @DeleteMapping("/by-incident/{incidentId}")
+    public ResponseEntity<String> deleteImageByIncidentId(@PathVariable String incidentId) {
+        IncidentImage image = incidentImageRepository.findByIncidentId(incidentId);
+        if (image != null) {
+            incidentImageRepository.delete(image);
+            return ResponseEntity.ok("Image deleted successfully");
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+
 }

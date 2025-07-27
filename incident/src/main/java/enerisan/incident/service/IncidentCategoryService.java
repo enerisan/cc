@@ -11,6 +11,8 @@ import enerisan.incident.repository.IncidentRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class IncidentCategoryService {
 
@@ -69,5 +71,11 @@ public class IncidentCategoryService {
                         "IncidentCategory not found with incidentId " + incidentId + " and categoryId " + categoryId));
         return new IncidentCategoryDto(incidentCategory);
     }
+
+    public void deleteAllByIncidentId(Integer incidentId) {
+        List<IncidentCategory> categories = incidentCategoryRepository.findByIncidentId(incidentId);
+        incidentCategoryRepository.deleteAll(categories);
+    }
+
 
 }

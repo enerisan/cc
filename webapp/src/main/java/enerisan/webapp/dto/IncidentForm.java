@@ -22,14 +22,12 @@ public class IncidentForm {
     private String postalCode;
     private MultipartFile image;
     private String imageUrl;
+    private boolean removeImage;
     private String description;
-
     private LocalDateTime createdAt;
     private LocalDateTime closedAt;
-
     private BigDecimal latitude;
     private BigDecimal longitude;
-
     private List<Integer> categoryIds;
     private List<CategoryDto> categories;
 
@@ -113,6 +111,13 @@ public class IncidentForm {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+    public boolean isRemoveImage() {
+        return removeImage;
+    }
+
+    public void setRemoveImage(boolean removeImage) {
+        this.removeImage = removeImage;
     }
 
     public String getDescription() {

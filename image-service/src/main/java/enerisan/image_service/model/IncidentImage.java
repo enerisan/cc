@@ -10,7 +10,6 @@ public class IncidentImage {
 
     @Id
     private String id;
-
     private String incidentId;
     private String fileName;
     private String contentType;

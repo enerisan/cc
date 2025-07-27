@@ -47,6 +47,11 @@ public class IncidentService {
 
         Incident newIncident = incidentFeignClient.createIncident(incident);
 
+
+        // Assign incidentId to uploaded image
+        String imageId = imageUrl.substring(imageUrl.lastIndexOf("/") + 1);
+        imageServiceFeignClient.assignIncidentIdToImage(imageId, newIncident.getId().toString());
+
         // I add the categories to the created incident
         for (Integer categoryId : dto.getCategoryIds()) {
             IncidentCategoryDto incidentCategoryDto = new IncidentCategoryDto(newIncident.getId(), categoryId);
@@ -63,6 +68,23 @@ public class IncidentService {
     public List<City> getAllCities() {
         return incidentFeignClient.getAllCities();
     }
+
+    public void updateIncidentWithCategories(IncidentForm dto) {
+        Incident incident = dto.toIncident();
+        incident.setId(dto.getId()); // importante para que sea actualización
+
+        // Actualizar incidente
+        incidentFeignClient.updateIncident(dto.getId(), incident);
+
+
+        // (opcional) Actualizar categorías si estas también cambian
+        incidentFeignClient.deleteIncidentCategoriesByIncidentId(dto.getId());
+        for (Integer categoryId : dto.getCategoryIds()) {
+            IncidentCategoryDto incidentCategoryDto = new IncidentCategoryDto(dto.getId(), categoryId);
+            incidentFeignClient.addIncidentCategory(incidentCategoryDto);
+        }
+    }
+
 }
 
 

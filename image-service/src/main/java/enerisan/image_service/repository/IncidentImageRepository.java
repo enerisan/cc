@@ -5,6 +5,8 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.Optional;
 
+
+
 public interface IncidentImageRepository extends MongoRepository<IncidentImage, String> {
-    Optional<IncidentImage> findByIncidentId(Integer incidentId);
+    IncidentImage findByIncidentId(String incidentId);
 }

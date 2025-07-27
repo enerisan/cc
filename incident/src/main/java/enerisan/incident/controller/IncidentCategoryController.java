@@ -50,6 +50,12 @@ public class IncidentCategoryController {
         return ResponseEntity.ok("Deleted successfully");
     }
 
+    @DeleteMapping("/{incidentId}")
+    public ResponseEntity<String> deleteAllCategoriesByIncidentId(@PathVariable Integer incidentId) {
+        incidentCategoryService.deleteAllByIncidentId(incidentId);
+        return ResponseEntity.ok("All categories deleted for incident " + incidentId);
+    }
+
 
 
 }

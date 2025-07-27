@@ -36,6 +36,9 @@ public class IncidentController {
     @Autowired
     CategoryIconsService categoryIconsService;
 
+    @Autowired
+    ImageServiceFeignClient imageServiceFeignClient;
+
 
 
 
@@ -85,5 +88,45 @@ public class IncidentController {
         mav.addObject("updateIncidentForm", updateIncidentForm);
         return mav;
     }
+
+    //To update incident :
+
+    @PostMapping("/incident/update")
+    public String updateIncident(@ModelAttribute UpdateIncidentForm form) {
+        User user = sessionService.sessionUser();
+
+        IncidentForm incidentForm = form.getIncidentForm();
+        incidentForm.setUserId(user.getId());
+
+        String incidentIdAsString = String.valueOf(incidentForm.getId());
+
+        // Si se pidió eliminar la imagen
+        if (incidentForm.isRemoveImage()) {
+            imageServiceFeignClient.deleteImageByIncidentId(incidentIdAsString);
+            incidentForm.setImageUrl(null); // Eliminar referencia
+        }
+
+        // Si se subió una nueva imagen
+        if (incidentForm.getImage() != null && !incidentForm.getImage().isEmpty()) {
+            // 1. Subir la imagen (sin incidentId)
+            String newImageUrl = imageServiceFeignClient.uploadImage(incidentForm.getImage());
+            incidentForm.setImageUrl(newImageUrl);
+
+            // 2. Obtener el ID de la imagen desde la URL
+            String imageId = newImageUrl.substring(newImageUrl.lastIndexOf("/") + 1);
+
+            // 3. Asignar incidentId a la imagen
+            imageServiceFeignClient.assignIncidentIdToImage(imageId, incidentIdAsString);
+        }
+
+        // Actualizar incidente y categorías
+        incidentService.updateIncidentWithCategories(incidentForm);
+
+        return "redirect:/incident/" + incidentForm.getId();
+    }
+
+
+
+
 
 }
