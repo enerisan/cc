@@ -15,8 +15,8 @@
 <body>
 <div class="WrapperBoss">
     <header th:replace="~{fragments/header::header}"></header>
-
-    <main id="PageMainDetail" class="PageMain PageMainDetail">
+    <main class="PageMain">
+    <section id="PageMainDetail" class="PageMain PageMainDetail">
         <div th:object="${incident}" id="PageMain-centralBoxDetail" class="PageMain-centralBoxDetail">
 
             <div class="DetailCard">
@@ -212,6 +212,7 @@
 
         <nav th:replace="~{fragments/bar::bar}" class="PageMain-bar"></nav>
 
+    </section>
     </main>
     <footer th:replace="~{fragments/footer::footer}" class="PageFooter"></footer>
 

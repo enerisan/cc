@@ -7,7 +7,7 @@
     background-color: $firstColor;
     color: $thirdColor;
     height: 5em;
-    width: calc(100% - 280px);
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -15,6 +15,7 @@
     padding: $spaceS;
     position: relative;
     z-index: 10;
+
 
   }
 

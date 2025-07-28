@@ -10,7 +10,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: 1;
+  z-index: 11;
 
   @media screen and (min-width: $tablet) {
     width: 280px;
@@ -20,7 +20,8 @@
     justify-content: flex-start;
     align-self: stretch;
     left: auto;
-    right: max((100vw - 1440px) / 2, 1em);
+    right: max((100vw - 1536px) / 2);
+
 
 
 
@@ -77,6 +78,7 @@
       max-height: none;
       min-width: 100%;
       flex-grow: 1;
+
 
 
     }
