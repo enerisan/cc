@@ -142,12 +142,12 @@
 
         </div>
 
-        <nav th:replace="~{fragments/bar::bar}" class="PageMain-bar"></nav>
     </main>
+    <nav th:replace="~{fragments/bar::bar}" class="PageMain-bar"></nav>
     <footer th:replace="~{fragments/footer::footer}" class="PageFooter"></footer>
 
 </div>
-<script src="./script.js"></script>
+<script th:src="@{/script.js}" defer></script>
 
 <!--                                    Para ver el los objetos en consola-->
 <script th:inline="javascript">

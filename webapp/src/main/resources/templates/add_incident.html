@@ -15,7 +15,6 @@
 <body>
 <div class="WrapperBoss">
     <header th:replace="~{fragments/header::header}"></header>
-
     <main class="PageMain">
         <div class="PageMain-centralBox CtBoxForm">
             <div class="FormContainer FormAdd">
@@ -148,8 +147,9 @@
 
         </div>
 
-        <nav th:replace="~{fragments/bar::bar}" class="PageMain-bar"></nav>
+
     </main>
+    <nav th:replace="~{fragments/bar::bar}" class="PageMain-bar"></nav>
     <footer th:replace="~{fragments/footer::footer}" class="PageFooter"></footer>
 
 </div>
@@ -157,7 +157,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
 
-<script src="./script.js"></script>
+<script th:src="@{/script.js}" defer></script>
 
 </body>
 </html>

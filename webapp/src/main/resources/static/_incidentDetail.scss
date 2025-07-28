@@ -1,18 +1,6 @@
 @use 'variables' as *;
 
-.PageMainDetail {
-  @media screen and (min-width: $tablet) {
-    width: calc(100% - 280px);
-    display:flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: $backgroundColor;
 
-
-
-
-  }
-}
 
 .PageMain-centralBoxDetail {
   display: flex;

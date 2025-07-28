@@ -7,11 +7,17 @@
  }
 
 
- body {  height: 100%;
+ body {
+   height: 100%;
+
+ }
+
+ html, body {
+   overflow-x: hidden;
  }
 
  .Wrapper {
-     max-width: 1440px;
+     max-width: 1536px;
      min-height: 100vh;
      margin: 0 auto;
      position: relative;

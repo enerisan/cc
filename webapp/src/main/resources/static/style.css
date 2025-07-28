@@ -8,8 +8,12 @@ body {
   height: 100%;
 }
 
+html, body {
+  overflow-x: hidden;
+}
+
 .Wrapper {
-  max-width: 1440px;
+  max-width: 1536px;
   min-height: 100vh;
   margin: 0 auto;
   position: relative;
@@ -122,7 +126,7 @@ h2 {
     justify-content: flex-start;
     align-self: stretch;
     left: auto;
-    right: max((100vw - 1536px) / 2);
+    right: auto;
   }
 }
 .PageMain-bar-addBtn {
@@ -266,8 +270,10 @@ h2 {
 }
 
 .WrapperBoss {
+  width: 100%;
   max-width: 1536px;
   margin: 0 auto;
+  padding: 0;
 }
 @media screen and (min-width: 750px) {
   .WrapperBoss {
@@ -280,8 +286,8 @@ h2 {
     width: 100%;
     margin: 0;
     padding: 0;
-    display: flex;
-    align-items: stretch;
+    position: relative;
+    display: block;
   }
 }
 .PageMain-centralBox {
@@ -293,8 +299,8 @@ h2 {
 }
 @media screen and (min-width: 750px) {
   .PageMain-centralBox {
-    padding: 2em;
-    width: calc(100% - 280px);
+    width: 100%;
+    padding-right: 300px;
     margin: 0;
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -972,91 +978,6 @@ h2 {
   border: 2px solid red;
 }
 
-.PageMain-centralBox-infos {
-  grid-column: 1/2;
-  height: 150px;
-}
-.PageMain-centralBox-infos-card {
-  font-size: 1.5em;
-}
-.PageMain-centralBox-badges {
-  grid-column: 2/3;
-}
-.PageMain-centralBox-badges-header {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-.PageMain-centralBox-badges-wrapper {
-  display: flex;
-  justify-content: space-around;
-  padding-top: 1em;
-}
-.PageMain-centralBox-badges-wrapper-item {
-  max-width: 20%;
-}
-.PageMain-centralBox-badges-wrapper-item img {
-  width: 90%;
-}
-.PageMain-centralBox-reports {
-  grid-column: 1/3;
-}
-@media screen and (min-width: 750px) {
-  .PageMain-centralBox-reports {
-    min-height: calc(100vh - 80px - 150px);
-    margin-top: 1.5em;
-  }
-}
-.PageMain-centralBox-reports-filters {
-  padding-top: 1em;
-}
-.PageMain-centralBox-reports-filters-btn {
-  background-color: #124e78;
-  color: #F5F5F5;
-  border-radius: 1em;
-  border: none;
-  padding: 0 0.5em 0.2em 0.5em;
-  margin-bottom: 1em;
-}
-.PageMain-centralBox-reports-filters-list {
-  display: none;
-  font-size: 0.9em;
-  color: #124e78;
-}
-.PageMain-centralBox-reports-filters-list.active {
-  display: block;
-}
-.PageMain-centralBox-reports-filters-checkboxes {
-  background-color: gray;
-  min-height: 1em;
-}
-.PageMain-centralBox-reports-filters-checkboxes-active {
-  background-color: red;
-}
-.PageMain-centralBox-reports-wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 1em;
-}
-@media screen and (min-width: 750px) {
-  .PageMain-centralBox-reports-wrapper {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 0.5em;
-    justify-content: center;
-  }
-}
-
-@media screen and (min-width: 750px) {
-  .PageMainDetail {
-    width: calc(100% - 280px);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #F2F2F7;
-  }
-}
-
 .PageMain-centralBoxDetail {
   display: flex;
   justify-content: center;
@@ -1254,6 +1175,81 @@ h2 {
 .modal-content .UpdateForm-btn {
   border: 1px solid green !important;
   margin-bottom: 2em;
+}
+
+.PageMain-centralBox-infos {
+  grid-column: 1/2;
+  height: 150px;
+}
+.PageMain-centralBox-infos-card {
+  font-size: 1.5em;
+}
+.PageMain-centralBox-badges {
+  grid-column: 2/3;
+}
+.PageMain-centralBox-badges-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.PageMain-centralBox-badges-wrapper {
+  display: flex;
+  justify-content: space-around;
+  padding-top: 1em;
+}
+.PageMain-centralBox-badges-wrapper-item {
+  max-width: 20%;
+}
+.PageMain-centralBox-badges-wrapper-item img {
+  width: 90%;
+}
+.PageMain-centralBox-reports {
+  grid-column: 1/3;
+}
+@media screen and (min-width: 750px) {
+  .PageMain-centralBox-reports {
+    min-height: calc(100vh - 80px - 150px);
+    margin-top: 1.5em;
+  }
+}
+.PageMain-centralBox-reports-filters {
+  padding-top: 1em;
+}
+.PageMain-centralBox-reports-filters-btn {
+  background-color: #124e78;
+  color: #F5F5F5;
+  border-radius: 1em;
+  border: none;
+  padding: 0 0.5em 0.2em 0.5em;
+  margin-bottom: 1em;
+}
+.PageMain-centralBox-reports-filters-list {
+  display: none;
+  font-size: 0.9em;
+  color: #124e78;
+}
+.PageMain-centralBox-reports-filters-list.active {
+  display: block;
+}
+.PageMain-centralBox-reports-filters-checkboxes {
+  background-color: gray;
+  min-height: 1em;
+}
+.PageMain-centralBox-reports-filters-checkboxes-active {
+  background-color: red;
+}
+.PageMain-centralBox-reports-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+@media screen and (min-width: 750px) {
+  .PageMain-centralBox-reports-wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 0.5em;
+    justify-content: center;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

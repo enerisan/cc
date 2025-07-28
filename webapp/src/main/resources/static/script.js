@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', () => {
     const statusBtn = document.querySelector(".PageMain-centralBox-reports-filters-btn");
     const filtersList = document.querySelector(".PageMain-centralBox-reports-filters-list");
@@ -6,6 +7,25 @@ document.addEventListener('DOMContentLoaded', () => {
     const cards = document.querySelectorAll(".ReportCard");
     console.log("cards", cards);
     console.log("filters", checkboxes);
+
+    function alignFixedSidebar() {
+        const wrapper = document.querySelector('.WrapperBoss');
+        const bar = document.querySelector('.PageMain-bar');
+
+        if (!wrapper || !bar) return;
+
+        const wrapperRect = wrapper.getBoundingClientRect();
+        const offsetRight = window.innerWidth - (wrapperRect.left + wrapperRect.width);
+
+
+        bar.style.right = `${Math.max(offsetRight, 0)}px`;
+    }
+
+    window.addEventListener('load', alignFixedSidebar);
+    window.addEventListener('resize', alignFixedSidebar);
+
+
+
 
     const checkedFilters = [];
 
@@ -64,3 +84,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+
+
+function showEditModal() {
+
+    document.getElementById('editModal').style.display = 'block';
+    // document.getElementById('PageMain-centralBoxDetail').style.visibility = 'hidden';
+}
+
+function hideEditModal() {
+    document.getElementById('editModal').style.display = 'none';
+    // document.getElementById('PageMain-centralBoxDetail').style.display = 'visible'
+}

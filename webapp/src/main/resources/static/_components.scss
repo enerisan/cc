@@ -1,15 +1,15 @@
  @use 'variables' as *;
 
  .WrapperBoss {
+     width:100%;
      max-width: 1536px;
      margin: 0 auto;
+     padding: 0;
 
 
 
      @media screen and (min-width: $tablet) {
          position: relative;
-         ;
-
      }
  }
 
@@ -20,11 +20,8 @@
          width: 100%;
          margin: 0;
          padding: 0;
-         display: flex;
-         align-items: stretch;
-        
-
-
+         position: relative;
+         display: block;
 
      }
 
@@ -37,9 +34,9 @@
 
 
          @media screen and (min-width: $tablet) {
-             padding: $spaceL;
-             width: calc(100% - 280px);
 
+             width: 100%;
+             padding-right: 300px;
              margin:0;
              display: grid;
              grid-template-columns: 1fr 1fr;
