@@ -47,4 +47,7 @@ public interface IncidentFeignClient {
     @DeleteMapping("/incident-categories/{incidentId}")
     void deleteIncidentCategoriesByIncidentId(@PathVariable("incidentId") Integer incidentId);
 
+
+    @DeleteMapping("/api/incidents/{id}")
+    void deleteIncidentByIncidentId(@PathVariable ("id")Integer id);
 }

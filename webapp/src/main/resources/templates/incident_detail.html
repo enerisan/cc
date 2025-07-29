@@ -198,7 +198,7 @@
                         </div>
 
                         <div th:if="${incident.statusId == 1}" class="DetailCard-Btns">
-                            <button type="button" class="Button">SUPPRIMER</button>
+                            <a th:href="@{/incident/delete/{id}(id=${incident.id})}"  class="Button">SUPPRIMER</a>
                             <button type="button"
                                     class="Button"
                                     onclick="showEditModal()">

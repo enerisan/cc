@@ -71,13 +71,13 @@ public class IncidentService {
 
     public void updateIncidentWithCategories(IncidentForm dto) {
         Incident incident = dto.toIncident();
-        incident.setId(dto.getId()); // importante para que sea actualización
+        incident.setId(dto.getId());
 
-        // Actualizar incidente
+        // Update incident
         incidentFeignClient.updateIncident(dto.getId(), incident);
 
 
-        // (opcional) Actualizar categorías si estas también cambian
+        // Update categories
         incidentFeignClient.deleteIncidentCategoriesByIncidentId(dto.getId());
         for (Integer categoryId : dto.getCategoryIds()) {
             IncidentCategoryDto incidentCategoryDto = new IncidentCategoryDto(dto.getId(), categoryId);
@@ -85,6 +85,10 @@ public class IncidentService {
         }
     }
 
+    public void deletePatient(Integer id) {
+        incidentFeignClient.deleteIncidentCategoriesByIncidentId(id);
+        incidentFeignClient.deleteIncidentByIncidentId(id);
+    }
 }
 
 

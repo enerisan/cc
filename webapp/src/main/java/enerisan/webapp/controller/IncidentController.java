@@ -56,6 +56,7 @@ public class IncidentController {
         return mav;
     }
 
+    //To create an incident :
     @PostMapping("/addIncident")
     public String addIncident(@ModelAttribute IncidentForm dto) {
 
@@ -68,6 +69,7 @@ public class IncidentController {
         return "redirect:/";
     }
 
+    //To show incident detail
     @GetMapping("/incident/{id}")
     public ModelAndView showIncidentDetail(@PathVariable Integer id) {
         User user = sessionService.sessionUser();
@@ -100,32 +102,37 @@ public class IncidentController {
 
         String incidentIdAsString = String.valueOf(incidentForm.getId());
 
-        // Si se pidió eliminar la imagen
+        // If delete image is chosen
         if (incidentForm.isRemoveImage()) {
             imageServiceFeignClient.deleteImageByIncidentId(incidentIdAsString);
             incidentForm.setImageUrl(null); // Eliminar referencia
         }
 
-        // Si se subió una nueva imagen
+        // If a new image is to be uploaded
         if (incidentForm.getImage() != null && !incidentForm.getImage().isEmpty()) {
-            // 1. Subir la imagen (sin incidentId)
+            // Upload image without incident id
             String newImageUrl = imageServiceFeignClient.uploadImage(incidentForm.getImage());
             incidentForm.setImageUrl(newImageUrl);
 
-            // 2. Obtener el ID de la imagen desde la URL
+            // We obtain image id from url
             String imageId = newImageUrl.substring(newImageUrl.lastIndexOf("/") + 1);
 
-            // 3. Asignar incidentId a la imagen
+            // We assign incidentId to image in Mongo DB
             imageServiceFeignClient.assignIncidentIdToImage(imageId, incidentIdAsString);
         }
 
-        // Actualizar incidente y categorías
+        // To update incident and categories
         incidentService.updateIncidentWithCategories(incidentForm);
 
         return "redirect:/incident/" + incidentForm.getId();
     }
 
 
+    @GetMapping("/incident/delete/{id}")
+    public String deleteIncident(@PathVariable Integer id) {
+        incidentService.deletePatient(id);
+        return "redirect:/";
+    }
 
 
 
