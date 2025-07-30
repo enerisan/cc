@@ -90,13 +90,13 @@
                     </div>
                     <div class="city-code">
                         <div class="input-group">
-                            <select class="input" id="cities" th:field="*{cityId}" required>
+                            <select class="input" id="city" th:field="*{cityId}" required>
                                 <option th:each="city : ${cities}"
                                         th:value="${city.id}"
                                         th:text="${city.name}">
                                 </option>
                             </select>
-                            <label for="cities">*Ville</label>
+                            <label for="city">*Ville</label>
                         </div>
                         <div class="input-group input-width-control">
                             <input th:field="*{postalCode}" id="postalCode" name="postalCode" placeholder="Code postal"
@@ -156,7 +156,9 @@
 
 
 <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
-
+<script th:inline="javascript">
+    const GOOGLE_API_KEY = /*[[${googleApiKey}]]*/ '';
+</script>
 <script th:src="@{/script.js}" defer></script>
 
 </body>

@@ -13,6 +13,7 @@ import enerisan.webapp.service.SessionService;
 import enerisan.webapp.service.UserService;
 import enerisan.webapp.service.client.ImageServiceFeignClient;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -39,7 +40,8 @@ public class IncidentController {
     @Autowired
     ImageServiceFeignClient imageServiceFeignClient;
 
-
+    @Value("${google.api.key}")
+    private String googleApiKey;
 
 
     //To show incidentAdd form :
@@ -52,7 +54,7 @@ public class IncidentController {
         mav.addObject("incidentForm", incidentForm);
         mav.addObject("categories", categories);
         mav.addObject("cities", Cities);
-
+        mav.addObject("googleApiKey", googleApiKey);
         return mav;
     }
 
@@ -105,7 +107,7 @@ public class IncidentController {
         // If delete image is chosen
         if (incidentForm.isRemoveImage()) {
             imageServiceFeignClient.deleteImageByIncidentId(incidentIdAsString);
-            incidentForm.setImageUrl(null); // Eliminar referencia
+            incidentForm.setImageUrl(null);
         }
 
         // If a new image is to be uploaded

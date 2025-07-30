@@ -8,6 +8,8 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log("cards", cards);
     console.log("filters", checkboxes);
 
+
+    //To fix sideBar in desktop device
     function alignFixedSidebar() {
         const wrapper = document.querySelector('.WrapperBoss');
         const bar = document.querySelector('.PageMain-bar');
@@ -26,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-
+//To manage incidents filters in dashboard
     const checkedFilters = [];
 
     if (statusBtn && filtersList) {
@@ -52,15 +54,97 @@ document.addEventListener('DOMContentLoaded', () => {
         checkbox.addEventListener("change", showCards);
     });
 
-    //Toggle location
-    const toggleButton = document.querySelector('.toggle-location');
-    if (toggleButton) {
-        toggleButton.addEventListener('click', () => {
-            toggleButton.classList.toggle('active');
-        });
-    }
 
-    //To mangage multiple choices in category fields
+
+    // Toggle location + geolocation + Google Maps Geocoding
+
+
+    const toggleButton = document.querySelector('.toggle-location');
+    const addressInput = document.querySelector('#address');
+    const postalCodeInput = document.querySelector('#postalCode');
+    const cityInput = document.querySelector('#city');
+
+    toggleButton.addEventListener('click', () => {
+        toggleButton.classList.toggle('active');
+
+        if (toggleButton.classList.contains('active')) {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(async (position) => {
+                    const lat = position.coords.latitude;
+                    const lng = position.coords.longitude;
+
+                    try {
+                        const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${GOOGLE_API_KEY}`);
+
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! status: ${response.status}`);
+                        }
+
+                        const data = await response.json();
+                        console.log(data);
+
+                        if (data.status === 'OK' && data.results.length > 0) {
+                            const result = data.results[0];
+                            addressInput.value = result.address_components[0].long_name + " " + result.address_components[1].long_name;
+
+                            function getComponent(types) {
+                                return result.address_components.find(component =>
+                                    types.every(type => component.types.includes(type))
+                                );
+                            }
+
+                            const postalCodeComponent = getComponent(['postal_code']);
+                            postalCodeInput.value = postalCodeComponent ? postalCodeComponent.long_name : '';
+
+                            const cityComponent = getComponent(['locality']);
+                            if (cityComponent) {
+                                const cityName = cityComponent.long_name;
+
+                                const options = cityInput.options;
+                                let cityId = '';
+                                for (let i = 0; i < options.length; i++) {
+                                    if (options[i].text === cityName) {
+                                        cityId = options[i].value;
+                                        break;
+                                    }
+                                }
+                                cityInput.value = cityId;
+                            } else {
+                                cityInput.value = '';
+                            }
+
+                        } else {
+                            addressInput.value = 'Adresse non trouvée';
+                            postalCodeInput.value = '';
+                            cityInput.value = '';
+                        }
+                    } catch (error) {
+                        addressInput.value = "Erreur lors de l'obtention de l'adresse";
+                        postalCodeInput.value = '';
+                        cityInput.value = '';
+                        console.error(error);
+                    }
+                }, (error) => {
+                    addressInput.value = "Erreur lors de l'obtention de la localisation";
+                    postalCodeInput.value = '';
+                    cityInput.value = '';
+                    console.error(error);
+                });
+            } else {
+                addressInput.value = 'Géolocalisation non prise en charge';
+                postalCodeInput.value = '';
+                cityInput.value = '';
+            }
+        } else {
+            // Clear fields when toggle off
+            addressInput.value = '';
+            postalCodeInput.value = '';
+            cityInput.value = '';
+        }
+    });
+
+
+    //To manage multiple choices in category fields
     const element = document.getElementById('categoryIds');
 
     if (element) {
