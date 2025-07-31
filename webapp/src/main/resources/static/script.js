@@ -63,6 +63,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const addressInput = document.querySelector('#address');
     const postalCodeInput = document.querySelector('#postalCode');
     const cityInput = document.querySelector('#city');
+    const latitudeInput = document.querySelector('#latitude');
+    const longitudeInput = document.querySelector('#longitude')
 
     toggleButton.addEventListener('click', () => {
         toggleButton.classList.toggle('active');
@@ -72,6 +74,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 navigator.geolocation.getCurrentPosition(async (position) => {
                     const lat = position.coords.latitude;
                     const lng = position.coords.longitude;
+                    latitudeInput.value = lat;
+                    longitudeInput.value = lng;
+
 
                     try {
                         const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${GOOGLE_API_KEY}`);
