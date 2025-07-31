@@ -173,7 +173,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+//To manage image in updateIncident modal
 
+
+function removeImageFromBack() {
+  document.getElementById('imageFromBack').style.display="none";
+  document.getElementById('removeImage').style.display="none"
+}
 
 function showEditModal() {
 

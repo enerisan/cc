@@ -90,6 +90,7 @@ public class IncidentController {
         mav.addObject("categories", categories);
         mav.addObject("cities", Cities);
         mav.addObject("updateIncidentForm", updateIncidentForm);
+        mav.addObject("googleApiKey", googleApiKey);
         return mav;
     }
 
