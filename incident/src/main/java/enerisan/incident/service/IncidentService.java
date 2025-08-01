@@ -2,15 +2,19 @@ package enerisan.incident.service;
 
 import enerisan.incident.dto.CategoryDto;
 import enerisan.incident.dto.IncidentWithCategoriesDto;
+import enerisan.incident.mapper.IncidentMapper;
 import enerisan.incident.model.City;
 import enerisan.incident.model.Incident;
-import enerisan.incident.repository.CityRepository;
-import enerisan.incident.repository.IncidentCategoryRepository;
-import enerisan.incident.repository.IncidentRepository;
+import enerisan.incident.model.Status;
+import enerisan.incident.model.User;
+import enerisan.incident.repository.*;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -23,46 +27,79 @@ public class IncidentService {
     IncidentCategoryRepository incidentCategoryRepository;
 
     @Autowired
+    IncidentMapper incidentMapper;
+
+    @Autowired
     CityRepository cityRepository;
+
+    @Autowired
+    UserRepository userRepository;
+
+    @Autowired
+    StatusRepository statusRepository;
 
 
     public IncidentWithCategoriesDto findIncidentWithCategoriesById(Integer id) {
-        Optional<Incident> incident = incidentRepository.findById(id);
-        IncidentWithCategoriesDto dto = new IncidentWithCategoriesDto();
+        return incidentRepository.findById(id)
+                .map(incident -> incidentMapper.incidentToIncidentWithCategoriesDto(incident))
+                .orElseThrow(() -> new EntityNotFoundException("Incident not found"));
+    }
 
-        if (incident.isPresent()) {
-            dto.setId(incident.get().getId());
-            City city = cityRepository.findById(incident.get().getCity().getId())
-                    .orElseThrow(() -> new EntityNotFoundException("City not found"));
-            String cityName = city.getName();
-            dto.setCityName(cityName);
-            dto.setCityId(incident.get().getCity().getId());
-            dto.setUserId(incident.get().getUser().getId());
-            dto.setStatusId(incident.get().getStatus().getId());
-            dto.setTitle(incident.get().getTitle());
-            dto.setAddress(incident.get().getAddress());
-            dto.setNeighborhood(incident.get().getNeighborhood());
-            dto.setPostalCode(incident.get().getPostalCode());
-            dto.setImageUrl(incident.get().getImage());
-            dto.setDescription(incident.get().getDescription());
-            dto.setCreatedAt(incident.get().getCreatedAt());
-            dto.setClosedAt(incident.get().getClosedAt());
-            dto.setLatitude(incident.get().getLatitude());
-            dto.setLongitude(incident.get().getLongitude());
+    public List<IncidentWithCategoriesDto> findAllIncidentsWithCategoriesByUserId(Integer userId) {
+        return incidentRepository.findByUserId(userId)
+                .stream()
+                .map(incident -> incidentMapper.incidentToIncidentWithCategoriesDto(incident))                          // 3
+                .collect(Collectors.toList());
+    }
 
-            List<CategoryDto> categories = incidentCategoryRepository.findByIncidentId(incident.get().getId())
-                    .stream()
-                    .map(incidentCategory -> new CategoryDto(incidentCategory.getCategory()))
-                    .collect(Collectors.toList());
+    public ResponseEntity<?> createIncident(Incident incident) {
+        try {
+            City city = cityRepository.findById(incident.getCity().getId())
+                    .orElseThrow(() -> new IllegalArgumentException("City not found"));
 
-            List<Integer> categoryIds = categories.stream()
-                    .map(CategoryDto::getId)
-                    .collect(Collectors.toList());
+            User user = userRepository.findById(incident.getUser().getId())
+                    .orElseThrow(() -> new IllegalArgumentException("User not found"));
 
-            dto.setCategories(categories);
-            dto.setCategoryIds(categoryIds);
+            Status status = statusRepository.findById(incident.getStatus().getId())
+                    .orElseThrow(() -> new IllegalArgumentException("Status not found"));
+
+            incident.setCity(city);
+            incident.setUser(user);
+            incident.setStatus(status);
+
+            if (incident.getCreatedAt() == null) {
+                incident.setCreatedAt(LocalDateTime.now());
+            }
+
+            Incident saved = incidentRepository.save(incident);
+            return ResponseEntity.ok(saved);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Error saving the incident: " + e.getMessage());
         }
+    }
 
-        return dto;
+    public Incident updateIncident(Incident incident, Integer id) {
+
+        return incidentRepository.findById(id)
+                .map(existingIncident -> {
+
+                    existingIncident.setCity(incident.getCity());
+                    existingIncident.setTitle(incident.getTitle());
+                    existingIncident.setAddress(incident.getAddress());
+                    existingIncident.setNeighborhood(incident.getNeighborhood());
+                    existingIncident.setDescription(incident.getDescription());
+                    existingIncident.setPostalCode(incident.getPostalCode());
+                    existingIncident.setImage(incident.getImage());
+                    if (incident.getClosedAt() != null) {
+                        existingIncident.setClosedAt(incident.getClosedAt());
+                    }
+
+                    existingIncident.setLatitude(incident.getLatitude());
+                    existingIncident.setLongitude(incident.getLongitude());
+                    return incidentRepository.save(existingIncident);
+                })
+                .orElseThrow(() -> new RuntimeException("Incident not found with id " + id));
     }
 }
