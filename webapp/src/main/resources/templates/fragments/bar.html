@@ -5,49 +5,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>City Care</title>
     <link rel="stylesheet" href="/style.css">
-    <link rel="icon" href="public/images/logo.ico" />
+    <link rel="icon" href="public/images/logo.ico"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 </head>
 
 <body>
 
-        <nav th:fragment ="bar" class="PageMain-bar">
-                <a th:href="@{/addIncident}" class="PageMain-bar-addBtn">
-                    <div class="PageMain-bar-addBtn-in">
-                        <i class="fa-solid fa-plus fa-lg" style="color: #f5f5f5;"></i>
-                    </div>
-                </a>
+<nav th:fragment="bar" class="PageMain-bar">
+    <a th:href="@{/addIncident}" class="PageMain-bar-addBtn">
+        <div class="PageMain-bar-addBtn-in">
+            <i class="fa-solid fa-plus fa-lg" style="color: #f5f5f5;"></i>
+        </div>
+    </a>
 
-                <menu class="PageMain-bar-menu">
+    <menu class="PageMain-bar-menu">
 
-                    <div class="PageMain-bar-menu-logoDesktop">
-                        <img th:src="@{/images/logocc_alone.png}" alt="logo city care">
-                    </div>
+        <div class="PageMain-bar-menu-logoDesktop">
+            <img th:src="@{/images/logocc_alone.png}" alt="logo city care">
+        </div>
 
-                    <figure class="PageMain-bar-menu-link">
-                        <a href=""><i class="fa-regular fa-user fa-2xl"></i></a>
-                        <figcaption>Mon espace</figcaption>
-                    </figure>
-                    <figure class="PageMain-bar-menu-link">
-                        <a href=""><i class="fa-regular fa-flag fa-2xl"></i></a>
-                        <figcaption>Signalements</figcaption>
-                    </figure>
-                    <figure class="PageMain-bar-menu-link">
-                        <a href=""><i class="fa-regular fa-bell fa-2xl"></i></a>
-                        <figcaption>Notifications</figcaption>
-                    </figure>
-                    <figure class="PageMain-bar-menu-link">
-                        <a href=""><i class="fa-solid fa-ellipsis-vertical fa-2xl"></i></a>
-                        <figcaption>Plus</figcaption>
-                    </figure>
-                    <figure class="PageMain-bar-menu-link addBtnDesktop">
-                        <a th:href="@{/addIncident}" class="PageMain-bar-menu-link-plus" href="#"><i class="fa-solid fa-plus fa-xl"></i></a>
-                        <figcaption>Ajouter un signalement</figcaption>
-                    </figure>
-                </menu>
+        <a th:href="@{/}" class="PageMain-bar-menu-link">
+            <i class="fa-regular fa-user fa-2xl"></i>
+            <figcaption>Mon espace</figcaption>
+        </a>
+        <a th:href="@{/}" class="PageMain-bar-menu-link">
+            <i class="fa-regular fa-flag fa-2xl"></i>
+            <figcaption>Signalements</figcaption>
+        </a>
+        <a th:href="@{/}" class="PageMain-bar-menu-link">
+            <i class="fa-regular fa-bell fa-2xl"></i>
+            <figcaption>Notifications</figcaption>
+        </a>
+        <a th:href="@{/}" class="PageMain-bar-menu-link">
+            <i class="fa-solid fa-ellipsis fa-2xl"></i>
+            <figcaption>Plus</figcaption>
+        </a>
+        <a th:href="@{/addIncident}" class="PageMain-bar-menu-link addBtnDesktop">
+            <div class="PageMain-bar-menu-link-plus" href="#"><i
+                    class="fa-solid fa-plus fa-xl"></i>
+            </div>
+            <figcaption>Ajouter un signalement</figcaption>
+        </a>
+    </menu>
 
-            </nav>
+</nav>
 </body>
 
 

@@ -26,7 +26,7 @@
                         <p class="InfosCard-textBox-title"    th:text="|${user.firstname} ${user.lastname}|"></p>
                         <p class="InfosCard-textBox-email" th:text="|${user.email}|"></p>
                         <p class="InfosCard-textBox-tel" th:text="|${user.phone}|"></p>
-                        <a class="InfosCard-btn Btn" href="">Modifier</a>
+                       <div class="InfosCard-textBox-btn"><a class="InfosCard-btn BtnCard" href="">Modifier</a></div>
                     </div>
 
                 </div>
@@ -128,7 +128,7 @@
                                 <div th:each="category : ${incident.categories}">
                                     <i th:class="${categoryIcons[category.name]} + ' ReportCard-textBox-items-icon'"></i>
                                 </div>
-                                <a class="Report-btn Btn" th:href="@{/incident/{id}(id=${incident.id})}">Voir détail</a>
+                                <a class="ReportCard-textBox-items-btn BtnCard" th:href="@{/incident/{id}(id=${incident.id})}">Voir détail</a>
                             </div>
 
                         </div>

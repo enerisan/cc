@@ -1,459 +1,497 @@
- @use 'variables' as *;
+@use 'variables' as *;
 
- .WrapperBoss {
-     width:100%;
-     max-width: 1536px;
-     margin: 0 auto;
-     padding: 0;
+.WrapperBoss {
+  width: 100%;
+  max-width: 1536px;
+  margin: 0 auto;
+  padding: 0;
 
 
+  @media screen and (min-width: $tablet) {
+    position: relative;
+  }
+}
 
-     @media screen and (min-width: $tablet) {
-         position: relative;
-     }
- }
 
+.PageMain {
 
- .PageMain {
+  @media screen and (min-width: $tablet) {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    display: block;
 
-     @media screen and (min-width: $tablet) {
-         width: 100%;
-         margin: 0;
-         padding: 0;
-         position: relative;
-         display: block;
+  }
 
-     }
+  &-centralBox {
+    background-color: $thirdColor;
+    padding: $space;
+    display: flex;
+    flex-direction: column;
+    gap: $spaceL;
 
-     &-centralBox {
-         background-color: $thirdColor;
-         padding: $space;
-         display: flex;
-         flex-direction: column;
-         gap: $spaceL;
 
+    @media screen and (min-width: $tablet) {
 
-         @media screen and (min-width: $tablet) {
+      width: 100%;
+      padding-right: 300px;
+      margin: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto;
+      gap: $spaceXXXL;
+      font-size: $space;
 
-             width: 100%;
-             padding-right: 300px;
-             margin:0;
-             display: grid;
-             grid-template-columns: 1fr 1fr;
-             grid-template-rows: auto auto;
-             gap: $spaceXXXL;
-             font-size: $space;
 
+    }
 
+  }
+}
 
-         }
+.InfosCard {
+  box-shadow: $shadowDark;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  gap: 1em;
+  border-radius: $spaceS;
+  padding: $space;
 
-     }
- }
- .InfosCard {
-     box-shadow: $shadow;
-     display: flex;
-     flex-direction: row;
-     width: 100%;
-     gap: 1em;
 
-     font-size: $space;
-     border-radius: $spaceS;
-     padding: $space;
+  &-textBox {
 
-     &-textBox {
-         &-title {
-             font-weight: bold;
-         }
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
 
-     }
+    @media screen and (min-width: $tablet) {
 
-     &-imgBox {
-         max-height: 6em;
-         max-width: 6em;
+      font-size: $spaceM;
+    }
 
-         &-titre {
-             font-weight: bold;
-         }
+    &-title {
+      font-weight: bold;
+    }
 
-         img {
-             height: 100%;
-             width: 100%;
+    &-btn {
+      display: flex;
+      margin-top: $spaceS;
+      flex-direction: row;
+      justify-content: flex-end;
+      font-size: 0.9em;
 
-             object-fit: cover;
+    }
 
-         }
-     }
 
+  }
 
- }
+  &-imgBox {
+    max-height: 6em;
+    max-width: 6em;
 
- .ReportCard {
-     box-shadow: $shadowLight;
-     display: flex;
-     flex-direction: row;
-     height: auto;
-     width: 100%;
-     gap: 1em;
-     font-size: $space;
-     border-radius: $spaceS;
-     padding: $spaceS;
+    &-titre {
+      font-weight: bold;
+    }
 
+    img {
+      height: 100%;
+      width: 100%;
 
-     @media screen and (min-width:$tablet) {
-         flex-direction: column;
-         min-height: 220px;
-         align-items: center;
-         padding: 0;
-         gap: 0;
-         outline: 1px solid transparent;
+      object-fit: cover;
 
+    }
+  }
 
-     }
 
+}
 
-     &-imgBox {
-         max-height: 90%;
-         max-width: 30%;
+.ReportCard {
+  box-shadow: $shadowLight;
+  display: flex;
+  flex-direction: row;
+  height: auto;
+  width: 100%;
+  gap: 1em;
+  font-size: $space;
+  border-radius: $spaceS;
+  padding: $spaceS;
 
 
-         @media screen and (min-width:$tablet) {
-             min-width: 100%;
-             max-height: 65%;
+  @media screen and (min-width: $tablet) {
+    flex-direction: column;
+    min-height: 220px;
+    align-items: center;
+    padding: 0;
+    gap: 0;
+    outline: 1px solid transparent;
 
-             margin: 0;
 
-         }
+  }
 
 
+  &-imgBox {
+    max-height: 90%;
+    max-width: 30%;
 
-         img {
-             height: 100%;
-             width: 100%;
-             border-radius: $spaceS;
-             object-fit: cover;
 
-             @media screen and (min-width:$tablet) {
-                 border-radius: 10px 10px 0 0;
+    @media screen and (min-width: $tablet) {
+      min-width: 100%;
+      max-height: 65%;
 
+      margin: 0;
 
+    }
 
-             }
 
-         }
-     }
+    img {
+      height: 100%;
+      width: 100%;
+      border-radius: $spaceS;
+      object-fit: cover;
 
-     &-textBox {
-         min-width: 65%;
-         display: flex;
-         flex-direction: column;
-         justify-content: center;
-         gap: 1em;
+      @media screen and (min-width: $tablet) {
+        border-radius: 10px 10px 0 0;
 
 
+      }
 
+    }
+  }
 
+  &-textBox {
+    min-width: 65%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1em;
 
-         &-header {
-             display: flex;
-             flex-direction: row;
-             align-items: center;
-             justify-content: space-between;
 
+    &-header {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
 
 
+      &-title {
+        font-weight: bold;
 
+      }
+    }
 
 
+    &-items {
+      display: flex;
+      align-items: center;
+      gap: 1em;
 
-             &-title {
-                 font-weight: bold;
 
-             }
-         }
+      &-icon {
+        color: $firstColor;
+      }
 
 
-         &-items {
-             display: flex;
-             align-items: center;
-             gap: 1em;
+      a {
 
+        margin-left: 0.5em;
 
-             &-icon{
-                 color:$firstColor;
-             }
+        @media screen and (min-width: $tablet) {
+          margin-left: 4em;
+        }
 
+      }
 
-             a {
+      &-btn {
+        font-size: 0.9em;
 
-                 margin-left: 0.5em;
 
-                 @media screen and (min-width:$tablet) {
-                     margin-left: 4em;
-                 }
+        @media screen and (min-width: $tablet) {
+          font-size: 0.9em;
 
-             }
+        }
+      }
 
+      }
 
+    }
 
-         }
+    @media screen and (min-width: $tablet) {
 
-         @media screen and (min-width:$tablet) {
+      min-width: 100%;
+      max-height: 35%;
+      padding: 1em;
+      gap: 0.5em;
 
-             min-width: 100%;
-             max-height: 35%;
-             padding: 1em;
-             gap: 0.5em;
+    }
 
-         }
+  }
 
-     }
 
- }
 
- .ReportCard {
-     &:hover {
-         background-color: #124e78;
-         color: #F2F2F7;
-         box-shadow: 5px 5px 10px black;
-         outline: 1px solid #FFC42B;
+.ReportCard {
+  &:hover {
+    background-color: #124e78;
+    color: #F2F2F7;
+    box-shadow: 2px 2px 5px black;
 
-         .ReportCard-textBox-items-icon {
-             color: $thirdColor;
-         }
-     }
- }
 
- .AllSee {
-     a {
-         text-decoration: none;
-         font-size: $space;
-         padding-left: $spaceXXS;
-         color: inherit;
+    .ReportCard-textBox-items-icon {
+      color: $thirdColor;
+    }
 
-     }
- }
+    .ReportCard-textBox-items-btn {
+      background-color: $thirdColor;
+      color: $firstColor;
 
+    }
+  }
+}
 
- .FormContainer {
-     min-height: 70vh;
-     background-color: $firstColor;
-     display: flex;
-     justify-content: center;
-     align-items: flex-start;
-     padding-top: 2em;
+.AllSee {
+  a {
+    text-decoration: none;
+    font-size: $space;
+    padding-left: $spaceXXS;
+    color: inherit;
 
+  }
+}
 
-     @media screen and (min-width: $tablet) {
-         align-items: center;
-         padding: 0;
-         min-width: 35%;
-         background-color: $backgroundColor;
-     }
 
-     .Form {
-         text-align: center;
-         width: 90%;
-         background-color: $firstColor;
-         border-radius: 20px;
+.FormContainer {
+  min-height: 70vh;
+  background-color: $firstColor;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 2em;
 
 
+  @media screen and (min-width: $tablet) {
+    align-items: center;
+    padding: 0;
+    min-width: 35%;
+    background-color: $backgroundColor;
+  }
 
-         @media screen and (min-width: $tablet) {
-             text-align: center;
-             width: 430px;
-             height: 420px;
-             background-color: $thirdColor;
-             border-radius: 20px;
-             box-shadow: 0px 4px 24px 0px rgba(0, 0, 0, 0.25);
-             padding: 50px;
-         }
+  .Form {
+    text-align: center;
+    width: 90%;
+    background-color: $firstColor;
+    border-radius: 20px;
 
-         h3 {
-             color: #B3B3B3;
-             font-size: 1em;
-             font-weight: lighter;
-             margin-bottom: 0.8em;
 
+    @media screen and (min-width: $tablet) {
+      text-align: center;
+      width: 430px;
+      height: 420px;
+      background-color: $thirdColor;
+      border-radius: 20px;
+      box-shadow: 0px 4px 24px 0px rgba(0, 0, 0, 0.25);
+      padding: 50px;
+    }
 
-             @media screen and (min-width: $tablet) {
-                 font-size: 36px;
-                 margin-bottom: 0.5em;
+    h3 {
+      color: #B3B3B3;
+      font-size: 1em;
+      font-weight: lighter;
+      margin-bottom: 0.8em;
 
 
-             }
-         }
+      @media screen and (min-width: $tablet) {
+        font-size: 36px;
+        margin-bottom: 0.5em;
 
-         /* Input wrapper */
-         .input-group {
-             position: relative;
-             width: 100%;
-             height: 72px;
 
-             @media screen and (min-width: $tablet) {
-                 width: 328px;
-             }
+      }
+    }
 
-         }
+    /* Input wrapper */
+    .input-group {
+      position: relative;
+      width: 100%;
+      height: 72px;
 
-         /* Inputs */
-         .input-group input {
-             background: none;
-             border: 1px solid $thirdColor;
-             border-radius: 4px;
-             height: 56px;
-             width: 100%;
-             color: $thirdColor;
-             font-weight: bold;
-             outline: none;
-             padding-inline: 12px;
+      @media screen and (min-width: $tablet) {
+        width: 328px;
+      }
 
-             @media screen and (min-width: $tablet) {
-                 color: $firstColor;
-                 height: 56px;
-                 padding-inline: 12px;
+    }
 
-                 border: 1px solid $firstColor;
-                 font-size: 16px;
-                 transition: border-color 0.3s;
+    /* Inputs */
+    .input-group input {
+      background: none;
+      border: 1px solid $thirdColor;
+      border-radius: 4px;
+      height: 56px;
+      width: 100%;
+      color: $thirdColor;
+      font-weight: bold;
+      outline: none;
+      padding-inline: 12px;
 
+      @media screen and (min-width: $tablet) {
+        color: $firstColor;
+        height: 56px;
+        padding-inline: 12px;
 
+        border: 1px solid $firstColor;
+        font-size: 16px;
+        transition: border-color 0.3s;
 
-             }
 
-         }
+      }
 
-         .input-group input:focus,
-         .input-group input:not(:placeholder-shown) {
-             border-color: $secondColor;
-         }
+    }
 
-         /* Hidden Label */
-         .input-group label {
-             position: absolute;
-             top: 0;
-             left: 12px;
-             background: $firstColor;
-             padding: 0 4px;
-             font-size: 16px;
-             font-weight: bold;
-             transform: translateY(-50%);
-             opacity: 0;
-             color: transparent;
-             transition: 0.2s;
-             display: flex;
-             align-items: center;
-             gap: 3px;
-             height: 14px;
-             pointer-events: none;
-             width: auto;
+    .input-group input:focus,
+    .input-group input:not(:placeholder-shown) {
+      border-color: $secondColor;
+    }
 
-             @media screen and (min-width: $tablet) {
-                 background: $backgroundColor;
+    /* Hidden Label */
+    .input-group label {
+      position: absolute;
+      top: 0;
+      left: 12px;
+      background: $firstColor;
+      padding: 0 4px;
+      font-size: 16px;
+      font-weight: bold;
+      transform: translateY(-50%);
+      opacity: 0;
+      color: transparent;
+      transition: 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      height: 14px;
+      pointer-events: none;
+      width: auto;
 
-             }
-         }
+      @media screen and (min-width: $tablet) {
+        background: $backgroundColor;
 
-         /* Showing label*/
-         .input-group input:focus+label,
-         .input-group input:not(:placeholder-shown)+label {
-             opacity: 1;
-             color: $thirdColor;
+      }
+    }
 
-             @media screen and (min-width: $tablet) {
-                 color: $firstColor;
-             }
-         }
+    /* Showing label*/
+    .input-group input:focus + label,
+    .input-group input:not(:placeholder-shown) + label {
+      opacity: 1;
+      color: $thirdColor;
 
-         /* Field password */
-         .input-group.icon-right {
-             display: flex;
+      @media screen and (min-width: $tablet) {
+        color: $firstColor;
+      }
+    }
 
-         }
+    /* Field password */
+    .input-group.icon-right {
+      display: flex;
 
-         .toggle-password {
-             border: none;
-             position: absolute;
-             top: 40%;
-             right: 12px;
-             transform: translateY(-50%);
-             background: none;
-             display: flex;
-             justify-content: center;
-             align-items: center;
-             cursor: pointer;
-             padding: 0;
-             margin-bottom: 2em;
-             height: 56px;
-             width: 24px;
-         }
+    }
 
-         /* Eye */
-         .toggle-password svg {
-             width: 24px;
-             height: 24px;
-             pointer-events: none;
-             color: $thirdColor;
+    .toggle-password {
+      border: none;
+      position: absolute;
+      top: 40%;
+      right: 12px;
+      transform: translateY(-50%);
+      background: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      padding: 0;
+      margin-bottom: 2em;
+      height: 56px;
+      width: 24px;
+    }
 
-             @media screen and (min-width: $tablet) {
+    /* Eye */
+    .toggle-password svg {
+      width: 24px;
+      height: 24px;
+      pointer-events: none;
+      color: $thirdColor;
 
-                 color: $firstColor;
-             }
-         }
+      @media screen and (min-width: $tablet) {
 
+        color: $firstColor;
+      }
+    }
 
-         .submit-button {
-             width: 100%;
-             height: 56px;
-             background-color: $secondColor;
-             box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-             color: $thirdColor;
-             font-size: 24px;
-             border: none;
-             border-radius: 4px;
-             font-weight: bold;
-             cursor: pointer;
-             transition: background-color 0.2s ease;
 
-             @media screen and (min-width: $tablet) {
-                 width: 328px;
-             }
+    .submit-button {
+      width: 100%;
+      height: 56px;
+      background-color: $secondColor;
+      box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+      color: $thirdColor;
+      font-size: 24px;
+      border: none;
+      border-radius: 4px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
 
-         }
+      @media screen and (min-width: $tablet) {
+        width: 328px;
+      }
 
-         .submit-button:hover {
-             background-color: $thirdColor;
-             color: $firstColor;
-             box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    }
 
-             @media screen and (min-width: $tablet) {
-                 background-color: $firstColor;
-                 color: $thirdColor;
-             }
-         }
+    .submit-button:hover {
+      background-color: $thirdColor;
+      color: $firstColor;
+      box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 
-         .text-line {
-             margin-top: 1em;
-             display: flex;
-             justify-content: center;
-             color: $thirdColor;
-             font-weight: bold;
-             font-size: 16px;
-             gap: 0.5em;
+      @media screen and (min-width: $tablet) {
+        background-color: $firstColor;
+        color: $thirdColor;
+      }
+    }
 
-             @media screen and (min-width: $tablet) {
-                 font-size: 20px;
-                 color: #B3B3B3;
-             }
+    .text-line {
+      margin-top: 1em;
+      display: flex;
+      justify-content: center;
+      color: $thirdColor;
+      font-weight: bold;
+      font-size: 16px;
+      gap: 0.5em;
 
-             a {
-                 color: $thirdColor;
+      @media screen and (min-width: $tablet) {
+        font-size: 20px;
+        color: #B3B3B3;
+      }
 
-                 @media screen and (min-width: $tablet) {
-                     color: #B3B3B3;
-                 }
-             }
-         }
+      a {
+        color: $thirdColor;
 
-     }
- }
+        @media screen and (min-width: $tablet) {
+          color: #B3B3B3;
+        }
+      }
+    }
+
+  }
+}
+
+.BtnCard {
+  color: $firstColor;
+  outline: 1px solid $firstColor;
+  text-decoration: none;
+  padding: 0.1em 0.5em 0.2em 0.5em;
+  border-radius: 5px;
+
+}
+
+.BtnCard:hover {
+  background-color: $firstColor;
+  color: $thirdColor;
+
+
+}

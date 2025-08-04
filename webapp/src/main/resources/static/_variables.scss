@@ -11,6 +11,10 @@ $titleFont: 'NF-le petit cochon', sans-serif;
 $textFont: 'Zen Kaku Gothic New Light', sans-serif;
 
 
+//variables font-size
+$regular: 1em;
+$sm: 0.7em;
+
 //variables spaces
 $spaceXXXL : 5em;
 $spaceXXL : 4em;
@@ -23,7 +27,10 @@ $spaceXS: 0.25em;
 $spaceXXS: 0.12em;
 
 //variables shadows
-$shadowDark: 10px 10px 20px black;
+$shadowDark:
+0 4px 6px -1px rgba(0, 0, 0, 0.1),
+0 2px 4px -1px rgba(0, 0, 0, 0.06);
+
 $shadow: 10px 10px 10px grey;
 $shadowLight: 0 2px 4px rgba(0, 0, 0, 0.1);
 
