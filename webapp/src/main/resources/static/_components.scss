@@ -25,7 +25,7 @@
   }
 
   &-centralBox {
-    background-color: $thirdColor;
+    background-color: $backgroundColor;
     padding: $space;
     display: flex;
     flex-direction: column;
@@ -33,9 +33,8 @@
 
 
     @media screen and (min-width: $tablet) {
-
       width: 100%;
-      padding-right: 300px;
+      padding: $spaceM 300px $spaceM $spaceM;
       margin: 0;
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -57,6 +56,7 @@
   gap: 1em;
   border-radius: $spaceS;
   padding: $space;
+  background-color: $thirdColor;
 
 
   &-textBox {
@@ -105,26 +105,34 @@
 
 
 }
-
+.InfosCard {
+  &:hover {
+    outline: 2px solid $firstColor;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(-3px);
+  }
+}
 .ReportCard {
   box-shadow: $shadowLight;
   display: flex;
   flex-direction: row;
   height: auto;
   width: 100%;
-  gap: 1em;
+  gap: $spaceS;
   font-size: $space;
   border-radius: $spaceS;
   padding: $spaceS;
+  background-color: $thirdColor;
 
 
   @media screen and (min-width: $tablet) {
     flex-direction: column;
-    min-height: 220px;
-    align-items: center;
+    min-height: 180px;
+    align-items: stretch;
     padding: 0;
     gap: 0;
     outline: 1px solid transparent;
+    height: 100%;
 
 
   }
@@ -163,8 +171,9 @@
     min-width: 65%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     gap: 1em;
+    flex-grow: 1;
 
 
     &-header {
@@ -185,6 +194,7 @@
       display: flex;
       align-items: center;
       gap: 1em;
+      flex-wrap: wrap;
 
 
       &-icon {
@@ -202,47 +212,42 @@
 
       }
 
-      &-btn {
-        font-size: 0.9em;
-
-
-        @media screen and (min-width: $tablet) {
-          font-size: 0.9em;
-
-        }
-      }
-
-      }
 
     }
 
-    @media screen and (min-width: $tablet) {
-
-      min-width: 100%;
-      max-height: 35%;
-      padding: 1em;
-      gap: 0.5em;
+    &-btn {
+      margin-top: auto;
 
     }
 
   }
 
+  @media screen and (min-width: $tablet) {
+    flex-grow: 1;
+    min-width: unset;
+    justify-content: center;
+    padding: 1em;
+    gap: 0.5em;
+
+
+  }
+
+}
 
 
 .ReportCard {
   &:hover {
-    background-color: #124e78;
-    color: #F2F2F7;
-    box-shadow: 2px 2px 5px black;
+    outline: 2px solid $firstColor;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(-3px);
 
 
     .ReportCard-textBox-items-icon {
-      color: $thirdColor;
+
     }
 
-    .ReportCard-textBox-items-btn {
-      background-color: $thirdColor;
-      color: $firstColor;
+    .ReportCard-textBox-btn {
+
 
     }
   }
@@ -486,12 +491,13 @@
   text-decoration: none;
   padding: 0.1em 0.5em 0.2em 0.5em;
   border-radius: 5px;
-
+  text-align: center;
 }
 
 .BtnCard:hover {
   background-color: $firstColor;
   color: $thirdColor;
+  font-weight: bold;
 
 
 }
