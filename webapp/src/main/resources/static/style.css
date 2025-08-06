@@ -301,7 +301,6 @@ h2 {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto auto;
-    gap: 5em;
     font-size: 1em;
   }
 }
@@ -313,8 +312,9 @@ h2 {
   width: 100%;
   gap: 1em;
   border-radius: 0.5em;
-  padding: 1em;
+  padding: 0.5em;
   background-color: #e8e9eb;
+  align-items: center;
 }
 .InfosCard-textBox {
   display: flex;
@@ -323,18 +323,11 @@ h2 {
 }
 @media screen and (min-width: 750px) {
   .InfosCard-textBox {
-    font-size: 1.5em;
+    font-size: 1em;
   }
 }
 .InfosCard-textBox-title {
   font-weight: bold;
-}
-.InfosCard-textBox-btn {
-  display: flex;
-  margin-top: 0.5em;
-  flex-direction: row;
-  justify-content: flex-end;
-  font-size: 0.9em;
 }
 .InfosCard-imgBox {
   max-height: 6em;
@@ -347,6 +340,9 @@ h2 {
   height: 100%;
   width: 100%;
   object-fit: cover;
+}
+.InfosCard-btn {
+  cursor: pointer;
 }
 
 .InfosCard:hover {
@@ -370,23 +366,21 @@ h2 {
 @media screen and (min-width: 750px) {
   .ReportCard {
     flex-direction: column;
-    min-height: 180px;
     align-items: stretch;
-    padding: 0;
+    padding: 0.5em;
     gap: 0;
     outline: 1px solid transparent;
-    height: 100%;
+    height: auto;
   }
 }
 .ReportCard-imgBox {
-  max-height: 90%;
-  max-width: 30%;
+  width: 100%;
+  height: auto;
 }
 @media screen and (min-width: 750px) {
   .ReportCard-imgBox {
-    min-width: 100%;
-    max-height: 65%;
-    margin: 0;
+    max-height: 140px;
+    overflow: hidden;
   }
 }
 .ReportCard-imgBox img {
@@ -400,51 +394,55 @@ h2 {
     border-radius: 10px 10px 0 0;
   }
 }
-.ReportCard-textBox {
+.ReportCard-content {
+  flex-grow: 1;
+  min-height: 0;
+}
+@media screen and (min-width: 750px) {
+  .ReportCard-content {
+    flex-grow: 0;
+    flex-shrink: 1;
+    overflow: visible;
+    padding: 0.25em 0 0 0;
+  }
+}
+.ReportCard-content-textBox {
   min-width: 65%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 1em;
+  gap: 0.5em;
   flex-grow: 1;
 }
-.ReportCard-textBox-header {
+.ReportCard-content-textBox-header {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
 }
-.ReportCard-textBox-header-title {
+.ReportCard-content-textBox-header-title {
   font-weight: bold;
 }
-.ReportCard-textBox-items {
+.ReportCard-content-textBox-items {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 1em;
-  flex-wrap: wrap;
 }
-.ReportCard-textBox-items-icon {
+.ReportCard-content-textBox-items-datecat {
+  display: flex;
+  gap: 1em;
+  align-items: center;
+}
+.ReportCard-content-textBox-items-datecat-icon {
   color: #124e78;
 }
-.ReportCard-textBox-items a {
-  margin-left: 0.5em;
+.ReportCard-content-textBox-items-btn {
+  text-align: right;
+  cursor: pointer;
 }
-@media screen and (min-width: 750px) {
-  .ReportCard-textBox-items a {
-    margin-left: 4em;
-  }
-}
-.ReportCard-textBox-btn {
-  margin-top: auto;
-}
-@media screen and (min-width: 750px) {
-  .ReportCard {
-    flex-grow: 1;
-    min-width: unset;
-    justify-content: center;
-    padding: 1em;
-    gap: 0.5em;
-  }
+.ReportCard-content-statusIcon {
+  text-align: right;
 }
 
 .ReportCard:hover {
@@ -452,6 +450,7 @@ h2 {
   box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
   transform: translateY(-3px);
 }
+
 .AllSee a {
   text-decoration: none;
   font-size: 1em;
@@ -1216,14 +1215,13 @@ h2 {
 
 .PageMain-centralBox-infos {
   grid-column: 1/2;
-  height: 150px;
 }
 .PageMain-centralBox-infos-card {
-  margin: 0;
+  margin-top: 0.5em;
 }
 @media screen and (min-width: 750px) {
   .PageMain-centralBox-infos-card {
-    margin-top: 1em;
+    margin-top: 0.5em;
   }
 }
 .PageMain-centralBox-badges {
@@ -1251,7 +1249,6 @@ h2 {
 @media screen and (min-width: 750px) {
   .PageMain-centralBox-reports {
     min-height: calc(100vh - 80px - 150px);
-    margin-top: 1.5em;
   }
 }
 .PageMain-centralBox-reports-filters {
@@ -1269,6 +1266,7 @@ h2 {
   display: none;
   font-size: 0.9em;
   color: #124e78;
+  margin-bottom: 0.5em;
 }
 .PageMain-centralBox-reports-filters-list.active {
   display: block;
@@ -1287,7 +1285,6 @@ h2 {
 }
 @media screen and (min-width: 750px) {
   .PageMain-centralBox-reports-wrapper {
-    padding-top: 1em;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     justify-content: center;

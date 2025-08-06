@@ -50,9 +50,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
     };
 
-    checkboxes.forEach(checkbox => {
-        checkbox.addEventListener("change", showCards);
+    checkboxes.forEach((checkbox) => {
+        checkbox.addEventListener("change", () => {
+            // Obtener todos los valores de filtros activos (como strings: "1", "2", etc.)
+            const activeFilters = Array.from(checkboxes)
+                .filter(cb => cb.checked)
+                .map(cb => cb.getAttribute("data-filter-status"));
+
+
+            cards.forEach((card) => {
+                const cardStatus = card.dataset.filterStatus;
+
+                if (activeFilters.length === 0 || activeFilters.includes(cardStatus)) {
+                    card.style.display = "block";
+                } else {
+                    card.style.display = "none";
+                }
+            });
+        });
     });
+
 
 
 
