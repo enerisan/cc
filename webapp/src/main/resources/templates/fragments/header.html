@@ -5,40 +5,73 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>City Care</title>
     <link rel="stylesheet" href="/style.css">
-    <link rel="icon" href="public/images/logo.ico" />
+    <link rel="icon" href="public/images/logo.ico"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 </head>
 
 <body>
-    <div class="WrapperBoss">
-        <header th:fragment ="header" class="PageHeader">
-            <img class="PageHeader-logo" th:src="@{/images/logo-cc-horizontal.png}" alt="logo City Care">
 
-            <div class="PageHeader-userBox">
-                <h2>Mon espace</h2>
-                <img th:src="@{/images/avatar.png}" alt="avatar">
+
+<div class="WrapperBoss">
+
+    <header th:fragment="header" class="PageHeader">
+        <div class="overlay-background" onclick="toggleUserBoxNav()"></div>
+        <img class="PageHeader-logo" th:src="@{/images/logo-cc-horizontal.png}" alt="logo City Care">
+
+        <div id="userBox" class="PageHeader-userBox">
+            <h2>Mon espace</h2>
+            <button
+                    class="PageHeader-userBox-imgBox"
+                    type="button"
+                    aria-label="Open user menu"
+                    onclick="toggleUserBoxNav()"
+            >
+                <i class="fa-regular fa-user fa-2xl" aria-hidden="true"></i>
+            </button>
+        </div>
+
+        <nav id="userBoxNav" class="PageHeader-userBoxNav">
+            <div class="PageHeader-userBoxNav-list">
+
+                <div class="PageHeader-userBoxNav-list-item">
+                    <div class="PageHeader-userBoxNav-list-item-line">
+                        <button class="PageHeader-userBoxNav-list-item-line-btn">
+                            <p>Configuration</p>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"
+                                 fill="none">
+                                <path d="M24.4201 25.5816L25.4632 24.5599C30.2893 24.7153 30.3635 24.5485 30.5756 24.0593L31.9015 20.8764L32 20.5747L31.8922 20.3107C31.8354 20.1713 31.6604 19.7553 28.647 16.9221V15.4318C32.124 12.1288 32.0498 11.9597 31.8516 11.4763L30.5315 8.26022C30.3334 7.77792 30.258 7.58935 25.4667 7.71849L24.4236 6.65562C24.5326 5.09002 24.4779 3.51751 24.2602 1.96298L24.1257 1.6624L20.6789 0.176665C20.1712 -0.0519102 19.9928 -0.134197 16.7383 3.36071L15.2756 3.339C11.925 -0.187912 11.7662 -0.123911 11.2643 0.0760917L8.05969 1.35383C7.55784 1.55383 7.38051 1.62469 7.57523 6.42476L6.54024 7.44192C1.71648 7.28649 1.6423 7.45563 1.43252 7.9425L0.10431 11.1265L0 11.4317L0.108946 11.6968C0.165737 11.834 0.333792 12.2454 3.35415 15.082V16.5678C-0.122854 19.8707 -0.047519 20.0398 0.151829 20.5244L1.47077 23.7439C1.67244 24.2365 1.7443 24.4113 6.53444 24.2879L7.57754 25.3565C7.46908 26.9197 7.52228 28.4897 7.73633 30.0423L7.87077 30.3451L11.3397 31.84C11.8438 32.048 12.0188 32.1223 15.264 28.64L16.7267 28.6582C20.082 32.1897 20.2535 32.1212 20.7438 31.9257L23.9415 30.6514C24.4468 30.4537 24.623 30.384 24.4201 25.5816ZM10.6767 18.1255C10.2723 17.0833 10.189 15.9465 10.4374 14.8577C10.6857 13.769 11.2546 12.7768 12.0726 12.0057C12.8907 11.2346 13.9215 10.719 15.0356 10.5234C16.1498 10.3278 17.2977 10.4611 18.3354 10.9064C19.373 11.3518 20.2542 12.0894 20.8682 13.0268C21.4823 13.9641 21.802 15.0595 21.7872 16.1753C21.7723 17.2911 21.4236 18.3778 20.7848 19.2989C20.1459 20.2201 19.2454 20.9346 18.1963 21.353C16.7649 21.905 15.1699 21.8753 13.7607 21.2704C12.3514 20.6655 11.2425 19.5347 10.6767 18.1255Z"
+                                      fill="#124E78"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="PageHeader-userBoxNav-list-item">
+                    <form class="PageHeader-userBoxNav-list-item-line" th:action="@{/logout}" method="post">
+                        <button type="submit" class="PageHeader-userBoxNav-list-item-line-btn">
+                            <p>Déconnexion</p>
+
+                            <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 34 34"
+                                 fill="none">
+                                <path opacity="0.5"
+                                      d="M17 33C12.7565 33 8.68687 31.3143 5.68629 28.3137C2.68571 25.3131 1 21.2435 1 17C1 12.7565 2.68571 8.68687 5.68629 5.68629C8.68687 2.68571 12.7565 1 17 1"
+                                      stroke="#124E78" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M13 17H33M33 17L27 11M33 17L27 23" stroke="#124E78" stroke-width="2"
+                                      stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+
+                        </button>
+                    </form>
+                </div>
+
             </div>
+        </nav>
 
-            <nav class="PageHeader-userBoxNav">
-                <img class="PageHeader-userBoxNav-logo" src="" alt="">
-                <div class="PageHeader-userBoxNav-mentionBox">
-                    <a href="">Méntions Legales</a>
-                    <p> © 2025 citycare.net</p>
-                </div>
-                <div class="PageHeader-userBoxNav-SocialMediaBox">
-                    <a href="https://www.linkedin.com/in/enerisan/" target="_blank" class="text-white fs-3"><i
-                            class="fa-brands fa-linkedin-in" style="color: #ffffff;"></i></a>
-                    <a href="https://www.linkedin.com/in/enerisan/" target="_blank" class="text-white fs-3"><i
-                            class="fa-brands fa-linkedin-in" style="color: #ffffff;"></i></a>
-                    <a href="https://www.linkedin.com/in/enerisan/" target="_blank" class="text-white fs-3"><i
-                            class="fa-brands fa-linkedin-in" style="color: #ffffff;"></i></a>
-                    <a href="https://www.linkedin.com/in/enerisan/" target="_blank" class="text-white fs-3"><i
-                            class="fa-brands fa-linkedin-in" style="color: #ffffff;"></i></a>
-                </div>
-            </nav>
-        </header>
-    </body>
+    </header>
+</div>
+<script th:src="@{/script.js}" defer></script>
+</body>
 
 
 </html>

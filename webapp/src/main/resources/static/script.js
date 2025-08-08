@@ -1,4 +1,30 @@
+// Functions that do NOT depend on DOM being ready
+// To manage image in updateIncident modal
+function removeImageFromBack() {
+    document.getElementById('imageFromBack').style.display = "none";
+    document.getElementById('removeImage').style.display = "none";
+}
 
+// To manage editModal
+function showEditModal() {
+    document.getElementById('editModal').style.display = 'block';
+    // document.getElementById('PageMain-centralBoxDetail').style.visibility = 'hidden';
+}
+
+function hideEditModal() {
+    document.getElementById('editModal').style.display = 'none';
+    // document.getElementById('PageMain-centralBoxDetail').style.display = 'visible'
+}
+
+// To manage userBoxNav
+function toggleUserBoxNav() {
+    const userBoxNav = document.getElementById('userBoxNav');
+    const overlay = document.querySelector('.overlay-background');
+    userBoxNav.classList.toggle('visible');
+    overlay.classList.toggle('visible');
+}
+
+// All DOM-dependent code
 document.addEventListener('DOMContentLoaded', () => {
     const statusBtn = document.querySelector(".PageMain-centralBox-reports-filters-btn");
     const filtersList = document.querySelector(".PageMain-centralBox-reports-filters-list");
@@ -8,27 +34,20 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log("cards", cards);
     console.log("filters", checkboxes);
 
-
-    //To fix sideBar in desktop device
+    // To fix sideBar in desktop device
     function alignFixedSidebar() {
         const wrapper = document.querySelector('.WrapperBoss');
         const bar = document.querySelector('.PageMain-bar');
-
         if (!wrapper || !bar) return;
 
         const wrapperRect = wrapper.getBoundingClientRect();
         const offsetRight = window.innerWidth - (wrapperRect.left + wrapperRect.width);
-
-
         bar.style.right = `${Math.max(offsetRight, 0)}px`;
     }
-
     window.addEventListener('load', alignFixedSidebar);
     window.addEventListener('resize', alignFixedSidebar);
 
-
-
-//To manage incidents filters in dashboard
+    // To manage incidents filters in dashboard
     const checkedFilters = [];
 
     if (statusBtn && filtersList) {
@@ -47,20 +66,16 @@ document.addEventListener('DOMContentLoaded', () => {
             const checkedFiltersIndex = checkedFilters.findIndex((filter) => filter === filterValue);
             checkedFilters.splice(checkedFiltersIndex, 1);
         }
-
     };
 
     checkboxes.forEach((checkbox) => {
         checkbox.addEventListener("change", () => {
-            // Obtener todos los valores de filtros activos (como strings: "1", "2", etc.)
             const activeFilters = Array.from(checkboxes)
                 .filter(cb => cb.checked)
                 .map(cb => cb.getAttribute("data-filter-status"));
 
-
             cards.forEach((card) => {
                 const cardStatus = card.dataset.filterStatus;
-
                 if (activeFilters.length === 0 || activeFilters.includes(cardStatus)) {
                     card.style.display = "block";
                 } else {
@@ -70,18 +85,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-
-
-
     // Toggle location + geolocation + Google Maps Geocoding
-
-
     const toggleButton = document.querySelector('.toggle-location');
     const addressInput = document.querySelector('#address');
     const postalCodeInput = document.querySelector('#postalCode');
     const cityInput = document.querySelector('#city');
     const latitudeInput = document.querySelector('#latitude');
-    const longitudeInput = document.querySelector('#longitude')
+    const longitudeInput = document.querySelector('#longitude');
 
     toggleButton.addEventListener('click', () => {
         toggleButton.classList.toggle('active');
@@ -94,14 +104,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     latitudeInput.value = lat;
                     longitudeInput.value = lng;
 
-
                     try {
                         const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${GOOGLE_API_KEY}`);
-
-                        if (!response.ok) {
-                            throw new Error(`HTTP error! status: ${response.status}`);
-                        }
-
+                        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
                         const data = await response.json();
                         console.log(data);
 
@@ -121,7 +126,6 @@ document.addEventListener('DOMContentLoaded', () => {
                             const cityComponent = getComponent(['locality']);
                             if (cityComponent) {
                                 const cityName = cityComponent.long_name;
-
                                 const options = cityInput.options;
                                 let cityId = '';
                                 for (let i = 0; i < options.length; i++) {
@@ -134,7 +138,6 @@ document.addEventListener('DOMContentLoaded', () => {
                             } else {
                                 cityInput.value = '';
                             }
-
                         } else {
                             addressInput.value = 'Adresse non trouvée';
                             postalCodeInput.value = '';
@@ -158,17 +161,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 cityInput.value = '';
             }
         } else {
-            // Clear fields when toggle off
             addressInput.value = '';
             postalCodeInput.value = '';
             cityInput.value = '';
         }
     });
 
-
-    //To manage multiple choices in category fields
+    // To manage multiple choices in category fields
     const element = document.getElementById('categoryIds');
-
     if (element) {
         const choices = new Choices(element, {
             removeItemButton: true,
@@ -183,28 +183,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
- //To show image name added in addIncident template
-    document.getElementById('image').addEventListener('change', function() {
+    // To show image name added in addIncident template
+    document.getElementById('image').addEventListener('change', function () {
         const fileName = this.files.length > 0 ? this.files[0].name : '';
         document.getElementById('fileName').textContent = fileName;
     });
 });
-
-//To manage image in updateIncident modal
-
-
-function removeImageFromBack() {
-  document.getElementById('imageFromBack').style.display="none";
-  document.getElementById('removeImage').style.display="none"
-}
-
-function showEditModal() {
-
-    document.getElementById('editModal').style.display = 'block';
-    // document.getElementById('PageMain-centralBoxDetail').style.visibility = 'hidden';
-}
-
-function hideEditModal() {
-    document.getElementById('editModal').style.display = 'none';
-    // document.getElementById('PageMain-centralBoxDetail').style.display = 'visible'
-}

@@ -11,6 +11,7 @@
 </head>
 
 <body>
+
 <div class="WrapperBoss">
     <header th:replace="~{fragments/header::header}"></header>
 
@@ -20,7 +21,7 @@
                 <h2>Mes Infos</h2>
                 <div class="PageMain-centralBox-infos-card InfosCard">
                     <div class="InfosCard-imgBox">
-                        <img class="InfosCard-imgBox-img" th:src="@{/images/avatar.png}" alt="Avatar">
+                        <img class="InfosCard-imgBox-img" th:src="@{/images/avatar.webp}" alt="Avatar">
                     </div>
                     <div class="InfosCard-textBox">
                         <p class="InfosCard-textBox-title" th:text="|${user.firstname} ${user.lastname}|"></p>

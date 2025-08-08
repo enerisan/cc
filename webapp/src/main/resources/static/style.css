@@ -41,6 +41,20 @@ h2 {
   }
 }
 
+.overlay-background {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+.overlay-background.visible {
+  display: block !important;
+}
+
 .PageHeader {
   background-color: #124e78;
   height: 5em;
@@ -76,19 +90,70 @@ h2 {
 .PageHeader-userBox h2 {
   color: #e8e9eb;
 }
-.PageHeader-userBox img {
-  max-height: 2em;
-  background-color: #e8e9eb;
-  border: 1px solid #FFC42B;
+.PageHeader-userBox-imgBox {
+  all: unset;
+  width: 2em;
+  height: 2em;
   border-radius: 50%;
+  background-color: #e8e9eb;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }
 @media screen and (min-width: 750px) {
-  .PageHeader-userBox img {
-    max-height: 3em;
+  .PageHeader-userBox-imgBox {
+    width: 3em;
+    height: 3em;
+  }
+}
+.PageHeader-userBox-imgBox i {
+  font-size: 1.2em;
+}
+@media screen and (min-width: 750px) {
+  .PageHeader-userBox-imgBox i {
+    font-size: 1.8em;
   }
 }
 .PageHeader-userBoxNav {
   display: none;
+  position: fixed;
+  top: 100px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  flex-direction: column;
+  background-color: white;
+  min-width: 300px;
+  max-width: 320px;
+  padding: 1em;
+  z-index: 1001;
+}
+.PageHeader-userBoxNav.visible {
+  display: flex;
+}
+.PageHeader-userBoxNav-list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: flex-start;
+  gap: 1em;
+}
+.PageHeader-userBoxNav-list-item {
+  width: 100%;
+}
+.PageHeader-userBoxNav-list-item-line {
+  width: 100%;
+}
+.PageHeader-userBoxNav-list-item-line-btn {
+  all: unset;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  cursor: pointer;
+  align-items: center;
+  gap: 0.5em;
 }
 
 .PageMain-bar {
@@ -330,16 +395,16 @@ h2 {
   font-weight: bold;
 }
 .InfosCard-imgBox {
-  max-height: 6em;
-  max-width: 6em;
+  max-height: 100%;
 }
 .InfosCard-imgBox-titre {
   font-weight: bold;
 }
 .InfosCard-imgBox img {
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
+  max-height: 100px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
 }
 .InfosCard-btn {
   cursor: pointer;
