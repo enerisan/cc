@@ -1,19 +1,19 @@
 @use 'variables' as *;
-
-
-
 .PageMain-centralBoxDetail {
   display: flex;
   justify-content: center;
   align-items: flex-start;
   background-color: $backgroundColor;
   overflow-y: auto;
-  min-height: 102vh;
+  min-height: 100vh;
+
 
   @media screen and (min-width: $tablet) {
-    width: 70%;
-  }
+    width: 100%;
+    height: 100vh;
+    padding-bottom: 0;
 
+  }
 }
 
 .DetailCard {
@@ -22,19 +22,22 @@
   width: 100%;
   border-radius: 4px;
   background-color: #ffffff;
+  flex-grow: 1;
 
   @media screen and (min-width: $tablet) {
-    padding-top: $spaceL;
 
+    width: 90%;
+    max-width: none;
   }
-
 
   &-header {
     display: flex;
     flex-direction: column;
-    height: 70px;
+    min-height: 70px;
     justify-content: center;
     padding: 0 $space;
+
+
 
 
 
@@ -45,25 +48,34 @@
       align-items: center;
       font-weight: bolder;
       font-size: $spaceM;
+
+
     }
 
     p {
       @media screen and (min-width: $tablet) {
-
-        margin-bottom:$space;
+        margin-bottom: $space;
       }
     }
-
   }
+
+
 
   &-imgBox {
     width: 100%;
 
+    @media screen and (min-width: $tablet) {
+      width: 100%;
+    }
+
     &-img {
       width: 100%;
-      @media screen and (min-width: $tablet) {
 
+      @media screen and (min-width: $tablet) {
         width: 100%;
+        height: auto;
+        max-height: 300px;
+        object-fit: cover;
       }
     }
   }
@@ -84,12 +96,14 @@
     flex-direction: column;
     padding: 0 $space $space $space;
 
+
   }
 
   &-address {
     display: flex;
     flex-direction: column;
     padding: 0 $space $space $space;
+
 
     &-first {
       display: flex;
@@ -99,10 +113,10 @@
 
     &-second {
       padding-left: $spaceS;
+
+
     }
-
   }
-
 
   .DetailCard-progressBar {
     display: flex;
@@ -113,17 +127,21 @@
     padding-left: $space;
 
 
+
     &-step {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      flex: 1; // Makes each step expand evenly
+      flex: 1;
+
 
 
       &-statusLabel {
         min-height: $spaceM;
         text-align: center;
         font-weight: bolder;
+
+
       }
 
       &-witness {
@@ -133,39 +151,41 @@
         height: 40px;
 
 
+
         svg {
-          flex-shrink: 0; // Prevents the SVG from shrinking on smaller screens
+          flex-shrink: 0;
+
+
         }
 
         &-bar {
-          flex-grow: 1; //  Makes the bar expand to fill remaining space
+          flex-grow: 1;
           height: 6px;
           background-color: #E1E1E2;
           min-width: 40px;
           max-width: 100%;
 
+
           &.active {
-            background-color: #4CAF50; // verde si está activa
+            background-color: #4CAF50;
           }
         }
       }
 
       &.active {
         svg path:first-of-type {
-          fill: #4CAF50; // ✅ Verde para el círculo principal
+          fill: #4CAF50;
         }
 
         svg path:last-of-type {
-          fill: #34C759; // ✅ Verde para el borde exterior (opcional)
+          fill: #34C759;
           opacity: 0.5;
         }
-
-
       }
     }
   }
 
-  &-Btns {
+  &-btns {
     display: flex;
     flex-direction: row;
     padding: $space;
@@ -174,28 +194,17 @@
     gap: $space;
 
     @media screen and (min-width: $tablet) {
-  margin: $space;
+      margin: $space;
+    }
 
+    &-delete {
+      &:hover {
+        background-color: red;
+        color: white;
+        outline: none;
+      }
     }
   }
-
-}
-
-.Button {
-  display: flex;
-  padding: 6px 6px 6px 8px;
-  align-items: flex-start;
-  border-radius: 4px;
-  border: 1px solid var(--Outline, rgba(0, 0, 0, 0.12));
-  background-color: inherit;
-
-
-  &:hover {
-    cursor: pointer;
-
-  }
-
-
 }
 
 .modal {
@@ -208,13 +217,13 @@
   background-color: rgba(0, 0, 0, 0.8);
   display: none;
   overflow-y: auto;
-  @media screen and (min-width:$tablet) {
+
+  @media screen and (min-width: $tablet) {
     top: -50px;
     left: 50%;
     height: calc(100vh + 50px);
     transform: translateX(-50%);
   }
-
 }
 
 .modal-content {
@@ -224,10 +233,10 @@
   border-radius: 8px;
   position: relative;
   z-index: 1001;
+
   @media screen and (min-width: $tablet) {
     width: 80%;
     padding: $spaceL;
-
   }
 
   .close {
@@ -239,13 +248,9 @@
   }
 
   .UpdateForm {
-
     &-btn {
       border: 1px solid green !important;
-
       margin-bottom: 2em;
     }
-
-
   }
 }

@@ -23,61 +23,8 @@
                             <div class="DetailCard-header-title">
                                 <h2 th:text="${incident.title}"></h2>
 
-                                <svg th:if="${incident.statusId == 1}" xmlns="http://www.w3.org/2000/svg" width="28"
-                                     height="28" viewBox="0 0 28 28" fill="none">
-                                    <path d="M7 2.33331H21V9.33331L16.3333 14L21 18.6666V25.6666H7V18.6666L11.6667 14L7 9.33331V2.33331ZM18.6667 19.25L14 14.5833L9.33333 19.25V23.3333H18.6667V19.25ZM14 13.4166L18.6667 8.74998V4.66665H9.33333V8.74998L14 13.4166ZM11.6667 6.99998H16.3333V7.87498L14 10.2083L11.6667 7.87498V6.99998Z"
-                                          fill="#FF0606"/>
-                                </svg>
-
-                                <svg th:if="${incident.statusId == 2}" xmlns="http://www.w3.org/2000/svg" width="28"
-                                     height="28" viewBox="0 0 28 28" fill="none">
-                                    <path d="M7 2.33331H21V9.33331L16.3333 14L21 18.6666V25.6666H7V18.6666L11.6667 14L7 9.33331V2.33331ZM18.6667 19.25L14 14.5833L9.33333 19.25V23.3333H18.6667V19.25ZM14 13.4166L18.6667 8.74998V4.66665H9.33333V8.74998L14 13.4166ZM11.6667 6.99998H16.3333V7.87498L14 10.2083L11.6667 7.87498V6.99998Z"
-                                          fill="#0665FF"/>
-                                </svg>
-                                <svg th:if="${incident.statusId == 3}" xmlns="http://www.w3.org/2000/svg" width="22"
-                                     height="22" viewBox="0 0 22 22" fill="none">
-                                    <path fill-rule="evenodd" clip-rule="evenodd"
-                                          d="M11 21.5C16.799 21.5 21.5 16.799 21.5 11C21.5 5.20101 16.799 0.5 11 0.5V2.40909C15.7446 2.40909 19.5909 6.25537 19.5909 11C19.5909 15.7446 15.7446 19.5909 11 19.5909C6.25537 19.5909 2.40909 15.7446 2.40909 11H0.5C0.5 16.799 5.20101 21.5 11 21.5Z"
-                                          fill="#E6A000"/>
-                                    <mask id="mask0_2875_933" style="mask-type:luminance" maskUnits="userSpaceOnUse"
-                                          x="0"
-                                          y="0" width="22" height="22">
-                                        <path fill-rule="evenodd" clip-rule="evenodd"
-                                              d="M11 21.5C16.799 21.5 21.5 16.799 21.5 11C21.5 5.20101 16.799 0.5 11 0.5V2.40909C15.7446 2.40909 19.5909 6.25537 19.5909 11C19.5909 15.7446 15.7446 19.5909 11 19.5909C6.25537 19.5909 2.40909 15.7446 2.40909 11H0.5C0.5 16.799 5.20101 21.5 11 21.5Z"
-                                              fill="white"/>
-                                    </mask>
-                                    <g mask="url(#mask0_2875_933)">
-                                    </g>
-                                </svg>
-                                <svg th:if="${incident.statusId == 4}" xmlns="http://www.w3.org/2000/svg" width="36"
-                                     height="36" viewBox="0 0 36 36" fill="none">
-                                    <g filter="url(#filter0_d_2875_2151)">
-                                        <rect x="4" width="28" height="28" rx="5" fill="white"
-                                              shape-rendering="crispEdges"/>
-                                        <path fill-rule="evenodd" clip-rule="evenodd"
-                                              d="M18 2.33331C11.56 2.33331 6.33337 7.55998 6.33337 14C6.33337 20.44 11.56 25.6666 18 25.6666C24.44 25.6666 29.6667 20.44 29.6667 14C29.6667 7.55998 24.44 2.33331 18 2.33331ZM15.6667 19.8333L9.83337 14L11.4784 12.355L15.6667 16.5316L24.5217 7.67665L26.1667 9.33331L15.6667 19.8333Z"
-                                              fill="#34C759"/>
-                                    </g>
-                                    <defs>
-                                        <filter id="filter0_d_2875_2151" x="0" y="0" width="36" height="36"
-                                                filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                                            <feFlood flood-opacity="0" result="BackgroundImageFix"/>
-                                            <feColorMatrix in="SourceAlpha" type="matrix"
-                                                           values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-                                                           result="hardAlpha"/>
-                                            <feOffset dy="4"/>
-                                            <feGaussianBlur stdDeviation="2"/>
-                                            <feComposite in2="hardAlpha" operator="out"/>
-                                            <feColorMatrix type="matrix"
-                                                           values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
-                                            <feBlend mode="normal" in2="BackgroundImageFix"
-                                                     result="effect1_dropShadow_2875_2151"/>
-                                            <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_2875_2151"
-                                                     result="shape"/>
-                                        </filter>
-                                    </defs>
-                                    </g>-
-                                </svg>
+                                <div class="ReportCard-content-statusIcon"><span
+                                        th:replace="~{fragments/svg-fragments :: status-icon}"></span></div>
 
                             </div>
                             <p th:text="${#temporals.format(incident.createdAt, 'dd/MM/yy')}"></p>
@@ -198,9 +145,9 @@
                         </div>
 
                         <div th:if="${incident.statusId == 1}" class="DetailCard-Btns">
-                            <a th:href="@{/incident/delete/{id}(id=${incident.id})}"  class="Button">SUPPRIMER</a>
+                            <button th:href="@{/incident/delete/{id}(id=${incident.id})}"  class=" DetailCard-btns-delete BtnCard">SUPPRIMER</button>
                             <button type="button"
-                                    class="Button"
+                                    class="BtnCard"
                                     onclick="showEditModal()">
                                 MODIFIER
                             </button>
