@@ -1363,4 +1363,22 @@ h2 {
   }
 }
 
+.PageMain-centralBox-map {
+  grid-column: 2/3;
+}
+.PageMain-centralBox-map-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.PageMain-centralBox-map-wrapper {
+  display: flex;
+  justify-content: space-around;
+  padding-top: 1em;
+}
+
+#incident-map {
+  height: 150px;
+}
+
 /*# sourceMappingURL=style.css.map */

@@ -24,8 +24,11 @@ public interface IncidentFeignClient {
     @GetMapping(value = "/api/incidents/{userId}", consumes = "application/json")
     List<IncidentWithCategoriesDto> getAllIncidentsWithCategoriesByUserId(@PathVariable("userId") Integer userId);
 
+    @GetMapping(value = "api/incidents")
+    List<IncidentWithCategoriesDto> getAllIncidentsWithCategories();
+
     @GetMapping("/api/incident/{id}")
-    IncidentWithCategoriesDto  getIncidentById(@PathVariable Integer id);
+    IncidentWithCategoriesDto getIncidentById(@PathVariable Integer id);
 
     @PostMapping("/api/incident")
     Incident createIncident(@RequestBody Incident incident);
@@ -49,5 +52,7 @@ public interface IncidentFeignClient {
 
 
     @DeleteMapping("/api/incidents/{id}")
-    void deleteIncidentByIncidentId(@PathVariable ("id")Integer id);
+    void deleteIncidentByIncidentId(@PathVariable("id") Integer id);
+
+
 }

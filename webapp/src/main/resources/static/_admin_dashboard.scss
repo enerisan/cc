@@ -1,0 +1,31 @@
+@use 'variables' as *;
+
+.PageMain-centralBox {
+
+
+  &-map {
+    grid-column: 2 / 3;
+
+    &-header {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+
+    }
+
+    &-wrapper {
+      display: flex;
+      justify-content: space-around;
+      padding-top: $space;
+
+
+    }
+
+  }
+
+  }
+
+#incident-map {
+  height: 150px;
+}
+

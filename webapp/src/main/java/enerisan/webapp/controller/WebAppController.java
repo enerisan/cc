@@ -63,6 +63,17 @@ public class WebAppController {
         } else if (user.getRole().getId() == 1) {
             // Admin user
             model.addAttribute("user", user);
+
+            List<IncidentWithCategoriesDto> incidentsWithCategories = incidentService.getAllIncidentsWithCategories();
+
+            // Add incidents to the model
+            model.addAttribute("incidents", incidentsWithCategories);
+
+            // Add category icons map to the model
+            Map<String, String> categoryIcons = categoryIconsService.getCategoryIcons();
+            model.addAttribute("categoryIcons", categoryIcons);
+
+            // Return user dashboard view
             return new ModelAndView("admin_dashboard");
         }
 

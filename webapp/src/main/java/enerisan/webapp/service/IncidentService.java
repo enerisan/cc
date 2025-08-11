@@ -30,6 +30,10 @@ public class IncidentService {
     }
 
 
+    public List<IncidentWithCategoriesDto> getAllIncidentsWithCategories() {
+          return incidentFeignClient.getAllIncidentsWithCategories();
+    }
+
     public List <CategoryDto> getAllCategories() {
         return incidentFeignClient.getAllCategories();
     }

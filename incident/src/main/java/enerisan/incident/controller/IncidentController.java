@@ -38,14 +38,15 @@ public class IncidentController {
     private IncidentService incidentService;
 
     @GetMapping("/incidents")
-    public List<Incident> getAllIncidents() {
-        return incidentRepository.findAll();
+    public List<IncidentWithCategoriesDto> getAllIncidents() {
+        return incidentService.findAllIncidentsWithCategories();
     }
 
-    @GetMapping("/incident/{id}")
-    public IncidentWithCategoriesDto getIncidentWithCategoriesById (@PathVariable Integer id) {
 
-      return incidentService.findIncidentWithCategoriesById(id);
+    @GetMapping("/incident/{id}")
+    public IncidentWithCategoriesDto getIncidentWithCategoriesById(@PathVariable Integer id) {
+
+        return incidentService.findIncidentWithCategoriesById(id);
     }
 
     @GetMapping("/incidents/{userId}")

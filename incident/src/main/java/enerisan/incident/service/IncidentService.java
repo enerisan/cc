@@ -52,6 +52,13 @@ public class IncidentService {
                 .collect(Collectors.toList());
     }
 
+    public List<IncidentWithCategoriesDto> findAllIncidentsWithCategories() {
+        return incidentRepository.findAll()
+                .stream()
+                .map(incident -> incidentMapper.incidentToIncidentWithCategoriesDto(incident))                          // 3
+                .collect(Collectors.toList());
+    }
+
     public ResponseEntity<?> createIncident(Incident incident) {
         try {
             City city = cityRepository.findById(incident.getCity().getId())
