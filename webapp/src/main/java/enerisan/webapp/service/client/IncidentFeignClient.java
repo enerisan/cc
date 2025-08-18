@@ -54,5 +54,10 @@ public interface IncidentFeignClient {
     @DeleteMapping("/api/incidents/{id}")
     void deleteIncidentByIncidentId(@PathVariable("id") Integer id);
 
+    @GetMapping("/api/incidents/monthly-chart")
+    List<List<Object>> getMonthlyIncidents(
+            @RequestParam("year") int year,
+            @RequestParam("cityId") int cityId
+    );
 
 }

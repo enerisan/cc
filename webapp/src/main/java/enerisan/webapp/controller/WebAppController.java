@@ -9,6 +9,7 @@ import enerisan.webapp.service.CategoryIconsService;
 import enerisan.webapp.service.IncidentService;
 import enerisan.webapp.service.SessionService;
 import enerisan.webapp.service.UserService;
+import enerisan.webapp.service.client.IncidentFeignClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,6 +38,9 @@ public class WebAppController {
 
     @Autowired
     private CategoryIconsService categoryIconsService;
+
+    @Autowired
+    IncidentFeignClient incidentFeignClient;
 
 
     @GetMapping("/")
@@ -72,6 +76,15 @@ public class WebAppController {
             // Add category icons map to the model
             Map<String, String> categoryIcons = categoryIconsService.getCategoryIcons();
             model.addAttribute("categoryIcons", categoryIcons);
+
+
+            //add prepared  data for graphic
+            int year = java.time.Year.now().getValue();
+            int cityId = 1; // configurable
+            List<List<Object>> monthlyIncidents = incidentFeignClient.getMonthlyIncidents(year, cityId);
+
+            model.addAttribute("monthlyIncidents", monthlyIncidents);
+
 
             // Return user dashboard view
             return new ModelAndView("admin_dashboard");

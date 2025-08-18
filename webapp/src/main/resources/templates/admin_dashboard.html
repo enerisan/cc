@@ -33,6 +33,18 @@
 
                 </div>
             </section>
+            <section class="PageMain-centralBox-statistics">
+                <div class="PageMain-centralBox-statistics-header">
+                    <h2>Statistiques</h2>
+                    <div class="PageMain-centralBox-statistics AllSee">
+                        <i class="fa-regular fa-eye" style="color: #124e78;"></i>
+                        <a href="">Voir tous</a>
+                    </div>
+                </div>
+                <div class="PageMain-centralBox-statistics-wrapper">
+                    <canvas class="myChart" id="myChart"></canvas>
+                </div>
+            </section>
             <section class="PageMain-centralBox-map">
                 <div class="PageMain-centralBox-map-header">
                     <h2>Signalements récents</h2>
@@ -45,20 +57,10 @@
                 <div id="incident-map" class="PageMain-centralBox-map-wrapper">
 
 
-
                 </div>
             </section>
 
-<!--            <section class="PageMain-centralBox-statistics">-->
-<!--                <div class="PageMain-centralBox-statistics-header">-->
-<!--                    <h2>Estatistiques</h2>-->
-<!--                </div>-->
-<!--                <div class="PageMain-centralBox-statistics-wrapper">-->
-<!--                    <div class="PageMain-centralBox-statistics-wrapper-graphic">-->
-<!--                        <canvas class="myChart" id="myChart"></canvas>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </section>-->
+
         </div>
     </main>
     <nav th:replace="~{fragments/bar::bar}" class="PageMain-bar"></nav>
@@ -110,113 +112,67 @@
     }
     /*]]>*/
 </script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script th:inline="javascript">
+    /* Obtener datos del backend */
+    let dataset = [[${monthlyIncidents}]]; // Thymeleaf reemplaza esto con tu lista
 
+    let labels = [];
+    let datasetFormated = {};
 
-<!--<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>-->
-<!--<script>let currentYear = new Date().getFullYear();-->
-<!--const ctx = document.getElementById('myChart').getContext('2d');-->
-<!--/* let dataset = [[${dataset}]]; */-->
+    // Formatear los datos para Chart.js
+    dataset.forEach(item => {
+        let month = item[0];       // mes
+        let category = item[1];    // categoría
+        let count = item[2];       // cantidad
+        let color = item[3];       // color
 
+        // Inicializar categoría si no existe
+        if (!datasetFormated[category]) {
+            datasetFormated[category] = {
+                label: category,
+                data: [],
+                backgroundColor: color,
+                stack: 'Stack 0'
+            };
+        }
 
-<!--let dataset = [-->
-<!--    ['Jan', 'Accessibilité', 20, '#1f77b4'],-->
-<!--    ['Jan', 'Chaussée', 40, '#ff7f0e'],-->
-<!--    ['Jan', 'Éclairage public', 30, '#2ca02c'],-->
-<!--    ['Feb', 'Accessibilité', 25, '#1f77b4'],-->
-<!--    ['Feb', 'Chaussée', 35, '#ff7f0e'],-->
-<!--    ['Feb', 'Éclairage public', 28, '#2ca02c'],-->
-<!--    ['Mar', 'Accessibilité', 22, '#1f77b4'],-->
-<!--    ['Mar', 'Chaussée', 38, '#ff7f0e'],-->
-<!--    ['Mar', 'Éclairage public', 33, '#2ca02c'],-->
-<!--    ['Apr', 'Accessibilité', 30, '#1f77b4'],-->
-<!--    ['Apr', 'Chaussée', 45, '#ff7f0e'],-->
-<!--    ['Apr', 'Éclairage public', 25, '#2ca02c'],-->
-<!--    ['May', 'Accessibilité', 28, '#1f77b4'],-->
-<!--    ['May', 'Chaussée', 50, '#ff7f0e'],-->
-<!--    ['May', 'Éclairage public', 29, '#2ca02c'],-->
-<!--    ['Jun', 'Accessibilité', 35, '#1f77b4'],-->
-<!--    ['Jun', 'Chaussée', 42, '#ff7f0e'],-->
-<!--    ['Jun', 'Éclairage public', 31, '#2ca02c'],-->
-<!--    ['Jul', 'Accessibilité', 40, '#1f77b4'],-->
-<!--    ['Jul', 'Chaussée', 55, '#ff7f0e'],-->
-<!--    ['Jul', 'Éclairage public', 37, '#2ca02c'],-->
-<!--    ['Aug', 'Accessibilité', 38, '#1f77b4'],-->
-<!--    ['Aug', 'Chaussée', 47, '#ff7f0e'],-->
-<!--    ['Aug', 'Éclairage public', 32, '#2ca02c'],-->
-<!--    ['Sep', 'Accessibilité', 29, '#1f77b4'],-->
-<!--    ['Sep', 'Chaussée', 41, '#ff7f0e'],-->
-<!--    ['Sep', 'Éclairage public', 34, '#2ca02c'],-->
-<!--    ['Oct', 'Accessibilité', 33, '#1f77b4'],-->
-<!--    ['Oct', 'Chaussée', 48, '#ff7f0e'],-->
-<!--    ['Oct', 'Éclairage public', 36, '#2ca02c'],-->
-<!--    ['Nov', 'Accessibilité', 27, '#1f77b4'],-->
-<!--    ['Nov', 'Chaussée', 39, '#ff7f0e'],-->
-<!--    ['Nov', 'Éclairage public', 31, '#2ca02c'],-->
-<!--    ['Dec', 'Accessibilité', 45, '#1f77b4'],-->
-<!--    ['Dec', 'Chaussée', 52, '#ff7f0e'],-->
-<!--    ['Dec', 'Éclairage public', 40, '#2ca02c']-->
-<!--];-->
+        // Añadir count en el índice correspondiente
+        datasetFormated[category].data.push(count);
 
-<!--let labels = [];-->
-<!--let previousLabel = '';-->
-<!--let datasetFormated = {};-->
-<!--dataset.forEach(item => {-->
-<!--    let friend = item[1];-->
-<!--    if (typeof datasetFormated[friend] === "undefined") {-->
+        // Guardar meses sin repetir
+        if (!labels.includes(month)) {
+            labels.push(month);
+        }
+    });
 
-<!--        datasetFormated[friend] = {-->
-<!--            label: friend,-->
-<!--            data: [item[2]],-->
-<!--            backgroundColor: item[3],-->
-<!--            stack: 'Stack 0'-->
-<!--        };-->
+    // Convertir objeto a array
+    let dataChart = Object.values(datasetFormated);
 
-<!--    } else {-->
-<!--        datasetFormated[friend]['data'].push(item[2]);-->
-<!--    }-->
-
-<!--    let lbl = item[0];-->
-<!--    if (lbl != previousLabel) {-->
-<!--        labels.push(lbl);-->
-<!--    }-->
-<!--    previousLabel = lbl;-->
-<!--});-->
-<!--console.log(dataset);-->
-<!--let dataChart = [];-->
-<!--for (var key in datasetFormated) {-->
-<!--    if (datasetFormated.hasOwnProperty(key)) {-->
-<!--        dataChart.push(datasetFormated[key]);-->
-<!--    }-->
-<!--}-->
-<!--console.log(dataChart);-->
-<!--new Chart(ctx, {-->
-<!--    type: 'bar',-->
-<!--    data: {-->
-<!--        labels: labels,-->
-<!--        datasets: dataChart-->
-<!--    },-->
-<!--    options: {-->
-<!--        plugins: {-->
-<!--            title: {-->
-<!--                display: true,-->
-<!--                text: 'Statistiques signalements ' + currentYear-->
-<!--            }-->
-<!--        },-->
-<!--        responsive: true,-->
-<!--        interaction: {-->
-<!--            intersect: false,-->
-<!--        },-->
-<!--        scales: {-->
-<!--            x: {-->
-<!--                stacked: true,-->
-<!--            },-->
-<!--            y: {-->
-<!--                stacked: true-->
-<!--            }-->
-<!--        }-->
-<!--    }-->
-<!--});-->
-<!--</script>-->
+    // Crear gráfico
+    const ctx = document.getElementById('myChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: dataChart
+        },
+        options: {
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Statistiques signalements ' + new Date().getFullYear()
+                }
+            },
+            responsive: true,
+            interaction: { intersect: false },
+            scales: {
+                x: { stacked: true },
+                y: { stacked: true }
+            }
+        }
+    });
+</script>
 </body>
 
 
