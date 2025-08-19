@@ -1080,6 +1080,44 @@ h2 {
   border: 2px solid red;
 }
 
+.choices {
+  background-color: transparent;
+  width: 100%;
+  border: 1px solid #124e78;
+  border-radius: 4px;
+  padding: 8px;
+  color: #124e78;
+  transition: border-color 0.3s;
+  height: 56px;
+}
+
+.choices.is-focused {
+  border-color: #FFC42B;
+}
+
+.choices .choices__inner {
+  background-color: transparent !important;
+  border: none;
+}
+
+.choices .choices__placeholder {
+  background-color: transparent !important;
+  color: #124e78;
+}
+
+.choices .choices__list--single {
+  background-color: transparent !important;
+}
+
+.choices .choices__item--placeholder {
+  background-color: transparent !important;
+  color: #124e78;
+}
+
+.choices .choices__input {
+  background-color: transparent !important;
+}
+
 .PageMain-centralBoxDetail {
   display: flex;
   justify-content: center;

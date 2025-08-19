@@ -74,8 +74,6 @@
              transition: border-color 0.3s;
              height: 56px;
 
-
-
          }
 
          .AddImage {
@@ -226,4 +224,46 @@
      .choices.is-invalid {
          border: 2px solid red;
      }
+
+
+ }
+
+ .choices {
+     background-color: transparent;
+     width: 100%;
+     border: 1px solid $firstColor;
+     border-radius: 4px;
+     padding: 8px;
+     color: $firstColor;
+     transition: border-color 0.3s;
+     height: 56px;
+ }
+
+
+ .choices.is-focused {
+     border-color: $secondColor;
+ }
+
+
+ .choices .choices__inner {
+     background-color: transparent !important;
+     border:none;
+ }
+
+
+ .choices .choices__placeholder {
+     background-color: transparent !important;
+     color: $firstColor;
+ }
+
+ .choices .choices__list--single {
+     background-color: transparent !important;
+ }
+
+ .choices .choices__item--placeholder {
+     background-color: transparent !important;
+     color: $firstColor;
+ }
+ .choices .choices__input {
+     background-color: transparent !important;
  }
