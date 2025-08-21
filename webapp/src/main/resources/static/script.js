@@ -87,6 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Toggle location + geolocation + Google Maps Geocoding
     const toggleButton = document.querySelector('.toggle-location');
+    const locationText = document.querySelector('.location-text');
     const addressInput = document.querySelector('#address');
     const postalCodeInput = document.querySelector('#postalCode');
     const cityInput = document.querySelector('#city');
@@ -95,6 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     toggleButton.addEventListener('click', () => {
         toggleButton.classList.toggle('active');
+        locationText.style.fontWeight = 'bolder';
 
         if (toggleButton.classList.contains('active')) {
             if (navigator.geolocation) {

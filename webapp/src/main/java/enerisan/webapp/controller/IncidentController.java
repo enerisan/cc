@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.HashMap;
 import java.util.List;
@@ -60,15 +61,24 @@ public class IncidentController {
 
     //To create an incident :
     @PostMapping("/addIncident")
-    public String addIncident(@ModelAttribute IncidentForm dto) {
+    public String addIncident(@ModelAttribute IncidentForm dto, RedirectAttributes redirectAttributes) {
 
-        User user = sessionService.sessionUser();
-        dto.setUserId(user.getId());
-        dto.setStatusId(1);
+        try {
+            User user = sessionService.sessionUser();
+            dto.setUserId(user.getId());
+            dto.setStatusId(1);
 
-        incidentService.createIncidentWithCategories(dto);
+            incidentService.createIncidentWithCategories(dto);
 
-        return "redirect:/";
+            // Message success to show to user
+            redirectAttributes.addFlashAttribute("successMessage", "Incident ajouté avec succès !");
+        } catch (Exception e) {
+            e.printStackTrace(); // opcional, para debug
+            // Message erreur to show to user
+            redirectAttributes.addFlashAttribute("errorMessage", "Erreur lors de l'ajout de l'incident.");
+        }
+
+        return "redirect:/addIncident";
     }
 
     //To show incident detail

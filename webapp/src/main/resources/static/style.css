@@ -563,9 +563,9 @@ h2 {
   }
 }
 .FormContainer .Form h3 {
-  color: #B3B3B3;
+  color: #124e78;
   font-size: 1em;
-  font-weight: lighter;
+  font-weight: bolder;
   margin-bottom: 0.8em;
 }
 @media screen and (min-width: 750px) {
@@ -927,26 +927,65 @@ h2 {
 .FormContainer {
   overflow-y: auto;
 }
+@media screen and (min-width: 750px) {
+  .FormContainer {
+    padding: 1em 0 1em 0;
+  }
+}
 .FormContainer-addincident.Form {
   background-color: transparent;
+  padding-bottom: 50px;
   /*Disabled Geolocation*/
   /*Geolocation activated*/
 }
 @media screen and (min-width: 750px) {
   .FormContainer-addincident.Form {
-    width: 600px;
+    width: 90%;
     height: 100%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
   }
 }
-.FormContainer-addincident.Form .location {
+.FormContainer-addincident.Form .location-address {
+  width: 100%;
+}
+@media screen and (min-width: 750px) {
+  .FormContainer-addincident.Form .location-address {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+  }
+}
+.FormContainer-addincident.Form .location-address .location {
   display: flex;
   flex-direction: row;
   margin-bottom: 0.6em;
   align-items: center;
 }
-.FormContainer-addincident.Form .location-text {
+.FormContainer-addincident.Form .location-address .location-text {
   font-size: 0.8em;
   padding-bottom: 0.5em;
+  color: #124e78;
+}
+@media screen and (min-width: 750px) {
+  .FormContainer-addincident.Form .location-address .location-text {
+    font-size: 1.2em;
+  }
+}
+@media screen and (min-width: 750px) {
+  .FormContainer-addincident.Form .location-address div {
+    width: 50%;
+  }
+}
+@media screen and (min-width: 750px) {
+  .FormContainer-addincident.Form .city-code {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+    width: 100%;
+  }
 }
 @media screen and (min-width: 750px) {
   .FormContainer-addincident.Form .input-group {
@@ -1087,6 +1126,7 @@ h2 {
   border-radius: 4px;
   padding: 8px;
   color: #124e78;
+  font-size: 1.5em;
   transition: border-color 0.3s;
   height: 56px;
 }
@@ -1098,26 +1138,45 @@ h2 {
 .choices .choices__inner {
   background-color: transparent !important;
   border: none;
+  width: 100% !important;
 }
 
 .choices .choices__placeholder {
   background-color: transparent !important;
   color: #124e78;
+  width: 100% !important;
 }
 
 .choices .choices__list--single {
   background-color: transparent !important;
+  width: 100% !important;
 }
 
 .choices .choices__item--placeholder {
   background-color: transparent !important;
-  color: #124e78;
+  color: black;
+  width: 100% !important;
 }
 
 .choices .choices__input {
   background-color: transparent !important;
+  width: 100% !important;
 }
 
+@media screen and (min-width: 750px) {
+  /* El input donde se escribe */
+  .choices__input > input {
+    font-size: 1.5em !important;
+  }
+  /* Placeholder */
+  .choices__item--placeholder {
+    font-size: 1.5em !important;
+  }
+  /* Opciones desplegadas */
+  .choices__list .choices__item {
+    font-size: 1.2em !important;
+  }
+}
 .PageMain-centralBoxDetail {
   display: flex;
   justify-content: center;

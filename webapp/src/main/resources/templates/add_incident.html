@@ -8,7 +8,8 @@
     <link rel="icon" href="public/images/logo.ico"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css"/>
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 
 </head>
 
@@ -32,7 +33,7 @@
                                required/>
                         <label for="title">*Titre signalement</label>
                     </div>
-
+                    <div class="location-address">
                     <div class="location">
                         <button type="button" class="toggle-location" aria-label="Activer/Desactiver geolocalisation">
                             <div th:replace="~{fragments/svg-fragments :: toggle-icon}"></div>
@@ -43,6 +44,7 @@
                     <div class="input-group">
                         <input th:field="*{address}" id="address" name="address" placeholder="Adresse" required/>
                         <label for="address">*Addresse</label>
+                    </div>
                     </div>
                     <div class="city-code">
                         <div class="input-group">
@@ -107,6 +109,40 @@
     const GOOGLE_API_KEY = /*[[${googleApiKey}]]*/ '';
 </script>
 <script th:src="@{/script.js}" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+<script th:if="${successMessage != null}" th:inline="javascript">
+    Toastify({
+        text: /*[[${successMessage}]]*/,
+        duration: 4000,
+        backgroundColor: "green",
+        close: true,
+        gravity: "top",
+        position: "right",
+        style: {
+            borderRadius: "10px",
+            fontSize: "14px",
+            padding: "10px 20px"
+        }
+    }).showToast();
+</script>
+
+<script th:if="${errorMessage != null}" th:inline="javascript">
+    Toastify({
+        text: /*[[${errorMessage}]]*/,
+        duration: 4000,
+        backgroundColor: "red",
+        close: true,
+        gravity: "top",
+        position: "right",
+        style: {
+            borderRadius: "10px",
+            fontSize: "14px",
+            padding: "10px 20px"
+        }
+    }).showToast();
+</script>
+
+
 
 </body>
 </html>
