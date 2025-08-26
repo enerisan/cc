@@ -141,7 +141,7 @@ public class IncidentController {
     }
 
 
-    @GetMapping("/incident/delete/{id}")
+    @PostMapping("/incident/delete/{id}")
     public String deleteIncident(@PathVariable Integer id) {
         incidentService.deletePatient(id);
         return "redirect:/";
