@@ -170,7 +170,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // To manage multiple choices in category fields
-    const element = document.getElementById('categoryIds');
+    const element = document.querySelector('.categoryIds');
     if (element) {
         const choices = new Choices(element, {
             removeItemButton: true,

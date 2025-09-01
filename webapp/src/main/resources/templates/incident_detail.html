@@ -16,149 +16,150 @@
     <header th:replace="~{fragments/header::header}"></header>
     <main class="PageMain">
         <div class="PageMain-centralBox CtBoxForm">
-                <div th:object="${incident}" id="PageMain-centralBoxDetail" class="PageMain-centralBoxDetail">
+            <div th:object="${incident}" id="PageMain-centralBoxDetail" class="PageMain-centralBoxDetail">
 
-                    <div class="DetailCard">
-                        <div class="DetailCard-header">
-                            <div class="DetailCard-header-title">
-                                <h2 th:text="${incident.title}"></h2>
+                <div class="DetailCard">
+                    <div class="DetailCard-header">
+                        <div class="DetailCard-header-title">
+                            <h2 th:text="${incident.title}"></h2>
 
-                                <div class="ReportCard-content-statusIcon"><span
-                                        th:replace="~{fragments/svg-fragments :: status-icon}"></span></div>
+                            <div class="ReportCard-content-statusIcon"><span
+                                    th:replace="~{fragments/svg-fragments :: status-icon}"></span></div>
 
+                        </div>
+                        <p th:text="${#temporals.format(incident.createdAt, 'dd/MM/yy')}"></p>
+                    </div>
+
+                    <div class="DetailCard-imgBox">
+                        <img class="DetailCard-imgBox-img" th:src="${incident.imageUrl}" alt="incident">
+                    </div>
+
+                    <div th:each="category : ${incident.categories}" class="DetailCard-catBox">
+                        <i th:class="${categoryIcons[category.name]} + ' ReportCard-textBox-items-icon'"></i>
+                        <p th:text="${category.name}"></p>
+                    </div>
+
+                    <div class="DetailCard-des">
+                        <h3>Description </h3>
+                        <p th:text="${incident.description}"></p>
+                    </div>
+
+                    <div class="DetailCard-address">
+
+                        <div class="DetailCard-address-first">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"
+                                 fill="none">
+                                <path d="M16.0001 18.6667C18.9414 18.6667 21.3334 16.2747 21.3334 13.3333C21.3334 10.392 18.9414 8 16.0001 8C13.0587 8 10.6667 10.392 10.6667 13.3333C10.6667 16.2747 13.0587 18.6667 16.0001 18.6667ZM16.0001 10.6667C17.4707 10.6667 18.6667 11.8627 18.6667 13.3333C18.6667 14.804 17.4707 16 16.0001 16C14.5294 16 13.3334 14.804 13.3334 13.3333C13.3334 11.8627 14.5294 10.6667 16.0001 10.6667Z"
+                                      fill="#124E78"/>
+                                <path d="M15.2267 29.0852C15.4525 29.2459 15.7228 29.3323 16 29.3323C16.2772 29.3323 16.5476 29.2459 16.7734 29.0852C17.1787 28.7985 26.7054 21.9198 26.6667 13.3332C26.6667 7.45184 21.8814 2.6665 16 2.6665C10.1187 2.6665 5.33337 7.45184 5.33337 13.3265C5.2947 21.9198 14.8214 28.7985 15.2267 29.0852ZM16 5.33317C20.412 5.33317 24 8.92117 24 13.3398C24.028 19.2572 18.1494 24.5705 16 26.3132C13.852 24.5692 7.97204 19.2545 8.00004 13.3332C8.00004 8.92117 11.588 5.33317 16 5.33317Z"
+                                      fill="#124E78"/>
+                            </svg>
+                            <p th:text="${incident.address}"></p>
+                        </div>
+                        <div class="DetailCard-address-second">
+                            <p th:text="| ${incident.postalCode} ${incident.cityName} |"></p>
+                        </div>
+                    </div>
+
+                    <div class="DetailCard-progressBar">
+
+                        <div class="DetailCard-progressBar-step circle1"
+                             th:classappend="${incident.statusId >= 1} ? ' active' : ''">
+                            <p th:text="${incident.statusId >= 1} ? 'signalé' : ''"
+                               class="DetailCard-progressBar-step-statusLabel"></p>
+                            <div class="DetailCard-progressBar-step-witness">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 40 40"
+                                     fill="none">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                          d="M20 10C14.4772 10 10 14.4772 10 20C10 25.5228 14.4772 30 20 30C25.5228 30 30 25.5228 30 20C30 14.4772 25.5228 10 20 10Z"
+                                          fill="#8E8E93"/>
+                                    <path opacity="0.24" fill-rule="evenodd" clip-rule="evenodd"
+                                          d="M20 0C8.95431 0 0 8.95431 0 20C0 31.0457 8.95431 40 20 40C31.0457 40 40 31.0457 40 20C40 8.95431 31.0457 0 20 0Z"
+                                          fill="#999999"/>
+                                </svg>
+                                <div class="DetailCard-progressBar-step-witness-bar"
+                                     th:classappend="${incident.statusId >= 2} ? ' active' : ''"></div>
                             </div>
                             <p th:text="${#temporals.format(incident.createdAt, 'dd/MM/yy')}"></p>
                         </div>
 
-                        <div class="DetailCard-imgBox">
-                            <img class="DetailCard-imgBox-img" th:src="${incident.imageUrl}" alt="incident">
-                        </div>
-
-                        <div th:each="category : ${incident.categories}" class="DetailCard-catBox">
-                            <i th:class="${categoryIcons[category.name]} + ' ReportCard-textBox-items-icon'"></i>
-                            <p th:text="${category.name}"></p>
-                        </div>
-
-                        <div class="DetailCard-des">
-                            <h3>Description </h3>
-                            <p th:text="${incident.description}"></p>
-                        </div>
-
-                        <div class="DetailCard-address">
-
-                            <div class="DetailCard-address-first">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"
+                        <div class="DetailCard-progressBar-step circle2"
+                             th:classappend="${incident.statusId >= 2} ? ' active' : ''">
+                            <p th:text="${incident.statusId >= 2} ? 'validé' : ''"
+                               class="DetailCard-progressBar-step-statusLabel"></p>
+                            <div class="DetailCard-progressBar-step-witness">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 40 40"
                                      fill="none">
-                                    <path d="M16.0001 18.6667C18.9414 18.6667 21.3334 16.2747 21.3334 13.3333C21.3334 10.392 18.9414 8 16.0001 8C13.0587 8 10.6667 10.392 10.6667 13.3333C10.6667 16.2747 13.0587 18.6667 16.0001 18.6667ZM16.0001 10.6667C17.4707 10.6667 18.6667 11.8627 18.6667 13.3333C18.6667 14.804 17.4707 16 16.0001 16C14.5294 16 13.3334 14.804 13.3334 13.3333C13.3334 11.8627 14.5294 10.6667 16.0001 10.6667Z"
-                                          fill="#124E78"/>
-                                    <path d="M15.2267 29.0852C15.4525 29.2459 15.7228 29.3323 16 29.3323C16.2772 29.3323 16.5476 29.2459 16.7734 29.0852C17.1787 28.7985 26.7054 21.9198 26.6667 13.3332C26.6667 7.45184 21.8814 2.6665 16 2.6665C10.1187 2.6665 5.33337 7.45184 5.33337 13.3265C5.2947 21.9198 14.8214 28.7985 15.2267 29.0852ZM16 5.33317C20.412 5.33317 24 8.92117 24 13.3398C24.028 19.2572 18.1494 24.5705 16 26.3132C13.852 24.5692 7.97204 19.2545 8.00004 13.3332C8.00004 8.92117 11.588 5.33317 16 5.33317Z"
-                                          fill="#124E78"/>
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                          d="M20 10C14.4772 10 10 14.4772 10 20C10 25.5228 14.4772 30 20 30C25.5228 30 30 25.5228 30 20C30 14.4772 25.5228 10 20 10Z"
+                                          fill="#8E8E93"/>
+                                    <path opacity="0.24" fill-rule="evenodd" clip-rule="evenodd"
+                                          d="M20 0C8.95431 0 0 8.95431 0 20C0 31.0457 8.95431 40 20 40C31.0457 40 40 31.0457 40 20C40 8.95431 31.0457 0 20 0Z"
+                                          fill="#999999"/>
                                 </svg>
-                                <p th:text="${incident.address}"></p>
+                                <div class="DetailCard-progressBar-step-witness-bar"
+                                     th:classappend="${incident.statusId >= 3} ? ' active' : ''"></div>
                             </div>
-                            <div class="DetailCard-address-second">
-                                <p th:text="| ${incident.postalCode} ${incident.cityName} |"></p>
-                            </div>
+                            <p th:text="${#temporals.format(incident.createdAt, 'dd/MM/yy')}"></p>
                         </div>
 
-                        <div class="DetailCard-progressBar">
 
-                            <div class="DetailCard-progressBar-step circle1"
-                                 th:classappend="${incident.statusId >= 1} ? ' active' : ''">
-                                <p th:text="${incident.statusId >= 1} ? 'signalé' : ''"
-                                   class="DetailCard-progressBar-step-statusLabel"></p>
-                                <div class="DetailCard-progressBar-step-witness">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 40 40"
-                                         fill="none">
-                                        <path fill-rule="evenodd" clip-rule="evenodd"
-                                              d="M20 10C14.4772 10 10 14.4772 10 20C10 25.5228 14.4772 30 20 30C25.5228 30 30 25.5228 30 20C30 14.4772 25.5228 10 20 10Z"
-                                              fill="#8E8E93"/>
-                                        <path opacity="0.24" fill-rule="evenodd" clip-rule="evenodd"
-                                              d="M20 0C8.95431 0 0 8.95431 0 20C0 31.0457 8.95431 40 20 40C31.0457 40 40 31.0457 40 20C40 8.95431 31.0457 0 20 0Z"
-                                              fill="#999999"/>
-                                    </svg>
-                                    <div class="DetailCard-progressBar-step-witness-bar"
-                                         th:classappend="${incident.statusId >= 2} ? ' active' : ''"></div>
-                                </div>
-                                <p th:text="${#temporals.format(incident.createdAt, 'dd/MM/yy')}"></p>
+                        <div class="DetailCard-progressBar-step circle3"
+                             th:classappend="${incident.statusId >= 3} ? ' active' : ''">
+                            <p th:text="${incident.statusId >= 3} ? 'en cours' : ''"
+                               class="DetailCard-progressBar-step-statusLabel"></p>
+                            <div class="DetailCard-progressBar-step-witness">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 40 40"
+                                     fill="none">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                          d="M20 10C14.4772 10 10 14.4772 10 20C10 25.5228 14.4772 30 20 30C25.5228 30 30 25.5228 30 20C30 14.4772 25.5228 10 20 10Z"
+                                          fill="#8E8E93"/>
+                                    <path opacity="0.24" fill-rule="evenodd" clip-rule="evenodd"
+                                          d="M20 0C8.95431 0 0 8.95431 0 20C0 31.0457 8.95431 40 20 40C31.0457 40 40 31.0457 40 20C40 8.95431 31.0457 0 20 0Z"
+                                          fill="#999999"/>
+                                </svg>
+                                <div class="DetailCard-progressBar-step-witness-bar"
+                                     th:classappend="${incident.statusId >= 4} ? ' active' : ''"></div>
                             </div>
-
-                            <div class="DetailCard-progressBar-step circle2"
-                                 th:classappend="${incident.statusId >= 2} ? ' active' : ''">
-                                <p th:text="${incident.statusId >= 2} ? 'validé' : ''"
-                                   class="DetailCard-progressBar-step-statusLabel"></p>
-                                <div class="DetailCard-progressBar-step-witness">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 40 40"
-                                         fill="none">
-                                        <path fill-rule="evenodd" clip-rule="evenodd"
-                                              d="M20 10C14.4772 10 10 14.4772 10 20C10 25.5228 14.4772 30 20 30C25.5228 30 30 25.5228 30 20C30 14.4772 25.5228 10 20 10Z"
-                                              fill="#8E8E93"/>
-                                        <path opacity="0.24" fill-rule="evenodd" clip-rule="evenodd"
-                                              d="M20 0C8.95431 0 0 8.95431 0 20C0 31.0457 8.95431 40 20 40C31.0457 40 40 31.0457 40 20C40 8.95431 31.0457 0 20 0Z"
-                                              fill="#999999"/>
-                                    </svg>
-                                    <div class="DetailCard-progressBar-step-witness-bar"
-                                         th:classappend="${incident.statusId >= 3} ? ' active' : ''"></div>
-                                </div>
-                                <p th:text="${#temporals.format(incident.createdAt, 'dd/MM/yy')}"></p>
-                            </div>
-
-
-                            <div class="DetailCard-progressBar-step circle3"
-                                 th:classappend="${incident.statusId >= 3} ? ' active' : ''">
-                                <p th:text="${incident.statusId >= 3} ? 'en cours' : ''"
-                                   class="DetailCard-progressBar-step-statusLabel"></p>
-                                <div class="DetailCard-progressBar-step-witness">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 40 40"
-                                         fill="none">
-                                        <path fill-rule="evenodd" clip-rule="evenodd"
-                                              d="M20 10C14.4772 10 10 14.4772 10 20C10 25.5228 14.4772 30 20 30C25.5228 30 30 25.5228 30 20C30 14.4772 25.5228 10 20 10Z"
-                                              fill="#8E8E93"/>
-                                        <path opacity="0.24" fill-rule="evenodd" clip-rule="evenodd"
-                                              d="M20 0C8.95431 0 0 8.95431 0 20C0 31.0457 8.95431 40 20 40C31.0457 40 40 31.0457 40 20C40 8.95431 31.0457 0 20 0Z"
-                                              fill="#999999"/>
-                                    </svg>
-                                    <div class="DetailCard-progressBar-step-witness-bar"
-                                         th:classappend="${incident.statusId >= 4} ? ' active' : ''"></div>
-                                </div>
-                                <p th:text="${#temporals.format(incident.createdAt, 'dd/MM/yy')}"></p>
-                            </div>
-
-
-                            <div class="DetailCard-progressBar-step circle4"
-                                 th:classappend="${incident.statusId >= 4} ? ' active' : ''">
-                                <p th:text="${incident.statusId >= 4} ? 'résolu' : ''"
-                                   class="DetailCard-progressBar-step-statusLabel"></p>
-                                <div class="DetailCard-progressBar-step-witness">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 40 40"
-                                         fill="none">
-                                        <path fill-rule="evenodd" clip-rule="evenodd"
-                                              d="M20 10C14.4772 10 10 14.4772 10 20C10 25.5228 14.4772 30 20 30C25.5228 30 30 25.5228 30 20C30 14.4772 25.5228 10 20 10Z"
-                                              fill="#8E8E93"/>
-                                        <path opacity="0.24" fill-rule="evenodd" clip-rule="evenodd"
-                                              d="M20 0C8.95431 0 0 8.95431 0 20C0 31.0457 8.95431 40 20 40C31.0457 40 40 31.0457 40 20C40 8.95431 31.0457 0 20 0Z"
-                                              fill="#999999"/>
-                                    </svg>
-                                </div>
-                                <p th:text="${#temporals.format(incident.createdAt, 'dd/MM/yy')}"></p>
-                            </div>
+                            <p th:text="${#temporals.format(incident.createdAt, 'dd/MM/yy')}"></p>
                         </div>
 
-                        <div th:if="${incident.statusId == 1}" class="DetailCard-Btns">
-                            <form th:action="@{/incident/delete/{id}(id=${incident.id})}" method="post" style="display:inline">
-                                <button type="submit" class="DetailCard-btns-delete BtnCard">SUPPRIMER</button>
-                            </form>
-                            <button type="button"
-                                    class="BtnCard"
-                                    onclick="showEditModal()">
-                                MODIFIER
-                            </button>
-                        </div>
 
+                        <div class="DetailCard-progressBar-step circle4"
+                             th:classappend="${incident.statusId >= 4} ? ' active' : ''">
+                            <p th:text="${incident.statusId >= 4} ? 'résolu' : ''"
+                               class="DetailCard-progressBar-step-statusLabel"></p>
+                            <div class="DetailCard-progressBar-step-witness">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 40 40"
+                                     fill="none">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                          d="M20 10C14.4772 10 10 14.4772 10 20C10 25.5228 14.4772 30 20 30C25.5228 30 30 25.5228 30 20C30 14.4772 25.5228 10 20 10Z"
+                                          fill="#8E8E93"/>
+                                    <path opacity="0.24" fill-rule="evenodd" clip-rule="evenodd"
+                                          d="M20 0C8.95431 0 0 8.95431 0 20C0 31.0457 8.95431 40 20 40C31.0457 40 40 31.0457 40 20C40 8.95431 31.0457 0 20 0Z"
+                                          fill="#999999"/>
+                                </svg>
+                            </div>
+                            <p th:text="${#temporals.format(incident.createdAt, 'dd/MM/yy')}"></p>
+                        </div>
                     </div>
 
+                    <div th:if="${incident.statusId == 1}" class="DetailCard-Btns">
+                        <form th:action="@{/incident/delete/{id}(id=${incident.id})}" method="post"
+                              style="display:inline">
+                            <button type="submit" class="DetailCard-btns-delete BtnCard">SUPPRIMER</button>
+                        </form>
+                        <button type="button"
+                                class="BtnCard"
+                                onclick="showEditModal()">
+                            MODIFIER
+                        </button>
+                    </div>
 
                 </div>
+
+
+            </div>
 
             </section>
         </div>
@@ -184,17 +185,18 @@
                 <input th:field="*{incidentForm.title}" required/>
                 <label th:for="incidentForm.title">*Titre signalement</label>
             </div>
+            <div class="location-address">
+                <div class="location">
+                    <button type="button" class="toggle-location" aria-label="Activer/Desactiver geolocalisation">
+                        <div th:replace="~{fragments/svg-fragments :: toggle-icon}"></div>
+                    </button>
+                    <p class="location-text">Ma localisation actuelle est celle de l'incident</p>
+                </div>
 
-            <div class="location">
-                <button type="button" class="toggle-location" aria-label="Activer/Desactiver geolocalisation">
-                    <div th:replace="~{fragments/svg-fragments :: toggle-icon}"></div>
-                </button>
-                <p class="location-text">Ma localisation actuelle est celle de l'incident</p>
-            </div>
-
-            <div class="input-group">
-                <input id="address" th:field="*{incidentForm.address}" required/>
-                <label th:for="incidentForm.address">*Addresse</label>
+                <div class="input-group">
+                    <input id="address" th:field="*{incidentForm.address}" required/>
+                    <label th:for="incidentForm.address">*Addresse</label>
+                </div>
             </div>
 
             <div class="city-code">
@@ -202,7 +204,9 @@
                     <select id="city" th:field="*{incidentForm.cityId}" required>
                         <option th:each="city : ${cities}"
                                 th:value="${city.id}"
-                                th:text="${city.name}"></option>
+                                th:text="${city.name}">
+
+                        </option>
                     </select>
                     <label th:for="incidentForm.cityId">*Ville</label>
                 </div>
@@ -212,13 +216,13 @@
                 </div>
             </div>
 
-            <select class="input-group input" th:field="*{incidentForm.categoryIds}" multiple required>
+            <select class="input-group input categoryIds" th:field="*{incidentForm.categoryIds}" multiple required>
                 <option th:each="cat : ${categories}" th:value="${cat.id}" th:text="${cat.name}"></option>
             </select>
 
             <div class="AddImage">
-                <div class="ExistingImageBox" id = "imageFromBack"  th:if="${incident.imageUrl}">
-                    <img  th:src="${incident.imageUrl}" alt="Image existante" style="max-width: 100px;"/>
+                <div class="ExistingImageBox" id="imageFromBack" th:if="${incident.imageUrl}">
+                    <img th:src="${incident.imageUrl}" alt="Image existante" style="max-width: 100px;"/>
                     <label>
                         <input onclick="removeImageFromBack()" id="removeImage" type="checkbox" name="removeImage"/>
                         <p>Supprimer cette image</p>

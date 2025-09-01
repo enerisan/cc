@@ -564,13 +564,13 @@ h2 {
 }
 .FormContainer .Form h3 {
   color: #124e78;
-  font-size: 1em;
+  font-size: 1.5em !important;
   font-weight: bolder;
   margin-bottom: 0.8em;
 }
 @media screen and (min-width: 750px) {
   .FormContainer .Form h3 {
-    font-size: 36px;
+    font-size: 2em !important;
     margin-bottom: 0.5em;
   }
 }

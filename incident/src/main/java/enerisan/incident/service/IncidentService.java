@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -91,7 +92,10 @@ public class IncidentService {
 
         return incidentRepository.findById(id)
                 .map(existingIncident -> {
-
+                    // Only allow update if status is exactly "signalé"
+                    if (!Objects.equals(existingIncident.getStatus().getType(), "signalé")) {
+                        throw new IllegalStateException("Cannot modify incident with status: " + existingIncident.getStatus().getType());
+                    }
                     existingIncident.setCity(incident.getCity());
                     existingIncident.setTitle(incident.getTitle());
                     existingIncident.setAddress(incident.getAddress());
