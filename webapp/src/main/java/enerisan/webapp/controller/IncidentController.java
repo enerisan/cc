@@ -70,11 +70,11 @@ public class IncidentController {
 
             incidentService.createIncidentWithCategories(dto);
 
-            // Message success to show to user
+            // Message success to show to user (toastify)
             redirectAttributes.addFlashAttribute("successMessage", "Incident ajouté avec succès !");
         } catch (Exception e) {
-            e.printStackTrace(); // opcional, para debug
-            // Message erreur to show to user
+            e.printStackTrace();
+            // Message erreur to show to user (toastify)
             redirectAttributes.addFlashAttribute("errorMessage", "Erreur lors de l'ajout de l'incident.");
         }
 

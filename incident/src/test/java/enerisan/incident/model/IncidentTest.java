@@ -108,7 +108,7 @@ class IncidentTest {
     // Incident can only be modified if status = "signalé"
 
     @Test
-    void shouldThrowExceptionIfStatusIsNotSignale() {
+    void updateIncident_shouldFail_whenStatusIsNotSignale() {
         // Arrange
         Incident existingIncident = new Incident();
         existingIncident.setId(1);
@@ -117,7 +117,7 @@ class IncidentTest {
         existingIncident.setStatus(status);
 
         Incident updateRequest = new Incident();
-        updateRequest.setTitle("Attempted update");
+        updateRequest.setTitle("Tentative de modification d'un incident");
 
         // Mock the repository to return the existing incident
         when(incidentRepository.findById(1)).thenReturn(Optional.of(existingIncident));
@@ -132,17 +132,4 @@ class IncidentTest {
 
 
 
-    // Test latitude/longitude are within valid ranges
-
-    @Test
-    void testLatitudeLongitudeRange() {
-        Incident incident = new Incident();
-        incident.setLatitude(new BigDecimal("48.8566"));
-        incident.setLongitude(new BigDecimal("2.3522"));
-
-        assertTrue(incident.getLatitude().doubleValue() >= -90 && incident.getLatitude().doubleValue() <= 90,
-                "Latitude should be between -90 and 90");
-        assertTrue(incident.getLongitude().doubleValue() >= -180 && incident.getLongitude().doubleValue() <= 180,
-                "Longitude should be between -180 and 180");
-    }
 }
