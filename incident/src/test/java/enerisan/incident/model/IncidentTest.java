@@ -2,6 +2,10 @@ package enerisan.incident.model;
 
 import enerisan.incident.repository.IncidentRepository;
 import enerisan.incident.service.IncidentService;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.Validation;
+import jakarta.validation.Validator;
+import jakarta.validation.ValidatorFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -14,6 +18,7 @@ import static org.mockito.ArgumentMatchers.any;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Optional;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
@@ -132,4 +137,51 @@ class IncidentTest {
 
 
 
+    //Test validations
+
+    @Test
+    void incidentShouldPassValidationWhenAllFieldsValid() {
+        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+        Validator validator = factory.getValidator();
+
+
+        City city = new City();
+        city.setId(1);
+        city.setName("Aix-en-Provence");
+
+
+        User user = new User();
+        user.setId(1);
+        user.setFirstname("Lois");
+        user.setLastname("Lane");
+        user.setPhone("0123456789");
+        user.setEmail("loislane@gmail.com");
+
+
+        Status status = new Status();
+        status.setId(1);
+        status.setType("signalé");
+
+
+        Incident incident = new Incident();
+        incident.setCity(city);
+        incident.setUser(user);
+        incident.setStatus(status);
+        incident.setTitle("");
+        incident.setAddress("123 Rue Mignet");
+        incident.setPostalCode("13100");
+
+        Set<ConstraintViolation<Incident>> violations = validator.validate(incident);
+
+        assertTrue(violations.isEmpty(),
+                () -> "Expected no violations, but got: " + violations);
+    }
+
 }
+
+
+
+
+
+
+

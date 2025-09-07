@@ -76,7 +76,7 @@ class IncidentIntegrationSpringBootTest {
 
         mockMvc.perform(multipart("/addIncident")
                         .file(imageFile)
-                        .param("title", "Test Incident")
+                        .param("title", "")
                         .param("address", "9 Rue Mignet")
                         .param("cityId", "1")
                         .param("description", "Test incident")

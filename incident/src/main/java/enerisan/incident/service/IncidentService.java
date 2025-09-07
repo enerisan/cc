@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -60,8 +61,12 @@ public class IncidentService {
                 .collect(Collectors.toList());
     }
 
-    public ResponseEntity<?> createIncident(Incident incident) {
+    public ResponseEntity<?> createIncident(@RequestBody Incident incident) {
         try {
+//            //Validations
+//            if (incident.getTitle() == null || incident.getTitle().trim().isEmpty()) {
+//                return ResponseEntity.badRequest().body("Title is mandatory and cannot be empty");
+//            }
             City city = cityRepository.findById(incident.getCity().getId())
                     .orElseThrow(() -> new IllegalArgumentException("City not found"));
 

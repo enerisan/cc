@@ -1,4 +1,9 @@
 package enerisan.incident.model;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 
 import jakarta.persistence.*;
 import org.hibernate.annotations.ColumnDefault;
@@ -18,18 +23,23 @@ public class Incident {
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @jakarta.validation.constraints.NotNull
+    @NotNull(message = "City is mandatory")
+    @Valid
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
 //    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "city_id", nullable = false)
     private City city;
 
+    @NotNull(message = "User is mandatory")
+    @Valid
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
 //    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
 
+    @NotNull(message = "Status is mandatory")
+    @Valid
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
 //    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "status_id", nullable = false)
@@ -37,29 +47,33 @@ public class Incident {
 
 
 
-    @jakarta.validation.constraints.Size(max = 255)
-    @jakarta.validation.constraints.NotNull
+    @NotBlank(message = "Title is mandatory and cannot be blank")
+    @Size(max = 255)
     @Column(name = "title", nullable = false)
+    @Pattern(regexp = "[\\w\\s\\-.,]+", message = "Title contains invalid characters")
     private String title;
 
-    @jakarta.validation.constraints.NotNull
+    @NotBlank(message = "Address is mandatory and cannot be blank")
     @Lob
     @Column(name = "address", nullable = false)
+    @Pattern(regexp = "[\\w\\s\\-.,\\n\\r]+", message = "Address contains invalid characters")
     private String address;
 
-    @jakarta.validation.constraints.Size(max = 100)
+    @Size(max = 100)
     @Column(name = "neighborhood", length = 100)
     private String neighborhood;
 
-    @jakarta.validation.constraints.Size(max = 10)
+    @Size(max = 10)
+    @Pattern(regexp = "\\d{5}", message = "Le code postal doit contenir exactement 5 chiffres")
     @Column(name = "postal_code", length = 10)
     private String postalCode;
 
-    @jakarta.validation.constraints.Size(max = 255)
+    @Size(max = 255)
     @Column(name = "image")
     private String image;
 
     @Lob
+    @Pattern(regexp = "[\\w\\s\\-.,\\n\\r]+", message = "Description contains invalid characters")
     @Column(name = "description")
     private String description;
 
