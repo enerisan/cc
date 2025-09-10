@@ -107,7 +107,11 @@ public class IncidentService {
                     existingIncident.setNeighborhood(incident.getNeighborhood());
                     existingIncident.setDescription(incident.getDescription());
                     existingIncident.setPostalCode(incident.getPostalCode());
-                    existingIncident.setImage(incident.getImage());
+                    if (incident.getImage() != null) {
+                        existingIncident.setImage(incident.getImage());
+                    } else {
+                        existingIncident.setImage(null);
+                    }
                     if (incident.getClosedAt() != null) {
                         existingIncident.setClosedAt(incident.getClosedAt());
                     }

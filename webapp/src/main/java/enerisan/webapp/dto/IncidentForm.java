@@ -195,7 +195,7 @@ public class IncidentForm {
         incident.setAddress(this.address);
         incident.setNeighborhood(this.neighborhood != null ? this.neighborhood : "");
         incident.setPostalCode(this.postalCode);
-        incident.setImage(this.imageUrl != null ? this.imageUrl : "http://192.168.1.2:8883/api/images/by-id/6874cd318bc7be5315b46db8");
+        incident.setImage(this.imageUrl);
         incident.setDescription(this.description);
         incident.setCreatedAt(this.createdAt != null ? this.createdAt : LocalDateTime.now());
         incident.setClosedAt(this.closedAt);

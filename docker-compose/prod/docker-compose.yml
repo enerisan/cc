@@ -1,20 +1,26 @@
-services:
 
+
+services:
   ccdb:
+    image: mysql:8.0
     container_name: ccdb
     ports:
-      - '3308:3306'
+      - "3308:3306"
     environment:
+      MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: ccdb
-    extends:
-      file: common-config.yml
-      service: microservice-db-config
+    volumes:
+      - prod_mysql_data_new:/var/lib/mysql
+      - ./add-dml-user.sql:/docker-entrypoint-initdb.d/add-dml-user.sql:ro
+
+    networks:
+      - citycare
 
   ccmongodb:
     image: mongodb/mongodb-community-server:latest
     container_name: incidentimagesdb
     ports:
-      - '27018:27017'
+      - "27018:27017"
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: 123
@@ -23,3 +29,6 @@ services:
 
 networks:
   citycare:
+
+volumes:
+  prod_mysql_data_new:

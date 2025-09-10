@@ -221,15 +221,24 @@
             </select>
 
             <div class="AddImage">
-                <div class="ExistingImageBox" id="imageFromBack" th:if="${incident.imageUrl}">
-                    <img th:src="${incident.imageUrl}" alt="Image existante" style="max-width: 100px;"/>
+
+                <div class="ExistingImageBox" id="imageFromBack" th:if="*{incidentForm.imageUrl}">
+                    <img th:src="*{incidentForm.imageUrl}" alt="Image existante" style="max-width: 100px;"/>
                     <label>
-                        <input onclick="removeImageFromBack()" id="removeImage" type="checkbox" name="removeImage"/>
+
+                        <input type="checkbox"
+                               th:field="*{incidentForm.removeImage}"
+                               id="removeImage"
+                               onclick="removeImageFromBack()" />
                         <p>Supprimer cette image</p>
                     </label>
                 </div>
-                <label th:for="edit-image" style="cursor: pointer;">
 
+                <!-- Hidden input to send the current URL to the backend if nothing is changed -->
+                <input type="hidden" th:field="*{incidentForm.imageUrl}" />
+
+                <!-- Input for uploading a new image -->
+                <label th:for="edit-image" style="cursor: pointer;">
                     <input type="file" th:field="*{incidentForm.image}" accept="image/*"/>
                     <p id="fileName"></p>
                 </label>

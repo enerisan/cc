@@ -115,22 +115,20 @@ public class IncidentController {
 
         String incidentIdAsString = String.valueOf(incidentForm.getId());
 
-        // If delete image is chosen
+        if (incidentForm.isRemoveImage()) {
+            imageServiceFeignClient.deleteImageByIncidentId(incidentIdAsString);
+            incidentForm.setImageUrl(null); // el MS recibirá null
+        }
+        // Si el usuario quiere borrar la imagen
         if (incidentForm.isRemoveImage()) {
             imageServiceFeignClient.deleteImageByIncidentId(incidentIdAsString);
             incidentForm.setImageUrl(null);
         }
-
-        // If a new image is to be uploaded
-        if (incidentForm.getImage() != null && !incidentForm.getImage().isEmpty()) {
-            // Upload image without incident id
+        // Si sube nueva imagen
+        else if (incidentForm.getImage() != null && !incidentForm.getImage().isEmpty()) {
             String newImageUrl = imageServiceFeignClient.uploadImage(incidentForm.getImage());
             incidentForm.setImageUrl(newImageUrl);
-
-            // We obtain image id from url
             String imageId = newImageUrl.substring(newImageUrl.lastIndexOf("/") + 1);
-
-            // We assign incidentId to image in Mongo DB
             imageServiceFeignClient.assignIncidentIdToImage(imageId, incidentIdAsString);
         }
 

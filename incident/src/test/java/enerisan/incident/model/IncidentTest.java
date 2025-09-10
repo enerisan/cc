@@ -137,7 +137,7 @@ class IncidentTest {
 
 
 
-    //Test validations
+    //Test validations in creating incident
 
     @Test
     void incidentShouldPassValidationWhenAllFieldsValid() {
@@ -167,7 +167,7 @@ class IncidentTest {
         incident.setCity(city);
         incident.setUser(user);
         incident.setStatus(status);
-        incident.setTitle("");
+        incident.setTitle("Test Incident");
         incident.setAddress("123 Rue Mignet");
         incident.setPostalCode("13100");
 

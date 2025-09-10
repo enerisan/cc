@@ -1,0 +1,4 @@
+-- add-dml-user.sql
+CREATE USER IF NOT EXISTS 'eneri'@'%' IDENTIFIED BY 'san';
+GRANT SELECT, INSERT, UPDATE, DELETE ON ccdb.* TO 'eneri'@'%';
+FLUSH PRIVILEGES;
