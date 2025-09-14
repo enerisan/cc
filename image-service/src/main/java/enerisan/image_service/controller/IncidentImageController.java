@@ -76,16 +76,15 @@ public class IncidentImageController {
     }
 
 
+
+
+
     @DeleteMapping("/by-incident/{incidentId}")
-    public ResponseEntity<String> deleteImageByIncidentId(@PathVariable String incidentId) {
+    public ResponseEntity<Void> deleteImageByIncidentId(@PathVariable String incidentId) {
         IncidentImage image = incidentImageRepository.findByIncidentId(incidentId);
         if (image != null) {
             incidentImageRepository.delete(image);
-            return ResponseEntity.ok("Image deleted successfully");
-        } else {
-            return ResponseEntity.notFound().build();
         }
+        return ResponseEntity.ok().build();
     }
-
-
 }

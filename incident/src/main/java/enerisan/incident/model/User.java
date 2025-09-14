@@ -29,7 +29,7 @@ public class User {
 
     @jakarta.validation.constraints.Size(max = 100)
     @jakarta.validation.constraints.NotNull
-    @Column(name = "email", nullable = false, length = 100)
+    @Column(name = "email", nullable = false, length = 100,  unique = true)
     private String email;
 
     @jakarta.validation.constraints.Size(max = 128)

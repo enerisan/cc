@@ -2,28 +2,133 @@
 
 services:
   ccdb:
-    image: mysql:8.0
+    image: mysql:8.0 #image from docker hub
     container_name: ccdb
     ports:
       - "3308:3306"
     environment:
-      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ccdb
     volumes:
       - prod_mysql_data_new:/var/lib/mysql
       - ./add-dml-user.sql:/docker-entrypoint-initdb.d/add-dml-user.sql:ro
-
     networks:
       - citycare
 
+
   ccmongodb:
-    image: mongodb/mongodb-community-server:latest
-    container_name: incidentimagesdb
+    image: mongodb/mongodb-community-server:latest #image from docker hub
+    container_name: ccmongodb
     ports:
       - "27018:27017"
     environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: 123
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_ROOT_PASSWORD}
+    networks:
+      - citycare
+
+
+  configserver:
+    image: enerisan/configserver:latest #image created by Jib
+    container_name: configserver
+    ports:
+      - "8071:8071"
+    environment:
+      SERVER_PORT: 8071
+      SPRING_CLOUD_CONFIG_SERVER_GIT_URI: https://github.com/enerisan/citycare-config.git
+    networks:
+      - citycare
+
+
+
+  eurekaserver:
+    image: enerisan/eurekaserver:latest #image created by Jib
+    container_name: eurekaserver
+    ports:
+      - "8070:8070"
+
+    environment:
+      SERVER_PORT: 8070
+    networks:
+      - citycare
+
+
+  image-service:
+    image: enerisan/image-service:latest #image created by Jib
+    container_name: image-service
+    ports:
+      - "8883:8883"
+    environment:
+      # Spring Boot
+      SPRING_APPLICATION_NAME: image-service
+      SERVER_PORT: 8883
+
+      # MongoDB
+      SPRING_DATA_MONGODB_HOST: ccmongodb
+      SPRING_DATA_MONGODB_PORT: 27017
+      SPRING_DATA_MONGODB_DATABASE: incident-images
+      SPRING_DATA_MONGODB_USERNAME: ${MONGO_ROOT_USERNAME}
+      SPRING_DATA_MONGODB_PASSWORD: ${MONGO_ROOT_PASSWORD}
+
+      # Base URL for Image Service in development environment. Using the host machine's IP so URLs are accessible
+      # from the webapp even when running in Docker containers.
+      IMAGE_SERVICE_BASE_URL: http://localhost:8883
+
+      # Eureka
+      EUREKA_CLIENT_SERVICEURL__DEFAULTZONE: http://eurekaserver:8070/eureka
+      EUREKA_INSTANCE_PREFERIPADDRESS: true
+      EUREKA_CLIENT_REGISTERWITHEUREKA: true
+      EUREKA_CLIENT_FETCHREGISTRY: true
+    depends_on:
+      - ccmongodb
+      - eurekaserver
+    networks:
+      - citycare
+
+
+  incident:
+    image: enerisan/incident:latest #image created by Jib
+    container_name: incident
+    ports:
+      - "8880:8880"
+    environment:
+      # Spring Boot
+      SPRING_APPLICATION_NAME: incident
+      SERVER_PORT: 8880
+
+      # Mysql DB
+      SPRING_DATASOURCE_URL: jdbc:mysql://ccdb:3306/ccdb
+      SPRING_DATASOURCE_USERNAME: ${MYSQL_USER}
+      SPRING_DATASOURCE_PASSWORD: ${MYSQL_PASSWORD}
+
+      # Eureka
+      EUREKA_CLIENT_SERVICEURL__DEFAULTZONE: http://eurekaserver:8070/eureka
+      EUREKA_INSTANCE_PREFERIPADDRESS: true
+      EUREKA_CLIENT_REGISTERWITHEUREKA: true
+      EUREKA_CLIENT_FETCHREGISTRY: true
+    depends_on:
+      - ccdb
+      - eurekaserver
+    networks:
+      - citycare
+
+  webapp:
+    image: enerisan/webapp:latest #image created by Jib
+    container_name: webapp
+    ports:
+      - "9010:9010"
+    environment:
+      # Spring Boot
+      SPRING_APPLICATION_NAME: webapp
+      SERVER_PORT: 9010
+
+      # Eureka
+      EUREKA_CLIENT_SERVICEURL__DEFAULTZONE: http://eurekaserver:8070/eureka
+      EUREKA_INSTANCE_PREFERIPADDRESS: true
+      EUREKA_CLIENT_REGISTERWITHEUREKA: true
+      EUREKA_CLIENT_FETCHREGISTRY: true
+    depends_on:
+      - eurekaserver
     networks:
       - citycare
 

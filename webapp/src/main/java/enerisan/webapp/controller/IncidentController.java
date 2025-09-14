@@ -115,24 +115,21 @@ public class IncidentController {
 
         String incidentIdAsString = String.valueOf(incidentForm.getId());
 
-        if (incidentForm.isRemoveImage()) {
-            imageServiceFeignClient.deleteImageByIncidentId(incidentIdAsString);
-            incidentForm.setImageUrl(null); // el MS recibirá null
-        }
-        // Si el usuario quiere borrar la imagen
+
         if (incidentForm.isRemoveImage()) {
             imageServiceFeignClient.deleteImageByIncidentId(incidentIdAsString);
             incidentForm.setImageUrl(null);
         }
-        // Si sube nueva imagen
-        else if (incidentForm.getImage() != null && !incidentForm.getImage().isEmpty()) {
+
+
+        if (incidentForm.getImage() != null && !incidentForm.getImage().isEmpty()) {
             String newImageUrl = imageServiceFeignClient.uploadImage(incidentForm.getImage());
             incidentForm.setImageUrl(newImageUrl);
+
             String imageId = newImageUrl.substring(newImageUrl.lastIndexOf("/") + 1);
             imageServiceFeignClient.assignIncidentIdToImage(imageId, incidentIdAsString);
         }
 
-        // To update incident and categories
         incidentService.updateIncidentWithCategories(incidentForm);
 
         return "redirect:/incident/" + incidentForm.getId();

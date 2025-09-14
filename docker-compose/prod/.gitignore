@@ -1,0 +1,7 @@
+# Do not commit to Git because it contains sensitive data
+.env
+
+add-dml-user.sql
+
+
+prod_mysql_data_new/
