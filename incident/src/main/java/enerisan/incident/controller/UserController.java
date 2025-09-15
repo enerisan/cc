@@ -5,6 +5,7 @@ import enerisan.incident.model.Role;
 import enerisan.incident.model.User;
 import enerisan.incident.repository.RoleRepository;
 import enerisan.incident.repository.UserRepository;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -40,7 +41,7 @@ public class UserController {
     }
 
     @PostMapping("/user")
-    public User addUser(@RequestBody UserDto userDto) {
+    public User addUser(@Valid @RequestBody UserDto userDto) {
         User user = new User();
         user.setFirstname(userDto.getFirstname());
         user.setLastname(userDto.getLastname());

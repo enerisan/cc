@@ -6,9 +6,13 @@ import enerisan.webapp.dto.UserDto;
 import enerisan.webapp.model.Role;
 import enerisan.webapp.model.User;
 import enerisan.webapp.service.client.IncidentFeignClient;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.Set;
 
 @Service
 public class UserService {
@@ -19,6 +23,8 @@ public class UserService {
     @Autowired
     IncidentFeignClient incidentFeignClient;
 
+
+
     public User register(SignUpForm form){
 
         UserDto userDto = new UserDto();
@@ -26,7 +32,7 @@ public class UserService {
         userDto.setLastname(form.getLastname());
         userDto.setPhone(form.getPhone());
         userDto.setEmail(form.getEmail());
-        userDto.setRoleId(2);
+        userDto.setRoleId(2); //By default "user" not "admin
         userDto.setPassword(passwordEncoder.encode(form.getPassword()));
         return incidentFeignClient.createUser(userDto);
     }

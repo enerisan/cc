@@ -10,8 +10,10 @@ import enerisan.webapp.service.IncidentService;
 import enerisan.webapp.service.SessionService;
 import enerisan.webapp.service.UserService;
 import enerisan.webapp.service.client.IncidentFeignClient;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -102,7 +104,14 @@ public class WebAppController {
 
 
     @PostMapping("/signup")
-    public ModelAndView processRequest(@ModelAttribute("incidentWithCategoriesDto") SignUpForm form) {
+    public ModelAndView processRequest(
+            @ModelAttribute("signUpForm") @Valid SignUpForm form,
+            BindingResult bindingResult) {
+
+        if (bindingResult.hasErrors()) {
+            return new ModelAndView("signup");
+        }
+
         userService.register(form);
         return new ModelAndView("signin");
     }

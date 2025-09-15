@@ -1,12 +1,31 @@
 package enerisan.incident.dto;
 
-public class UserDto {
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
+public class UserDto {
+    @NotNull
+    @Size(max = 50)
     private String firstname;
+
+    @NotNull
+    @Size(max = 50)
     private String lastname;
+
+    @NotNull
+    @Size(max = 20)
     private String phone;
+
+    @NotNull
+    @Size(max = 100)
+    @Email
     private String email;
+
+    @NotNull
+    @Size(max = 128)
     private String password;
+
     private Integer roleId;
 
     public String getFirstname() {
