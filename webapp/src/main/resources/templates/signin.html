@@ -24,7 +24,7 @@
         </div>
         <div class="FormContainer">
 
-            <form class="FormContainer-login Form" th:action="@{/signin}" method="post">
+            <form class="Form FormLogin" th:action="@{/signin}" method="post">
                 <h3>Connexion</h3>
 
                 <div class="input-group">
@@ -68,6 +68,84 @@
             passwordInput.type = isHidden ? 'text' : 'password';
         });
     </script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+    <!-- Success -->
+    <script th:if="${param.registered}" th:inline="javascript">
+        (function(){
+            const toast = document.createElement('div');
+            toast.innerText = 'Votre compte a été bien créé !';
+            toast.style.position = 'fixed';
+            toast.style.top = '20px';
+            toast.style.right = '-400px';
+            toast.style.background = '#4CAF50';
+            toast.style.color = 'white';
+            toast.style.padding = '10px 20px';
+            toast.style.borderRadius = '10px';
+            toast.style.minWidth = '120px';
+            toast.style.maxWidth = '350px';
+            toast.style.boxShadow = '0 4px 8px rgba(0,0,0,0.2)';
+            toast.style.fontSize = '14px';
+            toast.style.zIndex = 9999;
+            toast.style.transition = 'right 0.5s ease, opacity 0.5s ease';
+            toast.style.opacity = 0;
+
+            document.body.appendChild(toast);
+
+            setTimeout(() => {
+                toast.style.right = '20px';
+                toast.style.opacity = 1;
+            }, 50);
+
+            setTimeout(() => {
+                toast.style.right = '-400px';
+                toast.style.opacity = 0;
+                setTimeout(() => {
+                    document.body.removeChild(toast);
+                }, 500);
+            }, 5000);
+        })();
+    </script>
+
+    <!-- Error -->
+    <script th:if="${param.errorRegister}" th:inline="javascript">
+        (function(){
+            const toast = document.createElement('div');
+            toast.innerText = 'Erreur lors de la création de votre compte. Veuillez réessayer ultérieurement';
+            toast.style.position = 'fixed';
+            toast.style.top = '20px';
+            toast.style.right = '-400px'; // outside from screen
+            toast.style.background = '#E53935';
+            toast.style.color = 'white';
+            toast.style.padding = '10px 20px';
+            toast.style.borderRadius = '10px';
+            toast.style.minWidth = '120px';
+            toast.style.maxWidth = '350px';
+            toast.style.boxShadow = '0 4px 8px rgba(0,0,0,0.2)';
+            toast.style.fontSize = '14px';
+            toast.style.zIndex = 9999;
+            toast.style.transition = 'right 0.5s ease, opacity 0.5s ease';
+            toast.style.opacity = 0;
+
+            document.body.appendChild(toast);
+
+            setTimeout(() => {
+                toast.style.right = '20px';
+                toast.style.opacity = 1;
+            }, 50);
+
+            setTimeout(() => {
+                toast.style.right = '-400px';
+                toast.style.opacity = 0;
+                setTimeout(() => {
+                    document.body.removeChild(toast);
+                }, 500);
+            }, 3500);
+        })();
+    </script>
+
 </body>
 
 

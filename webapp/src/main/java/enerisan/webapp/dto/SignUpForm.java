@@ -18,7 +18,7 @@ public class SignUpForm {
     private String phone;
 
     @NotBlank(message = "L'email est obligatoire")
-    @Email(message = "L'email doit être valide")
+    @Email(message = "Veuillez saisir un email valide")
     @Size(max = 100, message = "L'email ne peut pas dépasser 100 caractères")
     private String email;
 

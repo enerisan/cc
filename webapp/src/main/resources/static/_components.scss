@@ -259,7 +259,11 @@
     padding: 0;
     min-width: 35%;
     background-color: $backgroundColor;
+
+
   }
+
+
 
   .Form {
     text-align: center;
@@ -267,15 +271,20 @@
     background-color: $firstColor;
     border-radius: 20px;
 
-
+    &.FormLogin {
+      @media screen and (min-width: $tablet) {
+        padding-top: 50px;
+      }
+    }
     @media screen and (min-width: $tablet) {
       text-align: center;
       width: 430px;
-      height: 420px;
+      height: 430px;
       background-color: $thirdColor;
       border-radius: 20px;
       box-shadow: 0px 4px 24px 0px rgba(0, 0, 0, 0.25);
-      padding: 50px;
+      padding-top: 1em;
+      padding-inline: 50px;
     }
 
     h3 {
@@ -298,11 +307,27 @@
       position: relative;
       width: 100%;
       height: 72px;
+      margin-bottom: 0.5em;
+      text-align: left;
 
       @media screen and (min-width: $tablet) {
         width: 328px;
       }
 
+      .error {
+        color: $thirdColor;
+        font-size: 12px;
+        margin-top: 0;
+        margin-bottom: 1px;
+        display: block;
+
+        @media screen and (min-width: $tablet) {
+          color: red;
+          font-size: 14px;
+          margin-top: 0;
+        }
+
+      }
     }
 
     /* Inputs */
@@ -317,6 +342,11 @@
       outline: none;
       padding-inline: 12px;
 
+      &::placeholder {
+        color: white;
+        opacity: 1;
+      }
+
       @media screen and (min-width: $tablet) {
         color: $firstColor;
         height: 56px;
@@ -325,6 +355,11 @@
         border: 1px solid $firstColor;
         font-size: 16px;
         transition: border-color 0.3s;
+
+        &::placeholder {
+          color: dimgray;
+          opacity: 1;
+        }
 
 
       }

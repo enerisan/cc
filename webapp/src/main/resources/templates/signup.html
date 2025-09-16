@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/style.css">
     <link rel="icon" href="public/images/logo.ico" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 
 </head>
 
@@ -51,11 +52,11 @@
                     <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error"></div>
                 </div>
 
-                <div class="input-group icon-right">
-                    <input th:field="*{password}" id="password" name="password" placeholder="Votre mot de passe"
+                <div class="input-group">
+                    <div class="icon-right">
+                    <input type="password"  th:field="*{password}" id="password" name="password" placeholder="Votre mot de passe"
                         required />
                     <label for="password">*Mot de passe</label>
-                    <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error"></div>
                     <button type="button" class="toggle-password" aria-label="Afficher/Masquer le mot de passe">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                             <path fill="currentColor" fill-rule="evenodd"
@@ -63,10 +64,13 @@
                                 clip-rule="evenodd" />
                         </svg>
                     </button>
+                    </div>
+                    <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error"></div>
                 </div>
 
+
                 <div class="input-group icon-right">
-                    <input id="confirmPassword" name="confirmPassword" placeholder="Confirmez votre mot de passe"
+                    <input  type="password"  id="confirmPassword" name="confirmPassword" placeholder="Confirmez votre mot de passe"
                         required />
                     <label for="confirmPassword">* Confirmation de mot de passe</label>
                     <button type="button" class="toggle-password" aria-label="Afficher/Masquer le mot de passe">
@@ -109,6 +113,8 @@
             });
         });
     </script>
+
+
 </body>
 
 

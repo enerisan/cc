@@ -12,6 +12,7 @@ import enerisan.webapp.service.UserService;
 import enerisan.webapp.service.client.IncidentFeignClient;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,13 +20,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 
-@RestController
+@Controller
 public class WebAppController {
 
     @Autowired
@@ -106,13 +108,23 @@ public class WebAppController {
     @PostMapping("/signup")
     public ModelAndView processRequest(
             @ModelAttribute("signUpForm") @Valid SignUpForm form,
-            BindingResult bindingResult) {
+            BindingResult bindingResult,
+            RedirectAttributes redirectAttributes) {
 
         if (bindingResult.hasErrors()) {
             return new ModelAndView("signup");
         }
 
-        userService.register(form);
-        return new ModelAndView("signin");
+        try {
+            userService.register(form);
+
+            return new ModelAndView("redirect:/signin?registered=true");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+
+            return new ModelAndView("redirect:/signin?errorRegister=true");
+        }
     }
+
 }
